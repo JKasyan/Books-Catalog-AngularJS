@@ -1,0 +1,14 @@
+<div id="authors_table">
+    <table>
+        <tr>
+            <td>Name</td>
+            <td>Second name</td>
+            <td>Actions</td>
+        </tr>
+        <tr ng-repeat = 'author in aCtrl.authors'>
+                <td ng-bind = 'author.name'></td>
+                <td ng-bind = 'author.secondName'></td>
+                <td><a href="#/books_of_author/:{{author.id}}.html">Books list</a></td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,17 @@
+<div id="books_table">
+    <table>
+        <tr>
+            <td>Title</td>
+            <td>Short description</td>
+            <td>Publishing year</td>
+            <td>Authors</td>
+        </tr>
+        <tr ng-repeat = 'book in bCtrl.books'>
+            <td ng-bind = 'book.author'></td>
+            <td ng-bind = 'book.description'></td>
+            <td ng-repeat = 'author in book.authors'>
+                <p>{{author.name}} {{author.secondName}}</p>
+            </td>
+        </tr>
+    </table>
+</div>
