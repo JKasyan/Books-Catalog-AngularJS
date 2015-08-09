@@ -5,14 +5,12 @@
 angular.module('catalogApp',['ngRoute']).
     config(function($routeProvider){
 
-        $routeProvider.when('/books',{
+        $routeProvider.when('/books.html',{
             templateUrl:'views/books.html',
-            controller: 'booksController',
-            controllerAs:'bCtrl'
-        }).when('/authors',{
+            controller: 'booksController as bCtrl',
+        }).when('/authors.html',{
             templateUrl:'views/authors.html',
-            controller: 'authorsController',
-            controllerAs:'aCtrl'
+            controller: 'authorsController as aCtrl',
         });
 
         $routeProvider.otherwise({

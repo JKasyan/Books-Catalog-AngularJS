@@ -2,7 +2,7 @@
  * Created by Evgen on 09.08.2015.
  */
 
-angular.module('catalogApp',[]).
+angular.module('catalogApp').
     factory('booksService',['$http',function($http){
         return {
             getBooks: function(){
