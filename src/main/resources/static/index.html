@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-<html ng-app = 'catalogApp'>
+<html ng-app='catalogApp'>
 <head>
     <meta charset="UTF-8">
     <title></title>
     <link href="css/catalog.css" rel="stylesheet" type="text/css">
 </head>
-<body >
+<body>
 <div id="header">
     <h1>Books Catalog</h1>
 </div>
-<div id="links">
-    <a href="#/books.html">Books list</a><br>
-    <a href="#/authors.html">Authors list</a>
-
+<div id="main">
+    <div id="links">
+        <a href="#/books.html">Books list</a><br>
+        <a href="#/authors.html">Authors list</a>
+    </div>
     <div ng-view></div>
 </div>
 <script src="js/vendors/angular.min.js"></script>

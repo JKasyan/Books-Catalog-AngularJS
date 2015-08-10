@@ -3,7 +3,6 @@ package catalog.angularjs.services.impl;
 import catalog.angularjs.dto.Author;
 import catalog.angularjs.dto.Book;
 import catalog.angularjs.services.CatalogService;
-import org.joda.time.DateTime;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -27,13 +26,13 @@ public class CatalogServiceImpl implements CatalogService{
         book.setId(1);
         book.setShortDescription("Very cool book");
         book.setTitle("The old man and the see");
-        book.setDatePublish(new DateTime());
+        book.setDatePublish("1953");
 
         authors.add(author);
         books.add(book);
 
-//        author.setBooks(books);
-//        book.setAuthors(authors);
+        author.setBooks(books);
+        book.setAuthors(authors);
     }
 
     @Override

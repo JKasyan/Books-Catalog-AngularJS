@@ -7,10 +7,11 @@
             <td>Authors</td>
         </tr>
         <tr ng-repeat = 'book in bCtrl.books'>
-            <td ng-bind = 'book.author'></td>
-            <td ng-bind = 'book.description'></td>
+            <td ng-bind = 'book.title'></td>
+            <td ng-bind = 'book.shortDescription'></td>
+            <td ng-bind = 'book.datePublish'></td>
             <td ng-repeat = 'author in book.authors'>
-                <p>{{author.name}} {{author.secondName}}</p>
+                <span ng-bind = 'author.name'></span> <span ng-bind = 'author.secondName'></span>
             </td>
         </tr>
     </table>
