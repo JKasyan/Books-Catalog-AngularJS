@@ -8,6 +8,10 @@ angular.module('catalogApp').
             getBooks: function(){
                 return $http.get('getBooks');
             }
+            //,
+            //getBooksOfAuthor:function(id){
+            //    return $http.get('getBooksOfAuthor/'+id);
+            //}
         }
     }]).factory('authorsService',['$http',function($http){
         return {

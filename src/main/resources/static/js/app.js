@@ -11,6 +11,9 @@ angular.module('catalogApp',['ngRoute']).
         }).when('/authors.html',{
             templateUrl:'views/authors.html',
             controller: 'authorsController as aCtrl',
+        }).when('/books_of_author/:id.html',{
+            templateUrl:'views/books.html',
+            controller: 'booksOfAuthorController as bCtrl',
         });
 
         $routeProvider.otherwise({

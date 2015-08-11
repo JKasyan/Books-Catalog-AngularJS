@@ -35,13 +35,15 @@ public class CatalogServiceImpl implements CatalogService{
         book.setAuthors(authors);
     }
 
-    @Override
     public List<Book> getAllBooks() {
         return books;
     }
 
-    @Override
     public List<Author> getAllAuthors() {
         return authors;
+    }
+
+    public List<Book> getBooksOfAuthors(int id){
+        return authors.get(id).getBooks();
     }
 }

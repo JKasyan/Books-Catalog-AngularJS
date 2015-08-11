@@ -1,0 +1,16 @@
+<div>
+    <div ng-show = 'error'>There was a problem logging in. Please try again.</div>
+    <form ng-submit = 'login()'>
+        <table>
+            <td>
+                <tr>Login</tr>
+                <tr><input type="text" name="username" ng-model = 'credentials.username'></tr>
+            </td>
+            <td>
+                <tr>Password</tr>
+                <tr><input type="password" name="password" ng-model = 'credentials.password'></tr>
+            </td>
+        </table>
+        <input type="submit" value="Log in">
+    </form>
+</div>

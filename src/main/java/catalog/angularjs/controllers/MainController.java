@@ -4,6 +4,7 @@ import catalog.angularjs.dto.Author;
 import catalog.angularjs.dto.Book;
 import catalog.angularjs.services.CatalogService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,5 +29,10 @@ public class MainController {
     @RequestMapping(value = "/getAuthors", method = RequestMethod.GET)
     public List<Author> getAllAuthors(){
         return catalogService.getAllAuthors();
+    }
+
+    @RequestMapping(value = "/getBooksOfAuthor/{id}")
+    public List<Book> getBooksOfAuthor(@PathVariable int id){
+        return catalogService.getBooksOfAuthors(id);
     }
 }
