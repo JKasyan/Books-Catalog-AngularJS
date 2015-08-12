@@ -3,6 +3,9 @@ package catalog.angularjs.services.impl;
 import catalog.angularjs.dto.Author;
 import catalog.angularjs.dto.Book;
 import catalog.angularjs.services.CatalogService;
+import org.apache.log4j.Logger;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,6 +17,10 @@ import java.util.List;
 
 @Service("catalogService")
 public class CatalogServiceImpl implements CatalogService{
+
+    @Autowired
+    private SessionFactory sessionFactory;
+    private static final Logger logger = Logger.getLogger(CatalogServiceImpl.class);
 
     private List<Book> books = new ArrayList<>();
     private List<Author> authors = new ArrayList<>();
@@ -36,14 +43,18 @@ public class CatalogServiceImpl implements CatalogService{
     }
 
     public List<Book> getAllBooks() {
+        List<Book> books = sessionFactory.openSession().
+                createQuery("from catalog.angularjs.dto.Book").list();
+        logger.debug("Books: "+books);
         return books;
     }
 
     public List<Author> getAllAuthors() {
-        return authors;
+        return sessionFactory.openSession().
+                createQuery("from catalog.angularjs.dto.Author").list();
     }
 
     public List<Book> getBooksOfAuthors(int id){
-        return authors.get(id).getBooks();
+        return null;
     }
 }

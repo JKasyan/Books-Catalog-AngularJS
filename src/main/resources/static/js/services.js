@@ -3,6 +3,8 @@
  */
 
 angular.module('catalogApp').
+
+
     factory('booksService',['$http',function($http){
         return {
             getBooks: function(){
@@ -13,10 +15,20 @@ angular.module('catalogApp').
             //    return $http.get('getBooksOfAuthor/'+id);
             //}
         }
-    }]).factory('authorsService',['$http',function($http){
+    }]).
+
+
+    factory('authorsService',['$http',function($http){
         return {
             getAuthors: function(){
                 return $http.get('getAuthors');
+            },
+            addAuthor:function(author){
+                console.log('authorsService: ',author);
+                return $http.post('addAuthor',author).
+                    then(function(response){
+                    return response;
+                });
             }
         }
     }]);

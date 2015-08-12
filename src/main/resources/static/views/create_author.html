@@ -1,0 +1,16 @@
+<div>
+    <div ng-show = 'nACtrl.errorMsg' ng-bind = 'nACtrl.errorMsg'></div>
+    <form ng-submit='nACtrl.createAuthor()'>
+        <table>
+            <tr>
+                <td>Name</td>
+                <td><input type="text" ng-model = 'nACtrl.author.name'></td>
+            </tr>
+            <tr>
+                <td>Second name</td>
+                <td><input type="text" ng-model = 'nACtrl.author.secondName'></td>
+            </tr>
+        </table>
+        <input type="submit" value="New author">
+    </form>
+</div>

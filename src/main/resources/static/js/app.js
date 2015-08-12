@@ -1,6 +1,4 @@
-/**
- * Created by Evgen on 09.08.2015.
- */
+
 
 angular.module('catalogApp',['ngRoute']).
     config(function($routeProvider){
@@ -8,12 +6,24 @@ angular.module('catalogApp',['ngRoute']).
         $routeProvider.when('/books.html',{
             templateUrl:'views/books.html',
             controller: 'booksController as bCtrl',
-        }).when('/authors.html',{
+        }).
+
+
+            when('/authors.html',{
             templateUrl:'views/authors.html',
             controller: 'authorsController as aCtrl',
-        }).when('/books_of_author/:id.html',{
+        }).
+
+
+            when('/books_of_author/:id.html',{
             templateUrl:'views/books.html',
-            controller: 'booksOfAuthorController as bCtrl',
+            controller: 'booksOfAuthorController as bOfACtrl',
+        }).
+
+
+            when('/create_author.html',{
+            templateUrl:'views/create_author.html',
+            controller: 'newAuthorCtrl as nACtrl',
         });
 
         $routeProvider.otherwise({

@@ -1,23 +1,33 @@
 package catalog.angularjs.dto;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import org.springframework.data.annotation.Id;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Evgen on 09.08.2015.
- */
-
-@JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@UUID")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@UUID")
+@Entity
+@Table(name = "authors")
 public class Author {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_author", unique = true, nullable = false)
     private int id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "second_name")
     private String secondName;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "authors")
+    //@JsonBackReference("authors-books")
+    @JsonManagedReference("authors-books")
     private List<Book> books = new ArrayList<Book>();
 
     public List<Book> getBooks() {
@@ -54,6 +64,7 @@ public class Author {
 
     @Override
     public String toString() {
-        return String.format("Author{id=%s, name='%s', secondName='%s'}",id,name,secondName);
+        return String.format("Author{id=%s, name='%s', secondName='%s'}",
+                id,name,secondName);
     }
 }

@@ -1,23 +1,40 @@
 package catalog.angularjs.dto;
 
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Evgen on 09.08.2015.
- */
-@JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@UUID")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@UUID")
+@Entity
+@Table(name = "books")
 public class Book {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_book", unique = true, nullable = false)
     private int id;
+
+    @Column(name = "title")
     private String title;
+
+    @Column(name = "short_desc")
     private String shortDescription;
+
+    @Column(name = "date_publ", length = 4)
     private String datePublish;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "books_authors",
+            joinColumns = {@JoinColumn(name = "id_book", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "id_author", nullable = false, updatable = false)})
+    //@JsonManagedReference("authors-books")
+    @JsonBackReference("authors-books")
     private List<Author> authors = new ArrayList<Author>();
 
     public String getTitle() {
@@ -62,6 +79,7 @@ public class Book {
 
     @Override
     public String toString() {
-        return String.format("Book{id=%s, title='%s', shortDescription='%s', datePublish='%s'}", id, title, shortDescription, datePublish);
+        return String.format("Book{id=%s, title='%s', shortDescription='%s', datePublish='%s'}",
+                id, title, shortDescription, datePublish);
     }
 }

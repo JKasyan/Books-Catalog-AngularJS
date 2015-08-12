@@ -21,7 +21,7 @@ body {
     margin-right: 		20px;
 }
 
-#links a{
+#links, #head_of_table a{
     font-size: 			150%;
     margin: 			20px 5px 20px 5px;
 }
@@ -34,7 +34,7 @@ body {
     width: 				100%;
 }
 
-#head_of_table input{
+#head_of_table a{
     float: 				right;
     margin-right: 		20px;
 }
