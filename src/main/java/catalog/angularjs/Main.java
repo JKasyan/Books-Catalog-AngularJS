@@ -20,13 +20,13 @@ public class Main {
 //        CatalogService service = (CatalogService)context.getBean(CatalogServiceImpl.class);
 //        logger.debug(service.getAllBooks());
         ObjectMapper mapper = new ObjectMapper();
-        String jsonAuthor = "{\"name\": \"Evgen\", \"secondName\": \"Kasyan\"}";
-        String jsonBook = "{\"id\": \"5\",\"title\": \"Title\", \"shortDescription\": \"ShortDescription\", \"datePublish\": \"datePublish\"}";
+        String jsonAuthor = "{\"id\": \"5\",\"name\": \"Evgen\", \"secondName\": \"Kasyan\"}";
+        //String jsonBook = "{\"id\": \"5\",\"title\": \"Title\", \"shortDescription\": \"ShortDescription\", \"datePublish\": \"datePublish\"}";
         System.out.println(jsonAuthor);
-        System.out.println(jsonBook);
+        //System.out.println(jsonBook);
         Author a = mapper.readValue(jsonAuthor,Author.class);
         System.out.println(a);
-        Book b = mapper.readValue(jsonBook,Book.class);
-        System.out.println(b);
+        //Book b = mapper.readValue(jsonBook,Book.class);
+        //System.out.println(b);
     }
 }

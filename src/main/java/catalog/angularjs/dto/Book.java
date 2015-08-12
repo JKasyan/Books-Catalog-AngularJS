@@ -7,13 +7,16 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+//@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class,
+//        property = "@Id")
 //@JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@UUID")
 @Entity
 @Table(name = "books")
-public class Book {
+public class Book implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,8 +36,8 @@ public class Book {
     @JoinTable(name = "books_authors",
             joinColumns = {@JoinColumn(name = "id_book", nullable = false, updatable = false)},
             inverseJoinColumns = {@JoinColumn(name = "id_author", nullable = false, updatable = false)})
-    //@JsonManagedReference("authors-books")
-    @JsonBackReference("authors-books")
+    @JsonManagedReference("authors-books")
+    //@JsonBackReference("authors-books")
     private List<Author> authors = new ArrayList<Author>();
 
     public String getTitle() {
