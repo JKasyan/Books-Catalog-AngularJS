@@ -22,10 +22,14 @@ public class Author implements Serializable {
     @Column(name = "second_name")
     private String secondName;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "authors")
-    @JsonIgnore
-//    @JsonBackReference("authors-books")
-    @JsonManagedReference("authors-books")
+    //    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "authors")
+//    @JsonIgnore
+//    @JsonManagedReference("authors-books")
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "books_authors",
+            joinColumns = {@JoinColumn(name = "id_author", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "id_book", nullable = false, updatable = false)})
+    @JsonBackReference("authors-books")
     private List<Book> books = new ArrayList<Book>();
 
     public List<Book> getBooks() {
@@ -63,6 +67,6 @@ public class Author implements Serializable {
     @Override
     public String toString() {
         return String.format("Author{id=%s, name='%s', secondName='%s'}",
-                id,name,secondName);
+                id, name, secondName);
     }
 }

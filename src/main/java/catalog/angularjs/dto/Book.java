@@ -26,11 +26,13 @@ public class Book implements Serializable{
     @Column(name = "date_publ", length = 4)
     private String datePublish;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "books_authors",
-            joinColumns = {@JoinColumn(name = "id_book", nullable = false, updatable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "id_author", nullable = false, updatable = false)})
-    @JsonBackReference("authors-books")
+//    @ManyToMany(fetch = FetchType.LAZY)
+//    @JoinTable(name = "books_authors",
+//            joinColumns = {@JoinColumn(name = "id_book", nullable = false, updatable = false)},
+//            inverseJoinColumns = {@JoinColumn(name = "id_author", nullable = false, updatable = false)})
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "books")
+    @JsonManagedReference("authors-books")
+    @JsonIgnore
     private List<Author> authors = new ArrayList<Author>();
 
     public String getTitle() {
