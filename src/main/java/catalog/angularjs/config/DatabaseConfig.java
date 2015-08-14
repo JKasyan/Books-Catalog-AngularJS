@@ -9,9 +9,11 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter;
 
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
@@ -21,11 +23,11 @@ public class DatabaseConfig {
 
     private String DB_DRIVER = "com.mysql.jdbc.Driver";
 
-    private String DB_PASSWORD = "hQ1*cY3!";
+    private String DB_PASSWORD = "root";
 
-    private String DB_URL = "jdbc:mysql://sql2.freesqldatabase.com:3306/sql286150";
+    private String DB_URL = "jdbc:mysql://localhost/Catalog?characterEncoding=UTF-8&amp;Unicode=true&amp;keepAlive=true";
 
-    private String DB_USERNAME = "sql286150";
+    private String DB_USERNAME = "root";
 
     private String HIBERNATE_DIALECT = "org.hibernate.dialect.MySQL5Dialect";
 

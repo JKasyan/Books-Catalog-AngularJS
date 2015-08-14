@@ -1,5 +1,7 @@
 package catalog.angularjs.services.impl;
 
+import catalog.angularjs.dao.AuthorDao;
+import catalog.angularjs.dao.BookDao;
 import catalog.angularjs.dto.Author;
 import catalog.angularjs.dto.Book;
 import catalog.angularjs.services.CatalogService;
@@ -11,50 +13,31 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Evgen on 09.08.2015.
- */
-
 @Service("catalogService")
 public class CatalogServiceImpl implements CatalogService{
 
     @Autowired
     private SessionFactory sessionFactory;
     private static final Logger logger = Logger.getLogger(CatalogServiceImpl.class);
-
-    private List<Book> books = new ArrayList<>();
-    private List<Author> authors = new ArrayList<>();
-    {
-        Author author = new Author();
-        author.setId(1);
-        author.setName("Ernest");
-        author.setSecondName("Hamingway");
-        Book book = new Book();
-        book.setId(1);
-        book.setShortDescription("Very cool book");
-        book.setTitle("The old man and the see");
-        book.setDatePublish("1953");
-
-        authors.add(author);
-        books.add(book);
-
-        author.setBooks(books);
-        book.setAuthors(authors);
-    }
+    @Autowired
+    private AuthorDao authorDao;
+    @Autowired
+    private BookDao bookDao;
 
     public List<Book> getAllBooks() {
-        List<Book> books = sessionFactory.openSession().
-                createQuery("from catalog.angularjs.dto.Book").list();
-        logger.debug("Books: "+books);
-        return books;
+        return bookDao.selectAllBooks();
     }
 
     public List<Author> getAllAuthors() {
-        return sessionFactory.openSession().
-                createQuery("from catalog.angularjs.dto.Author").list();
+        return authorDao.selectAll();
     }
 
     public List<Book> getBooksOfAuthors(int id){
         return null;
+    }
+
+    @Override
+    public void addAuthor(Author author) {
+        authorDao.insertAuthor(author);
     }
 }

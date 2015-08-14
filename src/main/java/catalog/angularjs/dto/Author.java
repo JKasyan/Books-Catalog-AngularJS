@@ -1,18 +1,12 @@
 package catalog.angularjs.dto;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-//@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class,
-//        property = "@Id")
-//@JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@UUID")
 @Entity
 @Table(name = "authors")
 public class Author implements Serializable {
@@ -29,8 +23,9 @@ public class Author implements Serializable {
     private String secondName;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "authors")
-    @JsonBackReference("authors-books")
-    //@JsonManagedReference("authors-books")
+    @JsonIgnore
+//    @JsonBackReference("authors-books")
+    @JsonManagedReference("authors-books")
     private List<Book> books = new ArrayList<Book>();
 
     public List<Book> getBooks() {

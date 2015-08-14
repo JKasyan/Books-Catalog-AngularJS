@@ -1,7 +1,10 @@
 package catalog.angularjs.dao;
 
-/**
- * Created by evgen on 13.08.15.
- */
-public class BookDao {
+import catalog.angularjs.dto.Book;
+
+import java.util.List;
+
+public interface BookDao {
+
+    List<Book> selectAllBooks();
 }

@@ -34,7 +34,7 @@ public class MainController {
     @RequestMapping(value = "/addAuthor", method = RequestMethod.POST)
     public String addAuthor(@RequestBody Author author){
         logger.debug("New author: "+author);
-        System.out.println(author);
+        catalogService.addAuthor(author);
         return "";
     }
 }

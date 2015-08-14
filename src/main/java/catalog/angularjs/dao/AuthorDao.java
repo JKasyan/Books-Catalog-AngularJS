@@ -1,7 +1,11 @@
 package catalog.angularjs.dao;
 
-/**
- * Created by evgen on 13.08.15.
- */
+import catalog.angularjs.dto.Author;
+
+import java.util.List;
+
 public interface AuthorDao {
+
+    void insertAuthor(Author author);
+    List<Author> selectAll();
 }

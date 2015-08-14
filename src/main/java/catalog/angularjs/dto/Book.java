@@ -1,9 +1,6 @@
 package catalog.angularjs.dto;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 
 
 import javax.persistence.*;
@@ -11,9 +8,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-//@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class,
-//        property = "@Id")
-//@JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@UUID")
 @Entity
 @Table(name = "books")
 public class Book implements Serializable{
@@ -36,8 +30,7 @@ public class Book implements Serializable{
     @JoinTable(name = "books_authors",
             joinColumns = {@JoinColumn(name = "id_book", nullable = false, updatable = false)},
             inverseJoinColumns = {@JoinColumn(name = "id_author", nullable = false, updatable = false)})
-    @JsonManagedReference("authors-books")
-    //@JsonBackReference("authors-books")
+    @JsonBackReference("authors-books")
     private List<Author> authors = new ArrayList<Author>();
 
     public String getTitle() {
@@ -82,7 +75,7 @@ public class Book implements Serializable{
 
     @Override
     public String toString() {
-        return String.format("Book{id=%s, title='%s', shortDescription='%s', datePublish='%s'}",
-                id, title, shortDescription, datePublish);
+        return String.format("Book{id=%s, title='%s', shortDescription='%s', datePublish='%s', authors='%s'}",
+                id, title, shortDescription, datePublish, authors);
     }
 }
