@@ -24,9 +24,18 @@ angular.module('catalogApp',['ngRoute']).
             when('/create_author.html',{
             templateUrl:'views/create_author.html',
             controller: 'newAuthorCtrl as nACtrl',
-        });
+        }).
+
+            when('/login.html', {
+                templateUrl: 'views/login.html',
+                controller: 'loginCtrl as lCtrl',
+            });
 
         $routeProvider.otherwise({
             redirectTo:'/'
         });
+
+
+         //$routeProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+
     });

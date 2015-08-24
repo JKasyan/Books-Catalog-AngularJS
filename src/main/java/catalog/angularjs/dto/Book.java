@@ -1,36 +1,21 @@
 package catalog.angularjs.dto;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.springframework.data.annotation.Id;
 
-
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-@Table(name = "books")
+
 public class Book implements Serializable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_book", unique = true, nullable = false)
     private int id;
-
-    @Column(name = "title")
     private String title;
-
-    @Column(name = "short_desc")
     private String shortDescription;
-
-    @Column(name = "date_publ", length = 4)
     private String datePublish;
-
-//    @ManyToMany(fetch = FetchType.LAZY)
-//    @JoinTable(name = "books_authors",
-//            joinColumns = {@JoinColumn(name = "id_book", nullable = false, updatable = false)},
-//            inverseJoinColumns = {@JoinColumn(name = "id_author", nullable = false, updatable = false)})
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "books")
     @JsonManagedReference("authors-books")
     @JsonIgnore
     private List<Author> authors = new ArrayList<Author>();

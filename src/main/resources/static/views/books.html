@@ -10,7 +10,7 @@
             <td>Publishing year</td>
             <td>Authors</td>
         </tr>
-        <tr ng-repeat = 'book in bCtrl.books'>
+        <tr ng-repeat = "book in bCtrl.books | orderBy: 'datePublish'">
             <td ng-bind = 'book.title'></td>
             <td ng-bind = 'book.shortDescription'></td>
             <td ng-bind = 'book.datePublish'></td>

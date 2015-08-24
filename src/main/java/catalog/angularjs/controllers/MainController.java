@@ -18,7 +18,9 @@ public class MainController {
 
     @RequestMapping(value = "/getBooks", method = RequestMethod.GET)
     public List<Book> getAllBooks(){
-        return catalogService.getAllBooks();
+        List<Book> books = catalogService.getAllBooks();
+        logger.debug(books);
+        return books;
     }
 
     @RequestMapping(value = "/getAuthors", method = RequestMethod.GET)
@@ -33,7 +35,7 @@ public class MainController {
 
     @RequestMapping(value = "/addAuthor", method = RequestMethod.POST)
     public String addAuthor(@RequestBody Author author){
-        logger.debug("New author: "+author);
+        logger.debug("New author: " + author);
         catalogService.addAuthor(author);
         return "";
     }

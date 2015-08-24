@@ -43,4 +43,44 @@ angular.module('catalogApp').
                 self.errorMsg = error.data.msg;
             });
         };
+    }]).
+
+    /*
+    * Controller for authentication
+     */
+    controller('loginCtrl', ['$location', '$rootScope','$http', function($location, $rootScope, $http){
+
+        var authenticate = function(credentials, callback){
+            var headers = credentials?{authorization : "Basic "
+            + btoa(credentials.username + ":" + credentials.password)}:{};
+
+            $http.get('user', {headers: headers}).success(function(data){
+                if(data.name){
+                    $rootScope.authenticated = true;
+                } else {
+                    $rootScope.authenticated = false;
+                }
+                callback && callback();
+            }).error(function(){
+                $rootScope.authenticated = false;
+                callback && callback();
+            });
+        }
+
+        authenticate();
+
+        var self = this;
+        self.credentials = {};
+
+        this.login = function(){
+            authenticate(self.credentials, function(){
+                if($rootScope.authenticated){
+                    $location.path("/");
+                    self.error = false;
+                }else{
+                    $location.path("/login.html");
+                    self.error = false;
+                }
+            })
+        };
     }]);
