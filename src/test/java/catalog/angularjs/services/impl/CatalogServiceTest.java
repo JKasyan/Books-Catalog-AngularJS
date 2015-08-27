@@ -2,8 +2,8 @@ package catalog.angularjs.services.impl;
 
 import catalog.angularjs.dto.Author;
 import catalog.angularjs.dto.Book;
-import catalog.angularjs.mongodb.dao.AuthorRepository;
-import catalog.angularjs.mongodb.dao.BookRepository;
+import catalog.angularjs.dao.AuthorRepository;
+import catalog.angularjs.dao.BookRepository;
 import catalog.angularjs.services.CatalogService;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,7 +30,7 @@ public class CatalogServiceTest {
     @Test
     public void testGetAllBooks(){
         Book book1 = new Book();
-        book1.setId(1);
+        book1.setId("1");
         book1.setTitle("The old man and the see");
         book1.setShortDescription("Nice book");
         book1.setDatePublish("1953");

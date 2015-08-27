@@ -1,4 +1,4 @@
-package catalog.angularjs.mongodb.dao;
+package catalog.angularjs.dao;
 
 import catalog.angularjs.dto.Book;
 import org.springframework.data.mongodb.repository.MongoRepository;
