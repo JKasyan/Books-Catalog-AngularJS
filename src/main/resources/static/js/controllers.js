@@ -45,42 +45,57 @@ angular.module('catalogApp').
         };
     }]).
 
+
+    controller('loginCtrl', ['$scope', '$rootScope',
+        '$location', '$http', '$cookieStore', 'loginService',
+        function($scope, $rootScope, $location, $http, $cookieStore, loginService){
+
+            $scope.login = function() {
+                loginService.authenticate($.param({username: $scope.username, password: $scope.password}), function(user) {
+                    $rootScope.user = user;
+                    $http.defaults.headers.common[ xAuthTokenHeaderName ] = user.token;
+                    $cookieStore.put('user', user);
+                    $location.path("/");
+                });
+            };
+    }]);
+
     /*
     * Controller for authentication
      */
-    controller('loginCtrl', ['$location', '$rootScope','$http', function($location, $rootScope, $http){
-
-        var authenticate = function(credentials, callback){
-            var headers = credentials?{authorization : "Basic "
-            + btoa(credentials.username + ":" + credentials.password)}:{};
-
-            $http.get('user', {headers: headers}).success(function(data){
-                if(data.name){
-                    $rootScope.authenticated = true;
-                } else {
-                    $rootScope.authenticated = false;
-                }
-                callback && callback();
-            }).error(function(){
-                $rootScope.authenticated = false;
-                callback && callback();
-            });
-        }
-
-        authenticate();
-
-        var self = this;
-        self.credentials = {};
-
-        this.login = function(){
-            authenticate(self.credentials, function(){
-                if($rootScope.authenticated){
-                    $location.path("/");
-                    self.error = false;
-                }else{
-                    $location.path("/login.html");
-                    self.error = false;
-                }
-            })
-        };
-    }]);
+    //controller('loginCtrl', ['$location', '$rootScope','$http', function($location, $rootScope, $http){
+    //
+    //    var authenticate = function(credentials, callback){
+    //        var headers = credentials?{authorization : "Basic "
+    //        + btoa(credentials.username + ":" + credentials.password)}:{};
+    //
+    //        $http.get('user', {headers: headers}).success(function(data){
+    //            if(data.name){
+    //                $rootScope.authenticated = true;
+    //            } else {
+    //                $rootScope.authenticated = false;
+    //            }
+    //            callback && callback();
+    //        }).error(function(){
+    //            $rootScope.authenticated = false;
+    //            callback && callback();
+    //        });
+    //    }
+    //
+    //    authenticate();
+    //
+    //    var self = this;
+    //    self.credentials = {};
+    //
+    //    this.login = function(){
+    //        authenticate(self.credentials, function(){
+    //            if($rootScope.authenticated){
+    //                $location.path("/");
+    //                self.error = false;
+    //            }else{
+    //                $location.path("/login.html");
+    //                self.error = false;
+    //            }
+    //        })
+    //    };
+    //}]);

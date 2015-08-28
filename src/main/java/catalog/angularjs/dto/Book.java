@@ -8,7 +8,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class Book implements Serializable{
 
     @Id
@@ -18,7 +17,7 @@ public class Book implements Serializable{
     private String datePublish;
     @JsonManagedReference("authors-books")
     @JsonIgnore
-    private List<Author> authors = new ArrayList<Author>();
+    private List<Author> authors = new ArrayList<>();
 
     public String getTitle() {
         return title;
