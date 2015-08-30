@@ -1,5 +1,5 @@
 <div id="head_of_table">
-    <a href="#/create_author.html">New author</a>
+    <a ng-show="hasRole('ROLE_ADMIN')" href="#/create_author">New author</a>
     <h1>Authors list</h1>
 </div>
 <div id="authors_table">
@@ -12,7 +12,7 @@
         <tr ng-repeat = 'author in aCtrl.authors'>
                 <td ng-bind = 'author.name'></td>
                 <td ng-bind = 'author.secondName'></td>
-                <td><a ng-href="#/books_of_author/{{author.id}}.html">Books list</a></td>
+                <td><a ng-href="#/books_of_author/{{author.id}}">Books list</a></td>
         </tr>
     </table>
 </div>

@@ -51,6 +51,7 @@ angular.module('catalogApp').
         function($scope, $rootScope, $location, $http, $cookieStore, loginService){
 
             $scope.login = function() {
+                console.log("In loginCtrl");
                 loginService.authenticate($.param({username: $scope.username, password: $scope.password}), function(user) {
                     $rootScope.user = user;
                     $http.defaults.headers.common[ xAuthTokenHeaderName ] = user.token;

@@ -33,7 +33,9 @@ angular.module('catalogApp').
         }
     }]).
 
-    factory('loginService', [function($resource){
+    factory('loginService', ['$resource', function($resource){
+
+        console.log("In loginService");
 
         return $resource(':action',{},{
             authenticate: {
@@ -43,3 +45,5 @@ angular.module('catalogApp').
             }
         });
     }]);
+
+var services = angular.module('exampleApp.services', ['ngResource']);
