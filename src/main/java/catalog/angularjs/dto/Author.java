@@ -2,12 +2,14 @@ package catalog.angularjs.dto;
 
 import com.fasterxml.jackson.annotation.*;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+@Document(collection = "author")
 public class Author implements Serializable {
 
     @Id

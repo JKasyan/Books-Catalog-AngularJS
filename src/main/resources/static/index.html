@@ -10,10 +10,10 @@
     <h1>Books Catalog</h1>
 </div>
 <div id="main">
-    <div id="links">
+    <div id="links" ng-show = 'user'>
         <a href="#/books">Books list</a><br>
         <a href="#/authors">Authors list</a>
-        <a href="" ng-show = 'user' ng-click="logout()">Logout</a>
+        <a href="" ng-click="logout()">Logout</a>
     </div>
     <div ng-view></div>
 </div>

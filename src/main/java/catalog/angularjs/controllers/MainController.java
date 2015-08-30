@@ -5,6 +5,7 @@ import catalog.angularjs.dto.Book;
 import catalog.angularjs.services.CatalogService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,6 +34,7 @@ public class MainController {
         return catalogService.getBooksOfAuthors(id);
     }
 
+    @Secured(value = { "ROLE_ADMIN" })
     @RequestMapping(value = "/addAuthor", method = RequestMethod.POST)
     public String addAuthor(@RequestBody Author author){
         logger.debug("New author: " + author);
