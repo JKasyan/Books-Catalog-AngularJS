@@ -22,6 +22,7 @@ angular.module("catalogApp", ['ngRoute', 'ngCookies', 'loginService']).
                     var url = config.url;
 
                     if (status == 401) {
+                        log.console('Status: ', status)
                         $location.path("/login");
                     } else {
                         $rootScope.error = method + " on " + url + " failed with status " + status;
@@ -37,7 +38,7 @@ angular.module("catalogApp", ['ngRoute', 'ngCookies', 'loginService']).
             $httpProvider.responseInterceptors.push(interceptor);
 
         }]
-).run(function ($rootScope, $http, $location, $cookieStore) {
+).run(function ($rootScope, $http, $location, $cookieStore, loginService) {
 
         $rootScope.$on('$viewContentLoaded', function () {
             delete $rootScope.error;
