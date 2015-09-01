@@ -32,6 +32,12 @@ angular.module('catalogApp', ['ngRoute', 'ngCookies','catalogApp.services']).
 
                     templateUrl: 'views/login.html',
                     controller: 'loginCtrl as lCtrl',
+                }).
+
+                when('/modify_author/:id', {
+
+                    templateUrl: 'views/modify_author.html',
+                    controller: 'modifyAuthorCtrl'
                 });
 
             $routeProvider.otherwise({
@@ -142,6 +148,18 @@ function newAuthorCtrl(authorsService, $location){
             self.errorMsg = error.data.msg;
         });
     };
+}
+
+function modifyAuthorCtrl(authorsService, $location){
+    var self = this;
+    self.author = {};
+    self.modifyAuthor = function(){
+        authorsService.addAuthor(self.author).then(function(success){
+            $location.path('/authors.html');
+        }, function(error){
+            self.errorMsg = error.data.msg;
+        });
+    }
 }
 
 function loginCtrl($scope, $rootScope, $location, $http, $cookieStore, loginService){

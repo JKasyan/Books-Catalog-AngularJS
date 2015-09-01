@@ -4,13 +4,10 @@ module.exports = function(config) {
         frameworks: ['jasmine'],
         files: [
             'angular.min.js',
-            'angular-mocks.js',
-            'controller.js',
-            'simpleSpec.js',
-            'controllerSpec.js'
+            'app.js',
         ],
         exclude: [],
-        port: 8080,
+        port: 8585,
         logLevel: config.LOG_INFO,
         autoWatch: true,
         browsers: ['Chrome'],

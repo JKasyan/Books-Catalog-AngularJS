@@ -24,6 +24,10 @@ public class CatalogServiceImpl implements CatalogService{
         this.authorRepository = authorRepository;
     }
 
+    private int getNextAuthor(String collectionName){
+        return 0;
+    }
+
     @Override
     public void addAuthor(Author author) {
         authorRepository.save(author);
