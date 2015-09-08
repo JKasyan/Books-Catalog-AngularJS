@@ -2,8 +2,8 @@
 var xAuthTokenHeaderName = 'x-auth-token';
 
 angular.module('catalogApp', ['ngRoute', 'ngCookies','catalogApp.services']).
-    config(['$routeProvider', '$locationProvider', '$httpProvider',
-        function ($routeProvider, $locationProvider, $httpProvider) {
+    config(['$routeProvider', '$httpProvider',
+        function ($routeProvider, $httpProvider) {
 
             $routeProvider.when('/books', {
                 templateUrl: 'views/books.html',
@@ -139,6 +139,7 @@ function newAuthorCtrl(authorsService, $location){
         authorsService.addAuthor(self.author).then(function(success){
             $location.path('/authors.html');
         }, function(error){
+            console.log("Error: ", error);
             self.errorMsg = error.data.msg;
         });
     };

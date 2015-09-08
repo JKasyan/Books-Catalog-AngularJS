@@ -1,6 +1,7 @@
 package catalog.angularjs.dto;
 
 import com.fasterxml.jackson.annotation.*;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -14,8 +15,11 @@ public class Author implements Serializable {
 
     @Id
     private String id;
+
+    @Length(min = 2, max = 45)
     private String name;
     private String secondName;
+
     @JsonBackReference("authors-books")
     private List<Book> books = new ArrayList<Book>();
 
