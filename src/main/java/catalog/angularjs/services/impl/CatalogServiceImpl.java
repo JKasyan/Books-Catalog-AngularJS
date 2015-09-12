@@ -45,4 +45,9 @@ public class CatalogServiceImpl implements CatalogService{
     public List<Book> getBooksOfAuthors(int id) {
         throw new RuntimeException();
     }
+
+    @Override
+    public void deleteAuthor(String id) {
+        authorRepository.delete(id);
+    }
 }

@@ -51,7 +51,7 @@ public class MainController {
     @ResponseStatus(HttpStatus.OK)
     public void addAuthor(@Valid @RequestBody Author author){
         logger.debug("New author: " + author);
-//        catalogService.addAuthor(author);
+        catalogService.addAuthor(author);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -76,5 +76,13 @@ public class MainController {
         Locale locale = LocaleContextHolder.getLocale();
         String message = messageSource.getMessage(fieldError,locale);
         return message;
+    }
+
+    @Secured(value = { "ROLE_ADMIN" })
+    @RequestMapping(value = "/deleteAuthor", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteAuthor(String authorId){
+        logger.debug("Author will be deleted: " + authorId);
+        catalogService.deleteAuthor(authorId);
     }
 }

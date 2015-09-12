@@ -16,8 +16,9 @@ public class Author implements Serializable {
     @Id
     private String id;
 
-    @Length(min = 2, max = 45)
+    @Length(min = 2, max = 20)
     private String name;
+    @Length(min = 2, max = 20)
     private String secondName;
 
     @JsonBackReference("authors-books")

@@ -1,15 +1,15 @@
-<div id="head_of_table">
-    <a href="#/create_book.html">New book</a>
-    <h1>Books list</h1>
-</div>
-<div id="books_table">
-    <table>
+<div class="container">
+    <h2>Books table</h2>
+    <table class="table table-bordered">
+        <thead>
         <tr>
             <td>Title</td>
             <td>Short description</td>
             <td>Publishing year</td>
             <td>Authors</td>
         </tr>
+        </thead>
+        <tbody>
         <tr ng-repeat = "book in bCtrl.books | orderBy: 'datePublish'">
             <td ng-bind = 'book.title'></td>
             <td ng-bind = 'book.shortDescription'></td>
@@ -18,5 +18,6 @@
                 <span ng-bind = 'author.name'></span> <span ng-bind = 'author.secondName'></span>
             </td>
         </tr>
+        </tbody>
     </table>
 </div>

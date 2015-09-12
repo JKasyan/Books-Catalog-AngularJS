@@ -1,18 +1,25 @@
-<div id="head_of_table">
-    <a ng-show="hasRole('ROLE_ADMIN')" href="#/create_author">New author</a>
-    <h1>Authors list</h1>
-</div>
-<div id="authors_table">
-    <table>
+<div class="container">
+    <h2>Authors table</h2>
+    <table class="table table-bordered">
+        <thead>
         <tr>
-            <td>Name</td>
-            <td>Second name</td>
-            <td>Actions</td>
+            <th>Name</th>
+            <th>Second name</th>
+            <th>Actions</th>
         </tr>
-        <tr ng-repeat = 'author in aCtrl.authors'>
-                <td ng-bind = 'author.name'></td>
-                <td ng-bind = 'author.secondName'></td>
-                <td><a ng-href="#/books_of_author/{{author.id}}">Books list</a></td>
+        </thead>
+        <tbody>
+        <tr ng-repeat='author in aCtrl.authors'>
+            <td ng-bind='author.name'></td>
+            <td ng-bind='author.secondName'></td>
+            <td>
+                <a ng-href="#/books_of_author/{{author.id}}">Books</a>
+                <div ng-show="hasRole('ROLE_ADMIN')">
+                    <a href="#">Modify</a>
+                    <a ng-click = "deleteAuthor('{{author.id}}')" href="#">Delete</a>
+                </div>
+            </td>
         </tr>
+        </tbody>
     </table>
 </div>

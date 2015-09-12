@@ -11,4 +11,5 @@ public interface CatalogService {
     List<Author> getAllAuthors();
     List<Book> getBooksOfAuthors(int id);
     void addAuthor(Author author);
+    void deleteAuthor(String id);
 }

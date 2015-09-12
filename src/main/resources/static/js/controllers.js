@@ -1,7 +1,3 @@
-/**
- * Created by Evgen on 09.08.2015.
- */
-
 angular.module('catalogApp').
 
     controller('booksController', ['booksService', function (booksService) {
@@ -9,9 +5,6 @@ angular.module('catalogApp').
         self.books = [];
         booksService.getBooks().then(function (response) {
             self.books = response.data;
-            for(var i = 0;i<self.books.length;i++){
-                console.log('Book'+i,self.books[i]);
-            }
         });
     }]).
 
@@ -21,26 +14,50 @@ angular.module('catalogApp').
         self.authors = [];
         authorsService.getAuthors().then(function (response) {
             self.authors = response.data;
-            for(var i = 0;i<self.authors.length;i++){
-                console.log('Author'+i,self.authors[i]);
-            }
         })
+
+        self.deleteAuthor = function(authorId){
+            authorsService.deleteAuthor(authorId).then(
+                function(success){
+                    var authorForDelete = null;
+                    for(var i = 0;i<self.authors.length;i++){
+                        if(self.authors[i].id === authorId){
+                            self.authors.slice(i);
+                            break;
+                        }
+                    }
+                    self.authors.remove(authorForDelete);
+                },
+                function(error){})
+        }
+
+        self.modifyAuthor = function(authorId){}
     }]).
 
 
-    controller('newAuthorCtrl', ['authorsService','$location', function(authorsService, $location){
+    controller('newAuthorCtrl', ['authorsService', '$location', function (authorsService, $location) {
         var self = this;
         self.author = {
-            name:"",
-            secondName:"",
-            books:[]
+            name: "",
+            secondName: "",
+            books: []
         };
-        self.createAuthor = function(){
-            console.log('New author: ', self.author);
-            authorsService.addAuthor(self.author).then(function(success){
-                $location.path('/authors.html');
-            }, function(error){
-                self.errorMsg = error.data.msg;
+        self.createAuthor = function () {
+            authorsService.addAuthor(self.author).then(function (success) {
+                $location.path('/authors');
+            }, function (error) {
+                var errors = (error.data.fieldErrors != undefined) ? error.data.fieldErrors : [];
+                for (var i = 0; i < errors.length; i++) {
+                    var currentError = errors[i].message;
+                    switch (errors[i].field) {
+                        case "name":
+                            $("#name_error").text(currentError);
+                            break;
+                        case "secondName":
+                            $("#second_name_error").text(currentError);
+                            break;
+                    }
+                }
             });
         };
     }]).
@@ -48,55 +65,32 @@ angular.module('catalogApp').
 
     controller('loginCtrl', ['$scope', '$rootScope',
         '$location', '$http', '$cookieStore', 'loginService',
-        function($scope, $rootScope, $location, $http, $cookieStore, loginService){
+        function ($scope, $rootScope, $location, $http, $cookieStore, loginService) {
 
-            $scope.login = function() {
-                console.log("In loginCtrl");
-                loginService.authenticate($.param({username: $scope.username, password: $scope.password}), function(user) {
-                    $rootScope.user = user;
-                    $http.defaults.headers.common[ xAuthTokenHeaderName ] = user.token;
-                    $cookieStore.put('user', user);
-                    $location.path("/");
-                });
+            $scope.login = function () {
+                loginService.authenticate($.param({username: $scope.username, password: $scope.password}),
+                    function (user) {
+                        $rootScope.user = user;
+                        $http.defaults.headers.common[xAuthTokenHeaderName] = user.token;
+                        $cookieStore.put('user', user);
+                        $location.path("/authors");
+                    });
             };
-    }]);
+        }]);
 
-    /*
-    * Controller for authentication
-     */
-    //controller('loginCtrl', ['$location', '$rootScope','$http', function($location, $rootScope, $http){
-    //
-    //    var authenticate = function(credentials, callback){
-    //        var headers = credentials?{authorization : "Basic "
-    //        + btoa(credentials.username + ":" + credentials.password)}:{};
-    //
-    //        $http.get('user', {headers: headers}).success(function(data){
-    //            if(data.name){
-    //                $rootScope.authenticated = true;
-    //            } else {
-    //                $rootScope.authenticated = false;
-    //            }
-    //            callback && callback();
-    //        }).error(function(){
-    //            $rootScope.authenticated = false;
-    //            callback && callback();
-    //        });
-    //    }
-    //
-    //    authenticate();
-    //
-    //    var self = this;
-    //    self.credentials = {};
-    //
-    //    this.login = function(){
-    //        authenticate(self.credentials, function(){
-    //            if($rootScope.authenticated){
-    //                $location.path("/");
-    //                self.error = false;
-    //            }else{
-    //                $location.path("/login.html");
-    //                self.error = false;
-    //            }
-    //        })
-    //    };
-    //}]);
+//var someArray = [
+//    {'id':1,'name':'Ivan'},
+//    {'id':2,'name':'John'},
+//    {'id':3,'name':'Robert'}
+//];
+//
+//console.log(someArray);
+//
+//var objForDelete = someArray.filter(
+//    function (el) {
+//        return el.name === "John";
+//    }
+//)[0];
+//
+//someArray.remove(function(el) { return el.id === 1; });
+

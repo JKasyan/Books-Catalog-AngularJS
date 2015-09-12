@@ -1,16 +1,24 @@
-<div>
-    <div ng-show = 'error'>There was a problem logging in. Please try again.</div>
-    <form ng-submit = 'login()'>
-        <table>
-            <tr>
-                <td>Login</td>
-                <td><input type="text" name="username" ng-model = 'username'></td>
-            </tr>
-            <tr>
-                <td>Password</td>
-                <td><input type="password" name="password" ng-model = 'password'></td>
-            </tr>
-        </table>
-        <input type="submit" value="Log in">
-    </form>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-5 col-md-3">
+            <div class="form-login">
+                <h4>Welcome back.</h4>
+                <div ng-show='error'>There was a problem logging in. Please try again.</div>
+                <form>
+                    <input ng-model='username' type="text" id="userName"
+                           class="form-control input-sm chat-input" placeholder="username"/>
+                    </br>
+                    <input ng-model='password' type="password" id="userPassword"
+                           class="form-control input-sm chat-input" placeholder="password"/>
+                    </br>
+                    <div class="wrapper">
+            <span class="group-btn">
+                <button ng-click='login()' class="btn btn-primary btn-md">login <i class="fa fa-sign-in"></i></button>
+            </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>

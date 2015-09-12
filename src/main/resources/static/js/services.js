@@ -1,11 +1,8 @@
-/**
- * Created by Evgen on 09.08.2015.
- */
-
-angular.module('catalogApp').
 
 
-    factory('booksService',['$http',function($http){
+var services = angular.module('catalogApp.services', ['ngResource']);
+
+services.factory('booksService',['$http',function($http){
         return {
             getBooks: function(){
                 return $http.get('getBooks');
@@ -15,10 +12,10 @@ angular.module('catalogApp').
             //    return $http.get('getBooksOfAuthor/'+id);
             //}
         }
-    }]).
+    }]);
 
 
-    factory('authorsService',['$http',function($http){
+services.factory('authorsService',['$http',function($http){
         return {
             getAuthors: function(){
                 return $http.get('getAuthors');
@@ -29,11 +26,17 @@ angular.module('catalogApp').
                     then(function(response){
                     return response;
                 });
+            },
+            deleteAuthor:function(id){
+                return $http.post('deleteAuthor', id).
+                    then(function(response){
+                        return response;
+                    })
             }
         }
-    }]).
+    }]);
 
-    factory('loginService', ['$resource', function($resource){
+services.factory('loginService', ['$resource', function($resource){
 
         console.log("In loginService");
 
@@ -46,4 +49,3 @@ angular.module('catalogApp').
         });
     }]);
 
-var services = angular.module('exampleApp.services', ['ngResource']);

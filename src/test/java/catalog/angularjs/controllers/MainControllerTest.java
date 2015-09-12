@@ -84,12 +84,10 @@ public class MainControllerTest {
 
     @Test
     public void addAuthorTest() throws Exception{
-        Author newAuthor = new Author();
-        newAuthor.setName("I");
-        newAuthor.setSecondName("Smith");
+        author.setName("I");
         mockMvc.perform(post("/addAuthor").
                 contentType(TestUtil.APPLICATION_JSON_UTF8).
-                content(TestUtil.convertObjectToJsonBytes(newAuthor))).
+                content(TestUtil.convertObjectToJsonBytes(author))).
                 andExpect(status().isBadRequest()).
                 andExpect(content().contentType(TestUtil.APPLICATION_JSON_UTF8)).
                 andExpect(jsonPath("$.fieldErrors", hasSize(1))).
