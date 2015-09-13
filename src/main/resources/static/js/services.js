@@ -37,9 +37,6 @@ services.factory('authorsService',['$http',function($http){
     }]);
 
 services.factory('loginService', ['$resource', function($resource){
-
-        console.log("In loginService");
-
         return $resource(':action',{},{
             authenticate: {
                 method: 'POST',
@@ -48,4 +45,15 @@ services.factory('loginService', ['$resource', function($resource){
             }
         });
     }]);
+
+services.factory('newBookService', ['$http', function($http){
+    return {
+        createBook:function(newBook){
+            return $http.post('newBook',newBook).
+                then(function(response){
+                    return response;
+                });
+        }
+    }
+}])
 

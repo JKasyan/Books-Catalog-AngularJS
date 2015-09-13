@@ -1,7 +1,7 @@
 package catalog.angularjs.services;
 
-import catalog.angularjs.dto.Author;
-import catalog.angularjs.dto.Book;
+import catalog.angularjs.model.Author;
+import catalog.angularjs.model.Book;
 
 import java.util.List;
 

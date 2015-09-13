@@ -1,4 +1,4 @@
-package catalog.angularjs.dto;
+package catalog.angularjs.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;

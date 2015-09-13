@@ -1,7 +1,7 @@
 package catalog.angularjs.controllers;
 
-import catalog.angularjs.dto.Author;
-import catalog.angularjs.dto.Book;
+import catalog.angularjs.model.Author;
+import catalog.angularjs.model.Book;
 import catalog.angularjs.services.CatalogService;
 import catalog.angularjs.validation.ValidationErrorDTO;
 import org.apache.log4j.Logger;
@@ -81,8 +81,8 @@ public class MainController {
     @Secured(value = { "ROLE_ADMIN" })
     @RequestMapping(value = "/deleteAuthor", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public void deleteAuthor(String authorId){
-        logger.debug("Author will be deleted: " + authorId);
-        catalogService.deleteAuthor(authorId);
+    public void deleteAuthor(@RequestBody String id){
+        logger.debug("Author with id " + id + " will be deleted.");
+        catalogService.deleteAuthor(id);
     }
 }

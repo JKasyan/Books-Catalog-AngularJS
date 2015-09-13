@@ -29,6 +29,11 @@ angular.module('catalogApp', ['ngRoute', 'ngCookies', 'securityModule', 'catalog
                 when('/login', {
                     templateUrl: 'views/login.html',
                     controller: 'loginCtrl as lCtrl',
+                }).
+
+                when('/create_book', {
+                    templateUrl: 'views/create_book.html',
+                    controller: 'newBookController'
                 });
 
             $routeProvider.otherwise({

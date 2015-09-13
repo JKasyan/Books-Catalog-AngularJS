@@ -3,8 +3,8 @@ package catalog.angularjs.controllers;
 
 import catalog.angularjs.Application;
 import catalog.angularjs.TestUtil;
-import catalog.angularjs.dto.Author;
-import catalog.angularjs.dto.Book;
+import catalog.angularjs.model.Author;
+import catalog.angularjs.model.Book;
 import catalog.angularjs.services.CatalogService;
 import org.junit.Before;
 import org.junit.Test;

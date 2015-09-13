@@ -19,14 +19,22 @@ angular.module('catalogApp').
         self.deleteAuthor = function(authorId){
             authorsService.deleteAuthor(authorId).then(
                 function(success){
-                    var authorForDelete = null;
-                    for(var i = 0;i<self.authors.length;i++){
-                        if(self.authors[i].id === authorId){
-                            self.authors.slice(i);
+                    var index = -1;
+                    var array = eval(self.authors);
+                    console.log('Eval: ', array, 'size: ', array.length);
+                    console.log('authorId: ', authorId);
+                    for(var i = 0;i<array.length;i++){
+                        console.log("Id: ",array[i].id, ", typeOf: ", typeof(array[i].id));
+                        if(array[i].id === authorId){
+                            index = i;
                             break;
                         }
                     }
-                    self.authors.remove(authorForDelete);
+                    console.log('index: ', index);
+                    if(index === -1){
+                        console.log("Error!")
+                    }
+                    self.authors.splice(index, 1);
                 },
                 function(error){})
         }
@@ -76,21 +84,34 @@ angular.module('catalogApp').
                         $location.path("/authors");
                     });
             };
-        }]);
+        }]).
 
-//var someArray = [
-//    {'id':1,'name':'Ivan'},
-//    {'id':2,'name':'John'},
-//    {'id':3,'name':'Robert'}
-//];
-//
-//console.log(someArray);
-//
-//var objForDelete = someArray.filter(
-//    function (el) {
-//        return el.name === "John";
-//    }
-//)[0];
-//
-//someArray.remove(function(el) { return el.id === 1; });
+    controller('newBookController',['newBookService','authorsService', '$location',
+        function(newBookService, authorsService, $location){
+        var self = this;
+        self.authors = [];
+        self.selectedAuthors = [];
+
+        authorsService.getAuthors().then(function (response) {
+            self.authors = response.data;
+            console.log('Fetched authors: ', self.authors);
+        });
+
+        self.newBook = {
+            title:'',
+            shortDescription:'',
+            datePublish:'',
+            authors:[]
+        }
+
+        self.createBook = function(){
+            console.log('Selected authors: ', self.selectedAuthors);
+            console.log('New book: ', self.newBook);
+            //newBookService.createBook(self.newBook).then(function (success) {
+            //    $location.path('/books');
+            //}, function (error) {
+            //
+            //});
+        };
+    }]);
 

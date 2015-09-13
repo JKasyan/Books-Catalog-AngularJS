@@ -1,6 +1,6 @@
 package catalog.angularjs.dao;
 
-import catalog.angularjs.dto.Author;
+import catalog.angularjs.model.Author;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 
