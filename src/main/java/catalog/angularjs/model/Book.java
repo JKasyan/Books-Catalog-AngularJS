@@ -1,15 +1,9 @@
 package catalog.angularjs.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
-@Document(collection = "book")
 public class Book implements Serializable{
 
     @Id
@@ -17,9 +11,6 @@ public class Book implements Serializable{
     private String title;
     private String shortDescription;
     private String datePublish;
-    @JsonManagedReference("authors-books")
-    @JsonIgnore
-    private List<Author> authors = new ArrayList<>();
 
     public String getTitle() {
         return title;
@@ -53,17 +44,9 @@ public class Book implements Serializable{
         this.id = id;
     }
 
-    public List<Author> getAuthors() {
-        return authors;
-    }
-
-    public void setAuthors(List<Author> authors) {
-        this.authors = authors;
-    }
-
     @Override
     public String toString() {
-        return String.format("Book{id=%s, title='%s', shortDescription='%s', datePublish='%s', authors='%s'}",
-                id, title, shortDescription, datePublish, authors);
+        return String.format("Book{id=%s, title='%s', shortDescription='%s', datePublish='%s'}",
+                id, title, shortDescription, datePublish);
     }
 }

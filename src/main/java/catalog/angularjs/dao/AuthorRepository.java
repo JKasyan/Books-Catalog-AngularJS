@@ -1,9 +1,12 @@
 package catalog.angularjs.dao;
 
 import catalog.angularjs.model.Author;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import catalog.angularjs.model.Book;
 
+import java.util.List;
 
-public interface AuthorRepository extends MongoRepository<Author, String> {
+public interface AuthorRepository {
 
+    List<Author> findAllAuthors();
+    void addBook(String idAuthor, Book book);
 }

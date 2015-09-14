@@ -5,17 +5,15 @@ import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@Document(collection = "author")
+@Document(collection = "Author")
 public class Author implements Serializable {
 
     @Id
     private String id;
-
     @Length(min = 2, max = 20)
     private String name;
     @Length(min = 2, max = 20)

@@ -27,9 +27,9 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = {Application.class})
-@WebAppConfiguration
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@SpringApplicationConfiguration(classes = {Application.class})
+//@WebAppConfiguration
 public class MainControllerTest {
 
     @Autowired
@@ -48,7 +48,7 @@ public class MainControllerTest {
     private Author author;
     private Book book;
 
-    @Before
+//    @Before
     public void setUp(){
         author = new Author();
         book = new Book();
@@ -60,7 +60,7 @@ public class MainControllerTest {
         book.setId(ID);
         List<Author> authors = new ArrayList<>();
         authors.add(author);
-        book.setAuthors(authors);
+//        book.setAuthors(authors);
         List<Book> books = new ArrayList<>();
         books.add(book);
         author.setBooks(books);
