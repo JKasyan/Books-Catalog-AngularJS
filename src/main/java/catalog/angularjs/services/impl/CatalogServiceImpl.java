@@ -1,5 +1,6 @@
 package catalog.angularjs.services.impl;
 
+import catalog.angularjs.dao.BookRepository;
 import catalog.angularjs.model.Author;
 import catalog.angularjs.model.Book;
 import catalog.angularjs.dao.AuthorRepository;
@@ -14,10 +15,12 @@ import java.util.List;
 public class CatalogServiceImpl implements CatalogService{
 
     private AuthorRepository authorRepository;
+    private BookRepository bookRepository;
 
     @Autowired
-    public CatalogServiceImpl(AuthorRepository authorRepository) {
+    public CatalogServiceImpl(AuthorRepository authorRepository, BookRepository bookRepository) {
         this.authorRepository = authorRepository;
+        this.bookRepository = bookRepository;
     }
 
     @Override

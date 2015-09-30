@@ -1,16 +1,22 @@
 package catalog.angularjs.model;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 
 import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Book implements Serializable{
 
     @Id
-    private String id;
+    private ObjectId id;
     private String title;
     private String shortDescription;
     private String datePublish;
+    @DBRef
+    private List<Author> authors = new LinkedList<>();
 
     public String getTitle() {
         return title;
@@ -36,12 +42,20 @@ public class Book implements Serializable{
         this.datePublish = datePublish;
     }
 
-    public String getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
+    }
+
+    public List<Author> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(List<Author> authors) {
+        this.authors = authors;
     }
 
     @Override

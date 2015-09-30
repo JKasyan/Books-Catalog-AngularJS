@@ -1,8 +1,9 @@
 package catalog.angularjs.model;
 
-import com.fasterxml.jackson.annotation.*;
+import org.bson.types.ObjectId;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
@@ -13,13 +14,13 @@ import java.util.List;
 public class Author implements Serializable {
 
     @Id
-    private String id;
+    private ObjectId id;
     @Length(min = 2, max = 20)
-    private String name;
+    private String firstName;
     @Length(min = 2, max = 20)
     private String secondName;
 
-    @JsonBackReference("authors-books")
+    @DBRef
     private List<Book> books = new ArrayList<Book>();
 
     public List<Book> getBooks() {
@@ -38,25 +39,25 @@ public class Author implements Serializable {
         this.secondName = secondName;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
     @Override
     public String toString() {
-        return String.format("Author{id=%s, name='%s', secondName='%s'}",
-                id, name, secondName);
+        return String.format("Author{id=%s, firstName='%s', secondName='%s'}",
+                id, firstName, secondName);
     }
 }

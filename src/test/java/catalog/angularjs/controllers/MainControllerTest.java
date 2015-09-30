@@ -6,6 +6,7 @@ import catalog.angularjs.TestUtil;
 import catalog.angularjs.model.Author;
 import catalog.angularjs.model.Book;
 import catalog.angularjs.services.CatalogService;
+import org.bson.types.ObjectId;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -41,7 +42,7 @@ public class MainControllerTest {
     private final static String TITLE = "The old man and the see";
     private final static String DATE_PUBLISH = "1953";
     private final static String DESCRIPTION = "The old man and the see";
-    private final static String ID = "1";
+    private final static ObjectId ID = new ObjectId();
 
     private final static String LENGTH_ERROR = "length must be between 2 and 45";
 
@@ -52,7 +53,7 @@ public class MainControllerTest {
     public void setUp(){
         author = new Author();
         book = new Book();
-        author.setName("Ernest");
+        author.setFirstName("Ernest");
         author.setSecondName("Hemingway");
         book.setTitle(TITLE);
         book.setDatePublish(DATE_PUBLISH);
@@ -84,7 +85,7 @@ public class MainControllerTest {
 
     @Test
     public void addAuthorTest() throws Exception{
-        author.setName("I");
+        author.setFirstName("I");
         mockMvc.perform(post("/addAuthor").
                 contentType(TestUtil.APPLICATION_JSON_UTF8).
                 content(TestUtil.convertObjectToJsonBytes(author))).

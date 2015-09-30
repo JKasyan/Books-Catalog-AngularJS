@@ -7,10 +7,10 @@ services.factory('booksService',['$http',function($http){
             getBooks: function(){
                 return $http.get('getBooks');
             }
-            //,
-            //getBooksOfAuthor:function(id){
-            //    return $http.get('getBooksOfAuthor/'+id);
-            //}
+            ,
+            getBooksOfAuthor:function(idAuthor){
+                return $http.get('getBooksOfAuthor/'+idAuthor);
+            }
         }
     }]);
 
