@@ -55,5 +55,45 @@ services.factory('newBookService', ['$http', function($http){
                 });
         }
     }
+}]);
+
+//http://www.meteoprog.ua/ru/api/city/Svitlovodsk/
+services.factory("weatherService", ["$http", function($http){
+    //return $resource(':action', {}, {
+    //    getWeather: {
+    //        method: "GET",
+    //        params: {'action': '/ru/api/city/Kyiv/'},
+    //        headers: {
+    //            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+    //            'Accept-Charset': 'UTF-8,*;q=0.5',
+    //            'Accept-Encoding': 'gzip,deflate,sdch',
+    //            'Accept-Language': 'ru,en;q=0.8',
+    //            'Cache-Control': 'max-age=0',
+    //            'Connection': 'keep-alive',
+    //            'Token': 'b9b3e3d337d48a25debfc42f36ba83dab19b7c89',
+    //            'Host': 'www.meteoprog.ua',
+    //            'User-Agent': 'Wget/1.12'
+    //        }
+    //    }
+    //});
+    return {
+        getWeather: function() {
+            return $http({
+                method: 'GET',
+                url: 'http://www.meteoprog.ua/ru/api/city/Kyiv/',
+                headers: {
+                    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+                    'Accept-Charset': 'UTF-8,*;q=0.5',
+                    'Accept-Encoding': 'gzip,deflate,sdch',
+                    'Accept-Language': 'ru,en;q=0.8',
+                    'Cache-Control': 'max-age=0',
+                    'Connection': 'keep-alive',
+                    'Token': 'b9b3e3d337d48a25debfc42f36ba83dab19b7c89',
+                    'Host': 'www.meteoprog.ua',
+                    'User-Agent': 'Wget/1.12'
+                }
+            })
+        }
+    }
 }])
 

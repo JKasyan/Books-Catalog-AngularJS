@@ -1,7 +1,5 @@
 package catalog.angularjs.controllers;
 
-import catalog.angularjs.model.Author;
-import catalog.angularjs.model.Book;
 import catalog.angularjs.services.CatalogService;
 import catalog.angularjs.validation.ValidationErrorDTO;
 import org.apache.log4j.Logger;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 

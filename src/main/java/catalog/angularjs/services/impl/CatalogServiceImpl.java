@@ -1,8 +1,6 @@
 package catalog.angularjs.services.impl;
 
 import catalog.angularjs.dao.BookRepository;
-import catalog.angularjs.model.Author;
-import catalog.angularjs.model.Book;
 import catalog.angularjs.dao.AuthorRepository;
 import catalog.angularjs.services.CatalogService;
 import org.springframework.beans.factory.annotation.Autowired;

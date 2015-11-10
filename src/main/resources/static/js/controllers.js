@@ -6,10 +6,10 @@ angular.module('catalogApp').
         booksService.getBooks().then(function (response) {
             self.books = response.data;
         });
-    }]).
+    }])
 
 
-    controller('authorsController', ['authorsService', function (authorsService) {
+    .controller('authorsController', ['authorsService', function (authorsService) {
         var self = this;
         self.authors = [];
         authorsService.getAuthors().then(function (response) {
@@ -40,10 +40,10 @@ angular.module('catalogApp').
         }
 
         self.modifyAuthor = function(authorId){}
-    }]).
+    }])
 
 
-    controller('newAuthorCtrl', ['authorsService', '$location', function (authorsService, $location) {
+    .controller('newAuthorCtrl', ['authorsService', '$location', function (authorsService, $location) {
         var self = this;
         self.author = {
             name: "",
@@ -68,10 +68,10 @@ angular.module('catalogApp').
                 }
             });
         };
-    }]).
+    }])
 
 
-    controller('loginCtrl', ['$scope', '$rootScope',
+    .controller('loginCtrl', ['$scope', '$rootScope',
         '$location', '$http', '$cookieStore', 'loginService',
         function ($scope, $rootScope, $location, $http, $cookieStore, loginService) {
 
@@ -84,9 +84,9 @@ angular.module('catalogApp').
                         $location.path("/authors");
                     });
             };
-        }]).
+        }])
 
-    controller('newBookController',['newBookService','authorsService', '$location',
+    .controller('newBookController',['newBookService','authorsService', '$location',
         function(newBookService, authorsService, $location){
         var self = this;
         self.authors = [];
@@ -113,5 +113,15 @@ angular.module('catalogApp').
             //
             //});
         };
-    }]);
+    }])
+
+    .controller("weatherController", ["weatherService", function(weatherService){
+        var self = this;
+        self.weatherData = {};
+        weatherService.getWeather().then(function(response){
+            console.log(response);
+            self.weatherData = response.data;
+            console.log('Fetched weather data: ', self.weatherData);
+        })
+    }])
 
