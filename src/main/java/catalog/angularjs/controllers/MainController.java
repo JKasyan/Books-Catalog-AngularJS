@@ -1,5 +1,7 @@
 package catalog.angularjs.controllers;
 
+import catalog.angularjs.generated.tables.pojos.Author;
+import catalog.angularjs.generated.tables.pojos.Book;
 import catalog.angularjs.services.CatalogService;
 import catalog.angularjs.validation.ValidationErrorDTO;
 import org.apache.log4j.Logger;
@@ -39,9 +41,9 @@ public class MainController {
         return catalogService.getAllAuthors();
     }
 
-    @RequestMapping(value = "/getBooksOfAuthor/{id}")
-    public List<Book> getBooksOfAuthor(@PathVariable int id){
-        return catalogService.getBooksOfAuthors(id);
+    @RequestMapping(value = "/getBooksOfAuthor", method = RequestMethod.GET)
+    public List<Book> getBooksOfAuthor(@RequestParam int idAuthor){
+        return catalogService.getBooksOfAuthors(idAuthor);
     }
 
     @Secured(value = { "ROLE_ADMIN" })

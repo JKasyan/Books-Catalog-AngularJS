@@ -2,6 +2,8 @@ package catalog.angularjs.services.impl;
 
 import catalog.angularjs.dao.BookRepository;
 import catalog.angularjs.dao.AuthorRepository;
+import catalog.angularjs.generated.tables.pojos.Book;
+import catalog.angularjs.generated.tables.pojos.Author;
 import catalog.angularjs.services.CatalogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,21 +29,18 @@ public class CatalogServiceImpl implements CatalogService{
     }
 
     @Override
-    @Transactional(readOnly = true)
     public List<Book> getAllBooks() {
-//        return bookRepository.findAll();
-        return  null;
+        return  bookRepository.selectAll();
     }
 
     @Override
-    @Transactional(readOnly = true)
     public List<Author> getAllAuthors() {
         return authorRepository.findAllAuthors();
     }
 
     @Override
     public List<Book> getBooksOfAuthors(int id) {
-        throw new RuntimeException();
+        return bookRepository.selectBooksByIdAuthor(id);
     }
 
     @Override

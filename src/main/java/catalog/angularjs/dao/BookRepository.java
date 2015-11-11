@@ -1,5 +1,8 @@
 package catalog.angularjs.dao;
 
+
+import catalog.angularjs.generated.tables.pojos.Book;
+
 import java.util.List;
 
 /**
@@ -7,5 +10,6 @@ import java.util.List;
  */
 public interface BookRepository {
 
-    List<Book> findAll();
+    List<Book> selectAll();
+    List<Book> selectBooksByIdAuthor(int idAuthor);
 }

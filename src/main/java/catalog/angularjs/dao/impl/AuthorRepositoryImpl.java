@@ -1,25 +1,31 @@
 package catalog.angularjs.dao.impl;
 
 import catalog.angularjs.dao.AuthorRepository;
-import org.apache.log4j.Logger;
+import catalog.angularjs.generated.tables.pojos.Author;
+import catalog.angularjs.model.Book;
+import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+import static catalog.angularjs.generated.Tables.*;
+
 @Repository("authorRepository")
 public class AuthorRepositoryImpl implements AuthorRepository {
 
     @Autowired
-    private static final Logger logger = Logger.getLogger(AuthorRepositoryImpl.class);
+    private DSLContext create;
 
     @Override
     public List<Author> findAllAuthors() {
-        return null;
+        return create
+                .select()
+                .from(AUTHOR)
+                .fetchInto(Author.class);
     }
 
     @Override
     public void addBook(String idAuthor, Book book) {
-
     }
 }

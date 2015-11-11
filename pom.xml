@@ -11,11 +11,12 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.2.0.RELEASE</version>
+        <version>1.2.5.RELEASE</version>
     </parent>
 
     <properties>
-        <org.jooq.version>3.7.0</org.jooq.version>
+        <org.jooq.version>3.4.5</org.jooq.version>
+        <postgresql.jdbc>9.1-901-1.jdbc4</postgresql.jdbc>
     </properties>
 
     <dependencies>
@@ -60,7 +61,7 @@
         <dependency>
             <groupId>postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>9.0-801.jdbc4</version>
+            <version>${postgresql.jdbc}</version>
         </dependency>
 
         <dependency>
@@ -130,49 +131,49 @@
 
                 <executions>
                     <execution>
-                        <id>generate-postgresql</id>
-                        <phase>generate-sources</phase>
                         <goals>
                             <goal>generate</goal>
                         </goals>
-                        <configuration>
-                            <jdbc>
-                                <driver>${spring.datasource.driverClassName}</driver>
-                                <url>${spring.datasource.url}</url>
-                                <user>${spring.datasource.username}</user>
-                                <password>${spring.datasource.password}</password>
-                            </jdbc>
-                            <generator>
-                                <database>
-                                    <name>org.jooq.util.postgres.PostgresDatabase</name>
-                                    <includes>author | book</includes>
-                                    <excludes>
-                                        INFORMATION_SCHEMA |
-                                        SCHEMATA
-                                    </excludes>
-                                    <dateAsTimestamp>true</dateAsTimestamp>
-                                    <inputSchema>PUBLIC</inputSchema>
-                                </database>
-                                <generate>
-                                    <deprecated>false</deprecated>
-                                    <instanceFields>true</instanceFields>
-                                    <pojos>true</pojos>
-                                </generate>
-                                <target>
-                                    <packageName>org.jooq.example.db.h2</packageName>
-                                    <directory>src/main/java/catalog/angularjs/generated</directory>
-                                </target>
-                            </generator>
-                        </configuration>
                     </execution>
                 </executions>
+
                 <dependencies>
                     <dependency>
-                        <groupId>org.jooq</groupId>
-                        <artifactId>jooq</artifactId>
-                        <version>${org.jooq.version}</version>
+                        <groupId>postgresql</groupId>
+                        <artifactId>postgresql</artifactId>
+                        <version>${postgresql.jdbc}</version>
                     </dependency>
                 </dependencies>
+
+                <configuration>
+
+                    <!-- JDBC connection parameters -->
+                    <jdbc>
+                        <driver>org.postgresql.Driver</driver>
+                        <url>jdbc:postgresql://localhost/test_db?characterEncoding=UTF-8&amp;Unicode=true&amp;keepAlive=true</url>
+                        <user>root</user>
+                        <password>root</password>
+                    </jdbc>
+
+                    <!-- Generator parameters -->
+                    <generator>
+                        <database>
+                            <name>org.jooq.util.postgres.PostgresDatabase</name>
+                            <includes>.*</includes>
+                            <excludes></excludes>
+                            <inputSchema>public</inputSchema>
+                        </database>
+                        <generate>
+                            <deprecated>false</deprecated>
+                            <instanceFields>true</instanceFields>
+                            <pojos>true</pojos>
+                        </generate>
+                        <target>
+                            <packageName>catalog.angularjs.generated</packageName>
+                            <directory>src/main/java</directory>
+                        </target>
+                    </generator>
+                </configuration>
             </plugin>
 
 

@@ -11,13 +11,9 @@ public class ExceptionTranslator extends DefaultExecuteListener {
 
     @Override
     public void exception(ExecuteContext ctx) {
-        if (ctx.sqlException() != null) {
-            SQLDialect dialect = ctx.dialect();
-            SQLExceptionTranslator translator = (dialect != null)
-                    ? new SQLErrorCodeSQLExceptionTranslator(dialect.thirdParty().springDbName())
-                    : new SQLStateSQLExceptionTranslator();
-
-            ctx.exception(translator.translate("jOOQ", ctx.sql(), ctx.sqlException()));
-        }
+        SQLDialect dialect = ctx.configuration().dialect();
+        SQLExceptionTranslator translator = (dialect != null)?new SQLErrorCodeSQLExceptionTranslator(dialect.name()):
+                new SQLStateSQLExceptionTranslator();
+        ctx.exception(translator.translate("jOOQ", ctx.sql(), ctx.sqlException()));
     }
 }
