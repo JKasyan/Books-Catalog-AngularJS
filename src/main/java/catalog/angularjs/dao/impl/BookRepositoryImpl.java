@@ -2,6 +2,8 @@ package catalog.angularjs.dao.impl;
 
 import catalog.angularjs.dao.BookRepository;
 
+import catalog.angularjs.dto.BookDto;
+import catalog.angularjs.generated.tables.pojos.Author;
 import catalog.angularjs.generated.tables.pojos.Book;
 import org.jooq.DSLContext;
 import org.jooq.Record7;
@@ -9,6 +11,7 @@ import org.jooq.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static catalog.angularjs.generated.Tables.*;
@@ -22,25 +25,27 @@ public class BookRepositoryImpl implements BookRepository {
 
     @Override
     public List<Book> selectAll() {
-        Result<Record7<Integer, String, String, String, Integer, String, String>> result = create
-                .select(
-                    BOOK.ID_BOOK,
-                    BOOK.TITLE,
-                    BOOK.SHORT_DESCRIPTION,
-                    BOOK.DATE_PUBLISH,
-                    AUTHOR.ID_AUTHOR,
-                    AUTHOR.FIRST_NAME,
-                    AUTHOR.SECOND_NAME)
-                .from(BOOK)
-                .join(AUTHOR_BOOK)
-                .on(BOOK.ID_BOOK.equal(AUTHOR_BOOK.ID_BOOK))
-                .join(AUTHOR)
-                .on(AUTHOR.ID_AUTHOR.equal(AUTHOR_BOOK.ID_AUTHOR))
-                .fetch();
-        return create
+        List<Book> books = create
                 .select()
                 .from(BOOK)
                 .fetchInto(Book.class);
+        List<BookDto> b = new ArrayList<>();
+        for (Book book:books) {
+            BookDto bookDto = new BookDto();
+            bookDto.setBook(book);
+        }
+        return create.select()
+                .from(BOOK)
+                .fetchInto(Book.class);
+    }
+
+    private List<Author> selectAuthor(List<Integer> idBooks) {
+        return create.select()
+                .from(AUTHOR)
+                .join(AUTHOR_BOOK)
+                .on(AUTHOR_BOOK.ID_AUTHOR.equal(AUTHOR.ID_AUTHOR))
+                .where(AUTHOR_BOOK.ID_BOOK.in(idBooks))
+                .fetchInto(Author.class);
     }
 
     @Override

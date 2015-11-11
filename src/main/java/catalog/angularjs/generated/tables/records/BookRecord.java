@@ -11,7 +11,7 @@ package catalog.angularjs.generated.tables.records;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class BookRecord extends org.jooq.impl.UpdatableRecordImpl<catalog.angularjs.generated.tables.records.BookRecord> implements org.jooq.Record4<java.lang.Integer, java.lang.String, java.lang.String, java.lang.String> {
 
-	private static final long serialVersionUID = -1147350746;
+	private static final long serialVersionUID = -1403930754;
 
 	/**
 	 * Setter for <code>public.book.id_book</code>.
@@ -28,44 +28,44 @@ public class BookRecord extends org.jooq.impl.UpdatableRecordImpl<catalog.angula
 	}
 
 	/**
-	 * Setter for <code>public.book.title</code>.
-	 */
-	public void setTitle(java.lang.String value) {
-		setValue(1, value);
-	}
-
-	/**
-	 * Getter for <code>public.book.title</code>.
-	 */
-	public java.lang.String getTitle() {
-		return (java.lang.String) getValue(1);
-	}
-
-	/**
 	 * Setter for <code>public.book.short_description</code>.
 	 */
 	public void setShortDescription(java.lang.String value) {
-		setValue(2, value);
+		setValue(1, value);
 	}
 
 	/**
 	 * Getter for <code>public.book.short_description</code>.
 	 */
 	public java.lang.String getShortDescription() {
-		return (java.lang.String) getValue(2);
+		return (java.lang.String) getValue(1);
 	}
 
 	/**
 	 * Setter for <code>public.book.date_publish</code>.
 	 */
 	public void setDatePublish(java.lang.String value) {
-		setValue(3, value);
+		setValue(2, value);
 	}
 
 	/**
 	 * Getter for <code>public.book.date_publish</code>.
 	 */
 	public java.lang.String getDatePublish() {
+		return (java.lang.String) getValue(2);
+	}
+
+	/**
+	 * Setter for <code>public.book.title</code>.
+	 */
+	public void setTitle(java.lang.String value) {
+		setValue(3, value);
+	}
+
+	/**
+	 * Getter for <code>public.book.title</code>.
+	 */
+	public java.lang.String getTitle() {
 		return (java.lang.String) getValue(3);
 	}
 
@@ -114,14 +114,6 @@ public class BookRecord extends org.jooq.impl.UpdatableRecordImpl<catalog.angula
 	 */
 	@Override
 	public org.jooq.Field<java.lang.String> field2() {
-		return catalog.angularjs.generated.tables.Book.BOOK.TITLE;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public org.jooq.Field<java.lang.String> field3() {
 		return catalog.angularjs.generated.tables.Book.BOOK.SHORT_DESCRIPTION;
 	}
 
@@ -129,8 +121,16 @@ public class BookRecord extends org.jooq.impl.UpdatableRecordImpl<catalog.angula
 	 * {@inheritDoc}
 	 */
 	@Override
-	public org.jooq.Field<java.lang.String> field4() {
+	public org.jooq.Field<java.lang.String> field3() {
 		return catalog.angularjs.generated.tables.Book.BOOK.DATE_PUBLISH;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public org.jooq.Field<java.lang.String> field4() {
+		return catalog.angularjs.generated.tables.Book.BOOK.TITLE;
 	}
 
 	/**
@@ -146,14 +146,6 @@ public class BookRecord extends org.jooq.impl.UpdatableRecordImpl<catalog.angula
 	 */
 	@Override
 	public java.lang.String value2() {
-		return getTitle();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public java.lang.String value3() {
 		return getShortDescription();
 	}
 
@@ -161,8 +153,16 @@ public class BookRecord extends org.jooq.impl.UpdatableRecordImpl<catalog.angula
 	 * {@inheritDoc}
 	 */
 	@Override
-	public java.lang.String value4() {
+	public java.lang.String value3() {
 		return getDatePublish();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public java.lang.String value4() {
+		return getTitle();
 	}
 
 	/**
@@ -179,15 +179,6 @@ public class BookRecord extends org.jooq.impl.UpdatableRecordImpl<catalog.angula
 	 */
 	@Override
 	public BookRecord value2(java.lang.String value) {
-		setTitle(value);
-		return this;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public BookRecord value3(java.lang.String value) {
 		setShortDescription(value);
 		return this;
 	}
@@ -196,8 +187,17 @@ public class BookRecord extends org.jooq.impl.UpdatableRecordImpl<catalog.angula
 	 * {@inheritDoc}
 	 */
 	@Override
-	public BookRecord value4(java.lang.String value) {
+	public BookRecord value3(java.lang.String value) {
 		setDatePublish(value);
+		return this;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public BookRecord value4(java.lang.String value) {
+		setTitle(value);
 		return this;
 	}
 
@@ -223,12 +223,12 @@ public class BookRecord extends org.jooq.impl.UpdatableRecordImpl<catalog.angula
 	/**
 	 * Create a detached, initialised BookRecord
 	 */
-	public BookRecord(java.lang.Integer idBook, java.lang.String title, java.lang.String shortDescription, java.lang.String datePublish) {
+	public BookRecord(java.lang.Integer idBook, java.lang.String shortDescription, java.lang.String datePublish, java.lang.String title) {
 		super(catalog.angularjs.generated.tables.Book.BOOK);
 
 		setValue(0, idBook);
-		setValue(1, title);
-		setValue(2, shortDescription);
-		setValue(3, datePublish);
+		setValue(1, shortDescription);
+		setValue(2, datePublish);
+		setValue(3, title);
 	}
 }

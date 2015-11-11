@@ -1,15 +1,17 @@
-package catalog.angularjs.model;
+package catalog.angularjs.dto;
 
 import catalog.angularjs.generated.tables.pojos.*;
 import catalog.angularjs.generated.tables.pojos.Author;
 
+import java.util.List;
+
 /**
  * Created by Evgen on 11.11.2015.
  */
-public class BookModel {
+public class BookDto {
 
     private Book book;
-    private Author authors[];
+    private List<Author> authors;
 
     public Book getBook() {
         return book;
@@ -19,11 +21,11 @@ public class BookModel {
         this.book = book;
     }
 
-    public Author[] getAuthors() {
+    public List<Author> getAuthors() {
         return authors;
     }
 
-    public void setAuthors(Author[] authors) {
+    public void setAuthors(List<Author> authors) {
         this.authors = authors;
     }
 }

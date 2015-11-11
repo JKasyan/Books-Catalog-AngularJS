@@ -18,39 +18,34 @@ public class Keys {
 	// IDENTITY definitions
 	// -------------------------------------------------------------------------
 
-	public static final org.jooq.Identity<catalog.angularjs.generated.tables.records.AuthorRecord, java.lang.Integer> IDENTITY_AUTHOR = Identities0.IDENTITY_AUTHOR;
-	public static final org.jooq.Identity<catalog.angularjs.generated.tables.records.BookRecord, java.lang.Integer> IDENTITY_BOOK = Identities0.IDENTITY_BOOK;
 
 	// -------------------------------------------------------------------------
 	// UNIQUE and PRIMARY KEY definitions
 	// -------------------------------------------------------------------------
 
-	public static final org.jooq.UniqueKey<catalog.angularjs.generated.tables.records.AuthorRecord> AUTHOR_PK = UniqueKeys0.AUTHOR_PK;
-	public static final org.jooq.UniqueKey<catalog.angularjs.generated.tables.records.BookRecord> ID_BOOK_PK = UniqueKeys0.ID_BOOK_PK;
+	public static final org.jooq.UniqueKey<catalog.angularjs.generated.tables.records.AuthorRecord> AUTHOR_PKEY = UniqueKeys0.AUTHOR_PKEY;
+	public static final org.jooq.UniqueKey<catalog.angularjs.generated.tables.records.AuthorBookRecord> UNIQUE_PAIR = UniqueKeys0.UNIQUE_PAIR;
+	public static final org.jooq.UniqueKey<catalog.angularjs.generated.tables.records.BookRecord> BOOK_PKEY = UniqueKeys0.BOOK_PKEY;
 
 	// -------------------------------------------------------------------------
 	// FOREIGN KEY definitions
 	// -------------------------------------------------------------------------
 
-	public static final org.jooq.ForeignKey<catalog.angularjs.generated.tables.records.AuthorBookRecord, catalog.angularjs.generated.tables.records.AuthorRecord> AUTHOR_BOOK__AUTHOR_FK = ForeignKeys0.AUTHOR_BOOK__AUTHOR_FK;
-	public static final org.jooq.ForeignKey<catalog.angularjs.generated.tables.records.AuthorBookRecord, catalog.angularjs.generated.tables.records.BookRecord> AUTHOR_BOOK__BOOK_FK = ForeignKeys0.AUTHOR_BOOK__BOOK_FK;
+	public static final org.jooq.ForeignKey<catalog.angularjs.generated.tables.records.AuthorBookRecord, catalog.angularjs.generated.tables.records.AuthorRecord> AUTHOR_BOOK__AUTHOR_BOOK_AUTHOR = ForeignKeys0.AUTHOR_BOOK__AUTHOR_BOOK_AUTHOR;
+	public static final org.jooq.ForeignKey<catalog.angularjs.generated.tables.records.AuthorBookRecord, catalog.angularjs.generated.tables.records.BookRecord> AUTHOR_BOOK__BOOK_BOOK_AUTHOR = ForeignKeys0.AUTHOR_BOOK__BOOK_BOOK_AUTHOR;
 
 	// -------------------------------------------------------------------------
 	// [#1459] distribute members to avoid static initialisers > 64kb
 	// -------------------------------------------------------------------------
 
-	private static class Identities0 extends org.jooq.impl.AbstractKeys {
-		public static org.jooq.Identity<catalog.angularjs.generated.tables.records.AuthorRecord, java.lang.Integer> IDENTITY_AUTHOR = createIdentity(catalog.angularjs.generated.tables.Author.AUTHOR, catalog.angularjs.generated.tables.Author.AUTHOR.ID_AUTHOR);
-		public static org.jooq.Identity<catalog.angularjs.generated.tables.records.BookRecord, java.lang.Integer> IDENTITY_BOOK = createIdentity(catalog.angularjs.generated.tables.Book.BOOK, catalog.angularjs.generated.tables.Book.BOOK.ID_BOOK);
-	}
-
 	private static class UniqueKeys0 extends org.jooq.impl.AbstractKeys {
-		public static final org.jooq.UniqueKey<catalog.angularjs.generated.tables.records.AuthorRecord> AUTHOR_PK = createUniqueKey(catalog.angularjs.generated.tables.Author.AUTHOR, catalog.angularjs.generated.tables.Author.AUTHOR.ID_AUTHOR);
-		public static final org.jooq.UniqueKey<catalog.angularjs.generated.tables.records.BookRecord> ID_BOOK_PK = createUniqueKey(catalog.angularjs.generated.tables.Book.BOOK, catalog.angularjs.generated.tables.Book.BOOK.ID_BOOK);
+		public static final org.jooq.UniqueKey<catalog.angularjs.generated.tables.records.AuthorRecord> AUTHOR_PKEY = createUniqueKey(catalog.angularjs.generated.tables.Author.AUTHOR, catalog.angularjs.generated.tables.Author.AUTHOR.ID_AUTHOR);
+		public static final org.jooq.UniqueKey<catalog.angularjs.generated.tables.records.AuthorBookRecord> UNIQUE_PAIR = createUniqueKey(catalog.angularjs.generated.tables.AuthorBook.AUTHOR_BOOK, catalog.angularjs.generated.tables.AuthorBook.AUTHOR_BOOK.ID_AUTHOR, catalog.angularjs.generated.tables.AuthorBook.AUTHOR_BOOK.ID_BOOK);
+		public static final org.jooq.UniqueKey<catalog.angularjs.generated.tables.records.BookRecord> BOOK_PKEY = createUniqueKey(catalog.angularjs.generated.tables.Book.BOOK, catalog.angularjs.generated.tables.Book.BOOK.ID_BOOK);
 	}
 
 	private static class ForeignKeys0 extends org.jooq.impl.AbstractKeys {
-		public static final org.jooq.ForeignKey<catalog.angularjs.generated.tables.records.AuthorBookRecord, catalog.angularjs.generated.tables.records.AuthorRecord> AUTHOR_BOOK__AUTHOR_FK = createForeignKey(catalog.angularjs.generated.Keys.AUTHOR_PK, catalog.angularjs.generated.tables.AuthorBook.AUTHOR_BOOK, catalog.angularjs.generated.tables.AuthorBook.AUTHOR_BOOK.ID_AUTHOR);
-		public static final org.jooq.ForeignKey<catalog.angularjs.generated.tables.records.AuthorBookRecord, catalog.angularjs.generated.tables.records.BookRecord> AUTHOR_BOOK__BOOK_FK = createForeignKey(catalog.angularjs.generated.Keys.ID_BOOK_PK, catalog.angularjs.generated.tables.AuthorBook.AUTHOR_BOOK, catalog.angularjs.generated.tables.AuthorBook.AUTHOR_BOOK.ID_BOOK);
+		public static final org.jooq.ForeignKey<catalog.angularjs.generated.tables.records.AuthorBookRecord, catalog.angularjs.generated.tables.records.AuthorRecord> AUTHOR_BOOK__AUTHOR_BOOK_AUTHOR = createForeignKey(catalog.angularjs.generated.Keys.AUTHOR_PKEY, catalog.angularjs.generated.tables.AuthorBook.AUTHOR_BOOK, catalog.angularjs.generated.tables.AuthorBook.AUTHOR_BOOK.ID_AUTHOR);
+		public static final org.jooq.ForeignKey<catalog.angularjs.generated.tables.records.AuthorBookRecord, catalog.angularjs.generated.tables.records.BookRecord> AUTHOR_BOOK__BOOK_BOOK_AUTHOR = createForeignKey(catalog.angularjs.generated.Keys.BOOK_PKEY, catalog.angularjs.generated.tables.AuthorBook.AUTHOR_BOOK, catalog.angularjs.generated.tables.AuthorBook.AUTHOR_BOOK.ID_BOOK);
 	}
 }

@@ -1,4 +1,4 @@
-package catalog.angularjs.model;
+package catalog.angularjs.dto;
 
 /**
  * Created by Evgen on 11.11.2015.

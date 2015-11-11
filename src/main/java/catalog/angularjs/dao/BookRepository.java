@@ -1,6 +1,6 @@
 package catalog.angularjs.dao;
 
-
+import catalog.angularjs.dto.BookDto;
 import catalog.angularjs.generated.tables.pojos.Book;
 
 import java.util.List;

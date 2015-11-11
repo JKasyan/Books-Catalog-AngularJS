@@ -151,8 +151,8 @@
                     <jdbc>
                         <driver>org.postgresql.Driver</driver>
                         <url>jdbc:postgresql://localhost/test_db?characterEncoding=UTF-8&amp;Unicode=true&amp;keepAlive=true</url>
-                        <user>root</user>
-                        <password>root</password>
+                        <user>postgres</user>
+                        <password>1234</password>
                     </jdbc>
 
                     <!-- Generator parameters -->
