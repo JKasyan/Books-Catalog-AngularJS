@@ -7,7 +7,6 @@ import catalog.angularjs.generated.tables.pojos.Author;
 import catalog.angularjs.services.CatalogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -25,17 +24,17 @@ public class CatalogServiceImpl implements CatalogService{
 
     @Override
     public void addAuthor(Author author) {
-//        authorRepository.save(author);
+        authorRepository.insertAuthor(author);
     }
 
     @Override
     public List<Book> getAllBooks() {
-        return  bookRepository.selectAll();
+        return bookRepository.selectAll();
     }
 
     @Override
     public List<Author> getAllAuthors() {
-        return authorRepository.findAllAuthors();
+        return authorRepository.selectAllAuthors();
     }
 
     @Override

@@ -4,6 +4,8 @@ import catalog.angularjs.dao.BookRepository;
 
 import catalog.angularjs.generated.tables.pojos.Book;
 import org.jooq.DSLContext;
+import org.jooq.Record7;
+import org.jooq.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -20,6 +22,21 @@ public class BookRepositoryImpl implements BookRepository {
 
     @Override
     public List<Book> selectAll() {
+        Result<Record7<Integer, String, String, String, Integer, String, String>> result = create
+                .select(
+                    BOOK.ID_BOOK,
+                    BOOK.TITLE,
+                    BOOK.SHORT_DESCRIPTION,
+                    BOOK.DATE_PUBLISH,
+                    AUTHOR.ID_AUTHOR,
+                    AUTHOR.FIRST_NAME,
+                    AUTHOR.SECOND_NAME)
+                .from(BOOK)
+                .join(AUTHOR_BOOK)
+                .on(BOOK.ID_BOOK.equal(AUTHOR_BOOK.ID_BOOK))
+                .join(AUTHOR)
+                .on(AUTHOR.ID_AUTHOR.equal(AUTHOR_BOOK.ID_AUTHOR))
+                .fetch();
         return create
                 .select()
                 .from(BOOK)

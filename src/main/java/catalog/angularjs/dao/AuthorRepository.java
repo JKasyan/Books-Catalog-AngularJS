@@ -2,12 +2,14 @@ package catalog.angularjs.dao;
 
 
 import catalog.angularjs.generated.tables.pojos.Author;
-import catalog.angularjs.model.Book;
+import catalog.angularjs.generated.tables.pojos.Book;
+
 
 import java.util.List;
 
 public interface AuthorRepository {
 
-    List<Author> findAllAuthors();
+    void insertAuthor(Author author);
+    List<Author> selectAllAuthors();
     void addBook(String idAuthor, Book book);
 }

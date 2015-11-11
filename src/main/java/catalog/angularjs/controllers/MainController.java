@@ -81,8 +81,8 @@ public class MainController {
     @Secured(value = { "ROLE_ADMIN" })
     @RequestMapping(value = "/deleteAuthor", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public void deleteAuthor(@RequestBody String id){
-        logger.debug("Author with id " + id + " will be deleted.");
-        catalogService.deleteAuthor(id);
+    public void deleteAuthor(@RequestBody String idAuthor){
+        logger.debug("Author with idAuthor " + idAuthor + " will be deleted.");
+        catalogService.deleteAuthor(idAuthor);
     }
 }

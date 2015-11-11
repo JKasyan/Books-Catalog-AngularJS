@@ -11,7 +11,7 @@ package catalog.angularjs.generated.tables;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class AuthorBook extends org.jooq.impl.TableImpl<catalog.angularjs.generated.tables.records.AuthorBookRecord> {
 
-	private static final long serialVersionUID = -2041891674;
+	private static final long serialVersionUID = 2036842018;
 
 	/**
 	 * The singleton instance of <code>public.author_book</code>
@@ -63,7 +63,7 @@ public class AuthorBook extends org.jooq.impl.TableImpl<catalog.angularjs.genera
 	 */
 	@Override
 	public java.util.List<org.jooq.ForeignKey<catalog.angularjs.generated.tables.records.AuthorBookRecord, ?>> getReferences() {
-		return java.util.Arrays.<org.jooq.ForeignKey<catalog.angularjs.generated.tables.records.AuthorBookRecord, ?>>asList(catalog.angularjs.generated.Keys.AUTHOR_BOOK__AB_AUTHOR, catalog.angularjs.generated.Keys.AUTHOR_BOOK__AB_BOOK);
+		return java.util.Arrays.<org.jooq.ForeignKey<catalog.angularjs.generated.tables.records.AuthorBookRecord, ?>>asList(catalog.angularjs.generated.Keys.AUTHOR_BOOK__AUTHOR_FK, catalog.angularjs.generated.Keys.AUTHOR_BOOK__BOOK_FK);
 	}
 
 	/**
