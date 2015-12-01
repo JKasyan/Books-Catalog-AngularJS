@@ -27,4 +27,9 @@ public class Tables {
 	 * The table public.book
 	 */
 	public static final catalog.angularjs.generated.tables.Book BOOK = catalog.angularjs.generated.tables.Book.BOOK;
+
+	/**
+	 * The table public.test_table
+	 */
+	public static final catalog.angularjs.generated.tables.TestTable TEST_TABLE = catalog.angularjs.generated.tables.TestTable.TEST_TABLE;
 }

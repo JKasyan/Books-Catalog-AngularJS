@@ -103,6 +103,13 @@
             <version>2.0.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.3</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>
@@ -151,8 +158,8 @@
                     <jdbc>
                         <driver>org.postgresql.Driver</driver>
                         <url>jdbc:postgresql://localhost/test_db?characterEncoding=UTF-8&amp;Unicode=true&amp;keepAlive=true</url>
-                        <user>postgres</user>
-                        <password>1234</password>
+                        <user>root</user>
+                        <password>root</password>
                     </jdbc>
 
                     <!-- Generator parameters -->

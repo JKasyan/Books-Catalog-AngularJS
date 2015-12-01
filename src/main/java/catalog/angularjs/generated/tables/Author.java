@@ -11,7 +11,7 @@ package catalog.angularjs.generated.tables;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Author extends org.jooq.impl.TableImpl<catalog.angularjs.generated.tables.records.AuthorRecord> {
 
-	private static final long serialVersionUID = -81018201;
+	private static final long serialVersionUID = -73579394;
 
 	/**
 	 * The singleton instance of <code>public.author</code>
@@ -29,17 +29,17 @@ public class Author extends org.jooq.impl.TableImpl<catalog.angularjs.generated.
 	/**
 	 * The column <code>public.author.id_author</code>.
 	 */
-	public final org.jooq.TableField<catalog.angularjs.generated.tables.records.AuthorRecord, java.lang.Integer> ID_AUTHOR = createField("id_author", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+	public final org.jooq.TableField<catalog.angularjs.generated.tables.records.AuthorRecord, java.lang.Integer> ID_AUTHOR = createField("id_author", org.jooq.impl.SQLDataType.INTEGER.nullable(false).defaulted(true), this, "");
 
 	/**
 	 * The column <code>public.author.first_name</code>.
 	 */
-	public final org.jooq.TableField<catalog.angularjs.generated.tables.records.AuthorRecord, java.lang.String> FIRST_NAME = createField("first_name", org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
+	public final org.jooq.TableField<catalog.angularjs.generated.tables.records.AuthorRecord, java.lang.String> FIRST_NAME = createField("first_name", org.jooq.impl.SQLDataType.CLOB, this, "");
 
 	/**
 	 * The column <code>public.author.second_name</code>.
 	 */
-	public final org.jooq.TableField<catalog.angularjs.generated.tables.records.AuthorRecord, java.lang.String> SECOND_NAME = createField("second_name", org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
+	public final org.jooq.TableField<catalog.angularjs.generated.tables.records.AuthorRecord, java.lang.String> SECOND_NAME = createField("second_name", org.jooq.impl.SQLDataType.CLOB, this, "");
 
 	/**
 	 * Create a <code>public.author</code> table reference
@@ -67,8 +67,16 @@ public class Author extends org.jooq.impl.TableImpl<catalog.angularjs.generated.
 	 * {@inheritDoc}
 	 */
 	@Override
+	public org.jooq.Identity<catalog.angularjs.generated.tables.records.AuthorRecord, java.lang.Integer> getIdentity() {
+		return catalog.angularjs.generated.Keys.IDENTITY_AUTHOR;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public org.jooq.UniqueKey<catalog.angularjs.generated.tables.records.AuthorRecord> getPrimaryKey() {
-		return catalog.angularjs.generated.Keys.AUTHOR_PKEY;
+		return catalog.angularjs.generated.Keys.AUTHOR_PK;
 	}
 
 	/**
@@ -76,7 +84,7 @@ public class Author extends org.jooq.impl.TableImpl<catalog.angularjs.generated.
 	 */
 	@Override
 	public java.util.List<org.jooq.UniqueKey<catalog.angularjs.generated.tables.records.AuthorRecord>> getKeys() {
-		return java.util.Arrays.<org.jooq.UniqueKey<catalog.angularjs.generated.tables.records.AuthorRecord>>asList(catalog.angularjs.generated.Keys.AUTHOR_PKEY);
+		return java.util.Arrays.<org.jooq.UniqueKey<catalog.angularjs.generated.tables.records.AuthorRecord>>asList(catalog.angularjs.generated.Keys.AUTHOR_PK);
 	}
 
 	/**

@@ -11,25 +11,25 @@ package catalog.angularjs.generated.tables.pojos;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Book implements java.io.Serializable {
 
-	private static final long serialVersionUID = 825525671;
+	private static final long serialVersionUID = -1670664421;
 
 	private java.lang.Integer idBook;
+	private java.lang.String  title;
 	private java.lang.String  shortDescription;
 	private java.lang.String  datePublish;
-	private java.lang.String  title;
 
 	public Book() {}
 
 	public Book(
 		java.lang.Integer idBook,
+		java.lang.String  title,
 		java.lang.String  shortDescription,
-		java.lang.String  datePublish,
-		java.lang.String  title
+		java.lang.String  datePublish
 	) {
 		this.idBook = idBook;
+		this.title = title;
 		this.shortDescription = shortDescription;
 		this.datePublish = datePublish;
-		this.title = title;
 	}
 
 	public java.lang.Integer getIdBook() {
@@ -38,6 +38,14 @@ public class Book implements java.io.Serializable {
 
 	public void setIdBook(java.lang.Integer idBook) {
 		this.idBook = idBook;
+	}
+
+	public java.lang.String getTitle() {
+		return this.title;
+	}
+
+	public void setTitle(java.lang.String title) {
+		this.title = title;
 	}
 
 	public java.lang.String getShortDescription() {
@@ -54,13 +62,5 @@ public class Book implements java.io.Serializable {
 
 	public void setDatePublish(java.lang.String datePublish) {
 		this.datePublish = datePublish;
-	}
-
-	public java.lang.String getTitle() {
-		return this.title;
-	}
-
-	public void setTitle(java.lang.String title) {
-		this.title = title;
 	}
 }
