@@ -36,7 +36,7 @@ public class DaoTest {
         }
     }
 
-    @Test
+//    @Test
     public void oneQueryTest() {
         long begin = System.currentTimeMillis();
         InsertValuesStep1<TestTableRecord, String> testValuesStep = context.insertInto(TEST_TABLE, TEST_TABLE.SOME_TEXT);
@@ -51,7 +51,7 @@ public class DaoTest {
         System.out.println("Time one query: " + (end - begin));
     }
 
-    @Test
+//    @Test
     public void separatedQueriesTest() {
         long begin = System.currentTimeMillis();
         /**/

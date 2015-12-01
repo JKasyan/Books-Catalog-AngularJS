@@ -14,14 +14,14 @@ package catalog.angularjs.generated;
 public class Sequences {
 
 	/**
-	 * The sequence <code>public.author_id_author_seq</code>
+	 * The sequence <code>public.author_idauthor_seq</code>
 	 */
-	public static final org.jooq.Sequence<java.lang.Long> AUTHOR_ID_AUTHOR_SEQ = new org.jooq.impl.SequenceImpl<java.lang.Long>("author_id_author_seq", catalog.angularjs.generated.Public.PUBLIC, org.jooq.impl.SQLDataType.BIGINT.nullable(false));
+	public static final org.jooq.Sequence<java.lang.Long> AUTHOR_IDAUTHOR_SEQ = new org.jooq.impl.SequenceImpl<java.lang.Long>("author_idauthor_seq", catalog.angularjs.generated.Public.PUBLIC, org.jooq.impl.SQLDataType.BIGINT.nullable(false));
 
 	/**
-	 * The sequence <code>public.book_id_book_seq</code>
+	 * The sequence <code>public.book_idbook_seq</code>
 	 */
-	public static final org.jooq.Sequence<java.lang.Long> BOOK_ID_BOOK_SEQ = new org.jooq.impl.SequenceImpl<java.lang.Long>("book_id_book_seq", catalog.angularjs.generated.Public.PUBLIC, org.jooq.impl.SQLDataType.BIGINT.nullable(false));
+	public static final org.jooq.Sequence<java.lang.Long> BOOK_IDBOOK_SEQ = new org.jooq.impl.SequenceImpl<java.lang.Long>("book_idbook_seq", catalog.angularjs.generated.Public.PUBLIC, org.jooq.impl.SQLDataType.BIGINT.nullable(false));
 
 	/**
 	 * The sequence <code>public.test_table_id_seq</code>

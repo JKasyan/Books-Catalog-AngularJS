@@ -11,7 +11,7 @@ package catalog.angularjs.generated.tables;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Book extends org.jooq.impl.TableImpl<catalog.angularjs.generated.tables.records.BookRecord> {
 
-	private static final long serialVersionUID = -360878756;
+	private static final long serialVersionUID = 287262104;
 
 	/**
 	 * The singleton instance of <code>public.book</code>
@@ -34,17 +34,17 @@ public class Book extends org.jooq.impl.TableImpl<catalog.angularjs.generated.ta
 	/**
 	 * The column <code>public.book.title</code>.
 	 */
-	public final org.jooq.TableField<catalog.angularjs.generated.tables.records.BookRecord, java.lang.String> TITLE = createField("title", org.jooq.impl.SQLDataType.CLOB, this, "");
+	public final org.jooq.TableField<catalog.angularjs.generated.tables.records.BookRecord, java.lang.String> TITLE = createField("title", org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
 
 	/**
 	 * The column <code>public.book.short_description</code>.
 	 */
-	public final org.jooq.TableField<catalog.angularjs.generated.tables.records.BookRecord, java.lang.String> SHORT_DESCRIPTION = createField("short_description", org.jooq.impl.SQLDataType.CLOB, this, "");
+	public final org.jooq.TableField<catalog.angularjs.generated.tables.records.BookRecord, java.lang.String> SHORT_DESCRIPTION = createField("short_description", org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
 
 	/**
 	 * The column <code>public.book.date_publish</code>.
 	 */
-	public final org.jooq.TableField<catalog.angularjs.generated.tables.records.BookRecord, java.lang.String> DATE_PUBLISH = createField("date_publish", org.jooq.impl.SQLDataType.CLOB, this, "");
+	public final org.jooq.TableField<catalog.angularjs.generated.tables.records.BookRecord, java.lang.String> DATE_PUBLISH = createField("date_publish", org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
 
 	/**
 	 * Create a <code>public.book</code> table reference
@@ -81,7 +81,7 @@ public class Book extends org.jooq.impl.TableImpl<catalog.angularjs.generated.ta
 	 */
 	@Override
 	public org.jooq.UniqueKey<catalog.angularjs.generated.tables.records.BookRecord> getPrimaryKey() {
-		return catalog.angularjs.generated.Keys.ID_BOOK_PK;
+		return catalog.angularjs.generated.Keys.PK_BOOK;
 	}
 
 	/**
@@ -89,7 +89,7 @@ public class Book extends org.jooq.impl.TableImpl<catalog.angularjs.generated.ta
 	 */
 	@Override
 	public java.util.List<org.jooq.UniqueKey<catalog.angularjs.generated.tables.records.BookRecord>> getKeys() {
-		return java.util.Arrays.<org.jooq.UniqueKey<catalog.angularjs.generated.tables.records.BookRecord>>asList(catalog.angularjs.generated.Keys.ID_BOOK_PK);
+		return java.util.Arrays.<org.jooq.UniqueKey<catalog.angularjs.generated.tables.records.BookRecord>>asList(catalog.angularjs.generated.Keys.PK_BOOK, catalog.angularjs.generated.Keys.UNIQUE_IDBOOK);
 	}
 
 	/**

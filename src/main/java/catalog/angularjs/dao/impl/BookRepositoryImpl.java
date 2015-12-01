@@ -8,11 +8,14 @@ import catalog.angularjs.generated.tables.pojos.Book;
 import org.jooq.DSLContext;
 import org.jooq.Record7;
 import org.jooq.Result;
+import org.jooq.types.UInteger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import static catalog.angularjs.generated.Tables.*;
 
@@ -29,11 +32,18 @@ public class BookRepositoryImpl implements BookRepository {
                 .select()
                 .from(BOOK)
                 .fetchInto(Book.class);
-        List<BookDto> b = new ArrayList<>();
-        for (Book book:books) {
-            BookDto bookDto = new BookDto();
-            bookDto.setBook(book);
-        }
+        Set<Integer> idsBook = books
+                .stream()
+                .map(Book::getIdBook)
+                .collect(Collectors.toSet());
+        create
+                .select(AUTHOR.ID_AUTHOR, AUTHOR.FIRST_NAME, AUTHOR.SECOND_NAME, BOOK.ID_BOOK)
+                .from(AUTHOR)
+                .join(AUTHOR_BOOK)
+                .on(AUTHOR_BOOK.ID_AUTHOR.equal(AUTHOR.ID_AUTHOR))
+                .join(BOOK)
+                .on(BOOK.ID_BOOK.equal(AUTHOR_BOOK.ID_BOOK))
+                .where(BOOK.ID_BOOK.in(idsBook));
         return create.select()
                 .from(BOOK)
                 .fetchInto(Book.class);

@@ -11,7 +11,7 @@ package catalog.angularjs.generated.tables;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TestTable extends org.jooq.impl.TableImpl<catalog.angularjs.generated.tables.records.TestTableRecord> {
 
-	private static final long serialVersionUID = 890922158;
+	private static final long serialVersionUID = 1220302538;
 
 	/**
 	 * The singleton instance of <code>public.test_table</code>
@@ -27,14 +27,14 @@ public class TestTable extends org.jooq.impl.TableImpl<catalog.angularjs.generat
 	}
 
 	/**
-	 * The column <code>public.test_table.id</code>.
-	 */
-	public final org.jooq.TableField<catalog.angularjs.generated.tables.records.TestTableRecord, java.lang.Integer> ID = createField("id", org.jooq.impl.SQLDataType.INTEGER.nullable(false).defaulted(true), this, "");
-
-	/**
 	 * The column <code>public.test_table.some_text</code>.
 	 */
 	public final org.jooq.TableField<catalog.angularjs.generated.tables.records.TestTableRecord, java.lang.String> SOME_TEXT = createField("some_text", org.jooq.impl.SQLDataType.CLOB, this, "");
+
+	/**
+	 * The column <code>public.test_table.id</code>.
+	 */
+	public final org.jooq.TableField<catalog.angularjs.generated.tables.records.TestTableRecord, java.lang.Integer> ID = createField("id", org.jooq.impl.SQLDataType.INTEGER.nullable(false).defaulted(true), this, "");
 
 	/**
 	 * Create a <code>public.test_table</code> table reference
@@ -71,7 +71,7 @@ public class TestTable extends org.jooq.impl.TableImpl<catalog.angularjs.generat
 	 */
 	@Override
 	public org.jooq.UniqueKey<catalog.angularjs.generated.tables.records.TestTableRecord> getPrimaryKey() {
-		return catalog.angularjs.generated.Keys.PK;
+		return catalog.angularjs.generated.Keys.PK_TT;
 	}
 
 	/**
@@ -79,7 +79,7 @@ public class TestTable extends org.jooq.impl.TableImpl<catalog.angularjs.generat
 	 */
 	@Override
 	public java.util.List<org.jooq.UniqueKey<catalog.angularjs.generated.tables.records.TestTableRecord>> getKeys() {
-		return java.util.Arrays.<org.jooq.UniqueKey<catalog.angularjs.generated.tables.records.TestTableRecord>>asList(catalog.angularjs.generated.Keys.PK);
+		return java.util.Arrays.<org.jooq.UniqueKey<catalog.angularjs.generated.tables.records.TestTableRecord>>asList(catalog.angularjs.generated.Keys.PK_TT);
 	}
 
 	/**
