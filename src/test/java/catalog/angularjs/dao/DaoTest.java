@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import static catalog.angularjs.generated.Tables.*;
@@ -26,7 +27,7 @@ public class DaoTest {
     @Autowired
     private DSLContext context;
 
-    private static long SIZE = 10_000;
+    private static long SIZE = 30_000;
 
     private static final Set<String> SET = new HashSet<>();
     static {
@@ -60,6 +61,15 @@ public class DaoTest {
                     .values(iterator.next())
                     .execute();
         }
+        long end = System.currentTimeMillis();
+        System.out.println("Time separated query: " + (end - begin));
+    }
+
+    @Test
+    public void readTimeTest() {
+        long begin = System.currentTimeMillis();
+        List<String> list = context.select(TEST_TABLE.SOME_TEXT).from(TEST_TABLE).fetchInto(String.class);
+        System.out.println(list.size());
         long end = System.currentTimeMillis();
         System.out.println("Time separated query: " + (end - begin));
     }
