@@ -2,6 +2,7 @@ package catalog.angularjs.controllers;
 
 import catalog.angularjs.generated.tables.pojos.Author;
 import catalog.angularjs.generated.tables.pojos.Book;
+import catalog.angularjs.model.BookModel;
 import catalog.angularjs.services.CatalogService;
 import catalog.angularjs.validation.ValidationErrorDTO;
 import org.apache.log4j.Logger;
@@ -30,8 +31,8 @@ public class MainController {
     private static final Logger logger = Logger.getLogger(MainController.class);
 
     @RequestMapping(value = "/getBooks", method = RequestMethod.GET)
-    public List<Book> getAllBooks(){
-        List<Book> books = catalogService.getAllBooks();
+    public List<BookModel> getAllBooks(){
+        List<BookModel> books = catalogService.getAllBooks();
         logger.debug(books);
         return books;
     }

@@ -4,6 +4,7 @@ import catalog.angularjs.dao.BookRepository;
 import catalog.angularjs.dao.AuthorRepository;
 import catalog.angularjs.generated.tables.pojos.Book;
 import catalog.angularjs.generated.tables.pojos.Author;
+import catalog.angularjs.model.BookModel;
 import catalog.angularjs.services.CatalogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,7 @@ public class CatalogServiceImpl implements CatalogService{
     }
 
     @Override
-    public List<Book> getAllBooks() {
+    public List<BookModel> getAllBooks() {
         return bookRepository.selectAll();
     }
 

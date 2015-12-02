@@ -2,6 +2,7 @@ package catalog.angularjs.dao;
 
 import catalog.angularjs.dto.BookDto;
 import catalog.angularjs.generated.tables.pojos.Book;
+import catalog.angularjs.model.BookModel;
 
 import java.util.List;
 
@@ -10,6 +11,6 @@ import java.util.List;
  */
 public interface BookRepository {
 
-    List<Book> selectAll();
+    List<BookModel> selectAll();
     List<Book> selectBooksByIdAuthor(int idAuthor);
 }

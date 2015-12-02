@@ -5,7 +5,9 @@ import catalog.angularjs.dao.BookRepository;
 import catalog.angularjs.dto.BookDto;
 import catalog.angularjs.generated.tables.pojos.Author;
 import catalog.angularjs.generated.tables.pojos.Book;
+import catalog.angularjs.model.BookModel;
 import org.jooq.DSLContext;
+import org.jooq.Record4;
 import org.jooq.Record7;
 import org.jooq.Result;
 import org.jooq.types.UInteger;
@@ -13,8 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import static catalog.angularjs.generated.Tables.*;
@@ -27,7 +31,7 @@ public class BookRepositoryImpl implements BookRepository {
 
 
     @Override
-    public List<Book> selectAll() {
+    public List<BookModel> selectAll() {
         List<Book> books = create
                 .select()
                 .from(BOOK)
@@ -36,17 +40,36 @@ public class BookRepositoryImpl implements BookRepository {
                 .stream()
                 .map(Book::getIdBook)
                 .collect(Collectors.toSet());
-        create
+        Result<Record4<Integer, String, String, Integer>> fetch = create
                 .select(AUTHOR.ID_AUTHOR, AUTHOR.FIRST_NAME, AUTHOR.SECOND_NAME, BOOK.ID_BOOK)
                 .from(AUTHOR)
                 .join(AUTHOR_BOOK)
                 .on(AUTHOR_BOOK.ID_AUTHOR.equal(AUTHOR.ID_AUTHOR))
                 .join(BOOK)
                 .on(BOOK.ID_BOOK.equal(AUTHOR_BOOK.ID_BOOK))
-                .where(BOOK.ID_BOOK.in(idsBook));
-        return create.select()
-                .from(BOOK)
-                .fetchInto(Book.class);
+                .where(BOOK.ID_BOOK.in(idsBook))
+                .fetch();
+        System.out.println(fetch);
+        System.out.println("Book quantity: " + idsBook.size());
+        List<BookModel> bookModels = new ArrayList<>(idsBook.size());
+        for(Integer idBook:idsBook) {
+            BookModel bookModel = new BookModel();
+            bookModel.setIdBook(idBook);
+            List<Author> authors = new ArrayList<>();
+            Consumer<Record4<Integer, String, String, Integer>> consumer = x -> {
+                if (x.value4().equals(idBook)) {
+                    Author author = new Author();
+                    author.setIdAuthor(x.value1());
+                    author.setFirstName(x.value2());
+                    author.setSecondName(x.value3());
+                    authors.add(author);
+                }
+            };
+            fetch.forEach(consumer);
+            bookModel.setAuthors(authors);
+            bookModels.add(bookModel);
+        }
+        return bookModels;
     }
 
     private List<Author> selectAuthor(List<Integer> idBooks) {

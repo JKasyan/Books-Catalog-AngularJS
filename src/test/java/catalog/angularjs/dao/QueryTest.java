@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import static catalog.angularjs.generated.Tables.*;
@@ -46,7 +47,7 @@ public class QueryTest {
         List<Book> books = create
                 .select()
                 .from(BOOK)
-                .where(BOOK.ID_BOOK.equal(2))
+                .where(BOOK.ID_BOOK.equal(3))
                 .fetchInto(Book.class);
         System.out.println(books);
         Set<Integer> idsBook = books
@@ -70,16 +71,26 @@ public class QueryTest {
             BookModel bookModel = new BookModel();
             bookModel.setIdBook(idBook);
             List<Author> authors = new ArrayList<>();
-            for(int i = 0; i < fetch.size(); i++) {
-                if (fetch.get(i).value4().equals(idBook)) {
-                    Record4<Integer, String, String, Integer> record = fetch.get(i);
+            Consumer<Record4<Integer, String, String, Integer>> consumer = x -> {
+                if (x.value4().equals(idBook)) {
                     Author author = new Author();
-                    author.setIdAuthor(record.value1());
-                    author.setFirstName(record.value2());
-                    author.setSecondName(record.value3());
+                    author.setIdAuthor(x.value1());
+                    author.setFirstName(x.value2());
+                    author.setSecondName(x.value3());
                     authors.add(author);
                 }
-            }
+            };
+            fetch.forEach(consumer);
+//            for(int i = 0; i < fetch.size(); i++) {
+//                if (fetch.get(i).value4().equals(idBook)) {
+//                    Record4<Integer, String, String, Integer> record = fetch.get(i);
+//                    Author author = new Author();
+//                    author.setIdAuthor(record.value1());
+//                    author.setFirstName(record.value2());
+//                    author.setSecondName(record.value3());
+//                    authors.add(author);
+//                }
+//            }
             bookModel.setAuthors(authors);
             bookModels[j] = bookModel;
             j++;
