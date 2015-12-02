@@ -11,26 +11,18 @@ package catalog.angularjs.generated.tables.pojos;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TestTable implements java.io.Serializable {
 
-	private static final long serialVersionUID = -358602286;
+	private static final long serialVersionUID = -502057796;
 
-	private java.lang.String  someText;
 	private java.lang.Integer id;
+	private java.lang.String  someText;
 
 	public TestTable() {}
 
 	public TestTable(
-		java.lang.String  someText,
-		java.lang.Integer id
+		java.lang.Integer id,
+		java.lang.String  someText
 	) {
-		this.someText = someText;
 		this.id = id;
-	}
-
-	public java.lang.String getSomeText() {
-		return this.someText;
-	}
-
-	public void setSomeText(java.lang.String someText) {
 		this.someText = someText;
 	}
 
@@ -40,5 +32,13 @@ public class TestTable implements java.io.Serializable {
 
 	public void setId(java.lang.Integer id) {
 		this.id = id;
+	}
+
+	public java.lang.String getSomeText() {
+		return this.someText;
+	}
+
+	public void setSomeText(java.lang.String someText) {
+		this.someText = someText;
 	}
 }
