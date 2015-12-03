@@ -47,7 +47,7 @@ public class QueryTest {
         List<Book> books = create
                 .select()
                 .from(BOOK)
-                .where(BOOK.ID_BOOK.equal(3))
+                .where(BOOK.ID_BOOK.equal(2))
                 .fetchInto(Book.class);
         System.out.println(books);
         Set<Integer> idsBook = books

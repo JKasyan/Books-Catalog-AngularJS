@@ -10,12 +10,12 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat = "book in bCtrl.books | orderBy: 'datePublish'">
+        <tr ng-repeat = "book in bCtrl.books">
             <td ng-bind = 'book.title'></td>
             <td ng-bind = 'book.shortDescription'></td>
             <td ng-bind = 'book.datePublish'></td>
             <td ng-repeat = 'author in book.authors'>
-                <span ng-bind = 'author.name'></span> <span ng-bind = 'author.secondName'></span>
+                <span ng-bind = 'author.firstName'></span> <span ng-bind = 'author.secondName'></span>
             </td>
         </tr>
         </tbody>

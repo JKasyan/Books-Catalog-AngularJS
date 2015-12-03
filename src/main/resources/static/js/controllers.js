@@ -5,6 +5,7 @@ angular.module('catalogApp').
         self.books = [];
         booksService.getBooks().then(function (response) {
             self.books = response.data;
+            console.log(self.books)
         });
     }])
 

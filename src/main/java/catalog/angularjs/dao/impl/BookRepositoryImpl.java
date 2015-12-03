@@ -1,21 +1,16 @@
 package catalog.angularjs.dao.impl;
 
 import catalog.angularjs.dao.BookRepository;
-
-import catalog.angularjs.dto.BookDto;
 import catalog.angularjs.generated.tables.pojos.Author;
 import catalog.angularjs.generated.tables.pojos.Book;
 import catalog.angularjs.model.BookModel;
 import org.jooq.DSLContext;
-import org.jooq.Record4;
-import org.jooq.Record7;
+import org.jooq.Record6;
 import org.jooq.Result;
-import org.jooq.types.UInteger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Consumer;
@@ -28,6 +23,7 @@ public class BookRepositoryImpl implements BookRepository {
 
     @Autowired
     private DSLContext create;
+    private static final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(BookRepositoryImpl.class);
 
 
     @Override
@@ -40,14 +36,19 @@ public class BookRepositoryImpl implements BookRepository {
                 .stream()
                 .map(Book::getIdBook)
                 .collect(Collectors.toSet());
-        Result<Record4<Integer, String, String, Integer>> fetch = create
-                .select(AUTHOR.ID_AUTHOR, AUTHOR.FIRST_NAME, AUTHOR.SECOND_NAME, BOOK.ID_BOOK)
+        Result<Record6<Integer, String, String, Integer, String, String>> fetch = create
+                .select(AUTHOR.ID_AUTHOR, AUTHOR.FIRST_NAME, AUTHOR.SECOND_NAME, BOOK.ID_BOOK, BOOK.TITLE, BOOK.SHORT_DESCRIPTION)
                 .from(AUTHOR)
                 .join(AUTHOR_BOOK)
                 .on(AUTHOR_BOOK.ID_AUTHOR.equal(AUTHOR.ID_AUTHOR))
                 .join(BOOK)
                 .on(BOOK.ID_BOOK.equal(AUTHOR_BOOK.ID_BOOK))
-                .where(BOOK.ID_BOOK.in(idsBook))
+                .where(BOOK.ID_BOOK.in(
+                        create
+                                .select(BOOK.ID_BOOK)
+                                .from(BOOK)
+                                .fetchInto(Integer.class)
+                ))
                 .fetch();
         System.out.println(fetch);
         System.out.println("Book quantity: " + idsBook.size());
@@ -56,7 +57,7 @@ public class BookRepositoryImpl implements BookRepository {
             BookModel bookModel = new BookModel();
             bookModel.setIdBook(idBook);
             List<Author> authors = new ArrayList<>();
-            Consumer<Record4<Integer, String, String, Integer>> consumer = x -> {
+            Consumer<Record6<Integer, String, String, Integer, String, String>> consumer = x -> {
                 if (x.value4().equals(idBook)) {
                     Author author = new Author();
                     author.setIdAuthor(x.value1());
@@ -70,15 +71,6 @@ public class BookRepositoryImpl implements BookRepository {
             bookModels.add(bookModel);
         }
         return bookModels;
-    }
-
-    private List<Author> selectAuthor(List<Integer> idBooks) {
-        return create.select()
-                .from(AUTHOR)
-                .join(AUTHOR_BOOK)
-                .on(AUTHOR_BOOK.ID_AUTHOR.equal(AUTHOR.ID_AUTHOR))
-                .where(AUTHOR_BOOK.ID_BOOK.in(idBooks))
-                .fetchInto(Author.class);
     }
 
     @Override
