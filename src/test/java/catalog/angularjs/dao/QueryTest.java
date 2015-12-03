@@ -31,6 +31,8 @@ public class QueryTest {
 
     @Autowired
     private DSLContext create;
+    @Autowired
+    private BookRepository bookRepository;
 
     @Test
     public void leftOuterJoinTest() {
@@ -96,5 +98,10 @@ public class QueryTest {
             j++;
         }
         System.out.println(Arrays.toString(bookModels));
+    }
+
+    @Test
+    public void getAllBooksTest() {
+        bookRepository.selectAll2();
     }
 }

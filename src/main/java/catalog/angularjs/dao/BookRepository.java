@@ -13,4 +13,5 @@ public interface BookRepository {
 
     List<BookModel> selectAll();
     List<Book> selectBooksByIdAuthor(int idAuthor);
+    List<BookModel> selectAll2();
 }

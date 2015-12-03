@@ -5,8 +5,11 @@ import catalog.angularjs.generated.tables.pojos.Author;
 import catalog.angularjs.generated.tables.pojos.Book;
 import catalog.angularjs.model.BookModel;
 import org.jooq.DSLContext;
+import org.jooq.Record5;
 import org.jooq.Record6;
 import org.jooq.Result;
+import org.jooq.impl.DSL;
+import org.jooq.util.postgres.PostgresDSL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -17,6 +20,8 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import static catalog.angularjs.generated.Tables.*;
+
+import static org.jooq.impl.DSL.*;
 
 @Repository("bookRepository")
 public class BookRepositoryImpl implements BookRepository {
@@ -83,5 +88,20 @@ public class BookRepositoryImpl implements BookRepository {
                 .on(AUTHOR.ID_AUTHOR.equal(AUTHOR_BOOK.ID_AUTHOR))
                 .where(AUTHOR.ID_AUTHOR.equal(idAuthor))
                 .fetchInto(Book.class);
+    }
+
+    @Override
+    public List<BookModel> selectAll2() {
+        return create
+                .select(BOOK.ID_BOOK, BOOK.TITLE, BOOK.SHORT_DESCRIPTION,
+                        BOOK.DATE_PUBLISH,
+                        PostgresDSL.arrayAgg(concat(AUTHOR.FIRST_NAME, AUTHOR.SECOND_NAME)).as("authors"))
+                .from(AUTHOR)
+                .join(AUTHOR_BOOK)
+                .on(AUTHOR_BOOK.ID_AUTHOR.equal(AUTHOR.ID_AUTHOR))
+                .join(BOOK)
+                .on(BOOK.ID_BOOK.equal(AUTHOR_BOOK.ID_BOOK))
+                .groupBy(BOOK.ID_BOOK)
+                .fetchInto(BookModel.class);
     }
 }
