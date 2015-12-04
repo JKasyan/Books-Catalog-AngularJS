@@ -72,7 +72,8 @@ public class BookRepositoryImpl implements BookRepository {
                 }
             };
             fetch.forEach(consumer);
-            bookModel.setAuthors(authors);
+            //TODO:...
+            //bookModel.setAuthors(authors);
             bookModels.add(bookModel);
         }
         return bookModels;
@@ -92,7 +93,7 @@ public class BookRepositoryImpl implements BookRepository {
 
     @Override
     public List<BookModel> selectAll2() {
-        return create
+        Result<Record5<Integer, String, String, String, String[]>> authors = create
                 .select(BOOK.ID_BOOK, BOOK.TITLE, BOOK.SHORT_DESCRIPTION,
                         BOOK.DATE_PUBLISH,
                         PostgresDSL.arrayAgg(concat(AUTHOR.FIRST_NAME, AUTHOR.SECOND_NAME)).as("authors"))
@@ -102,6 +103,8 @@ public class BookRepositoryImpl implements BookRepository {
                 .join(BOOK)
                 .on(BOOK.ID_BOOK.equal(AUTHOR_BOOK.ID_BOOK))
                 .groupBy(BOOK.ID_BOOK)
-                .fetchInto(BookModel.class);
+                .fetch();
+        System.out.println(authors);
+        return null;
     }
 }

@@ -1,7 +1,5 @@
 package catalog.angularjs.model;
 
-import catalog.angularjs.generated.tables.pojos.Author;
-
 import java.util.List;
 
 /**
@@ -12,7 +10,7 @@ public class BookModel {
     private int idBook;
     private String shortDescription;
     private String title;
-    private List<Author> authors;
+    private List<String> authors;
 
     public int getIdBook() {
         return idBook;
@@ -22,11 +20,11 @@ public class BookModel {
         this.idBook = idBook;
     }
 
-    public List<Author> getAuthors() {
+    public List<String> getAuthors() {
         return authors;
     }
 
-    public void setAuthors(List<Author> authors) {
+    public void setAuthors(List<String> authors) {
         this.authors = authors;
     }
 

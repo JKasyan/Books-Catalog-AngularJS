@@ -93,7 +93,9 @@ public class QueryTest {
 //                    authors.add(author);
 //                }
 //            }
-            bookModel.setAuthors(authors);
+
+            //TODO:...
+            //bookModel.setAuthors(authors);
             bookModels[j] = bookModel;
             j++;
         }
