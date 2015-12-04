@@ -2,5 +2,6 @@
 .idea
 .classpath
 .settings/
+books-catalog-angularjs.iml
 target/
 bower_components/
