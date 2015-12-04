@@ -1,49 +1,61 @@
 
-var xAuthTokenHeaderName = 'x-auth-token';
+angular.module('catalogApp', ['ngRoute', 'ngCookies', 'securityModule', 'catalogApp.services'])
+    .config(['$routeProvider', '$httpProvider',
+        function ($routeProvider) {
 
-angular.module('catalogApp', ['ngRoute', 'ngCookies','catalogApp.services']).
-    config(['$routeProvider', '$locationProvider', '$httpProvider',
-        function ($routeProvider, $locationProvider, $httpProvider) {
-
-            $routeProvider.when('/books', {
+            $routeProvider
+                .when('/books', {
                 templateUrl: 'views/books.html',
                 controller: 'booksController as bCtrl',
-            }).
+                })
 
 
-                when('/authors', {
+                .when('/authors', {
                     templateUrl: 'views/authors.html',
                     controller: 'authorsController as aCtrl',
-                }).
+                })
 
 
-                when('/books_of_author/:id', {
+                .when('/books_of_author/:id', {
                     templateUrl: 'views/books.html',
                     controller: 'booksOfAuthorController as bOfACtrl',
-                }).
+                })
 
 
-                when('/create_author', {
+                .when('/create_author', {
                     templateUrl: 'views/create_author.html',
                     controller: 'newAuthorCtrl as nACtrl',
-                }).
+                })
 
-                when('/login', {
-
+                .when('/login', {
                     templateUrl: 'views/login.html',
                     controller: 'loginCtrl as lCtrl',
+<<<<<<< HEAD
                 }).
 
                 when('/modify_author/:id', {
 
                     templateUrl: 'views/modify_author.html',
                     controller: 'modifyAuthorCtrl'
+=======
+                })
+
+                .when('/create_book', {
+                    templateUrl: 'views/create_book.html',
+                    controller: 'newBookController'
+                })
+
+                .when('/weather', {
+                    templateUrl: 'views/weather.html',
+                    controller: 'weatherController'
+>>>>>>> second_variant
                 });
 
             $routeProvider.otherwise({
                 redirectTo: '/'
             });
 
+<<<<<<< HEAD
             var interceptor = function ($rootScope, $q, $location) {
 
                 console.log("In interceptor");
@@ -213,3 +225,6 @@ services.factory('authorsService', function($http){
         }
     }
 });
+=======
+        }]);
+>>>>>>> second_variant

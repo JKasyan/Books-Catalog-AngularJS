@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div id="head_of_table">
     <a ng-show="hasRole('ROLE_ADMIN')" href="#/create_author">New author</a>
 
@@ -5,11 +6,18 @@
 </div>
 <div id="authors_table">
     <table>
+=======
+<div class="container">
+    <h2>Authors table</h2>
+    <table class="table table-bordered">
+        <thead>
+>>>>>>> second_variant
         <tr>
-            <td>Name</td>
-            <td>Second name</td>
-            <td>Actions</td>
+            <th>Name</th>
+            <th>Second name</th>
+            <th>Actions</th>
         </tr>
+<<<<<<< HEAD
         <tr ng-repeat='author in aCtrl.authors'>
             <td ng-bind='author.name'></td>
             <td ng-bind='author.secondName'></td>
@@ -18,7 +26,21 @@
                 <a ng-href="#/modify_author/{{author.id}}">Modify</a>
                 <a ng-href="#/delete_author/{{author.id}}">Delete</a>
             </div>
+=======
+        </thead>
+        <tbody>
+        <tr ng-repeat='author in aCtrl.authors'>
+            <td ng-bind='author.firstName'></td>
+            <td ng-bind='author.secondName'></td>
+            <td>
+                <a ng-href="#/books_of_author/{{author.id}}">Books</a>
+                <div ng-show="hasRole('ROLE_ADMIN')">
+                    <a href="#">Modify</a>
+                    <button class="btn btn-primary" ng-click = "deleteAuthor(author.id)">Delete</button>
+                </div>
+>>>>>>> second_variant
             </td>
         </tr>
+        </tbody>
     </table>
 </div>

@@ -1,8 +1,17 @@
 package catalog.angularjs.dao;
 
-import catalog.angularjs.dto.Book;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import catalog.angularjs.dto.BookDto;
+import catalog.angularjs.generated.tables.pojos.Book;
+import catalog.angularjs.model.BookModel;
 
-public interface BookRepository extends MongoRepository<Book, String>{
+import java.util.List;
 
+/**
+ * Created by evgen on 30.09.15.
+ */
+public interface BookRepository {
+
+    List<BookModel> selectAll();
+    List<Book> selectBooksByIdAuthor(int idAuthor);
+    List<BookModel> selectAll2();
 }

@@ -1,0 +1,10 @@
+<div>
+    <form ng-submit='createBook()'>
+        <input type="text" ng-model='newBook.title'>
+        <input type="text" ng-model='newBook.shortDescription'>
+        <input type="text" ng-model='newBook.datePublish'>
+        <select ng-model='selectedAuthors' ng-options='author.name for author in authors'>
+        </select>
+        <input type="submit" value="Submit">
+    </form>
+</div>

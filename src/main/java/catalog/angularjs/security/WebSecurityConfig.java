@@ -26,6 +26,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests().antMatchers("/getBooks/**").hasAnyRole(UserDetailService.ROLE_USER);
         http.authorizeRequests().antMatchers("/getAuthors/**").hasAnyRole(UserDetailService.ROLE_USER);
+        http.authorizeRequests().antMatchers("/addAuthor/**").hasAnyRole(UserDetailService.ROLE_USER,
+                UserDetailService.ROLE_ADMIN);
+        http.authorizeRequests().antMatchers("authors.html","books.html").hasRole(UserDetailService.ROLE_USER);
         SecurityConfigurer<DefaultSecurityFilterChain, HttpSecurity> securityConfigurerAdapter
                 = new XAuthTokenConfigurer(userDetailsServiceBean());
         http.apply(securityConfigurerAdapter);

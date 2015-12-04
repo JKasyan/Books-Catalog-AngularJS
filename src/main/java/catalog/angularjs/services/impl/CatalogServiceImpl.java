@@ -1,27 +1,26 @@
 package catalog.angularjs.services.impl;
 
-import catalog.angularjs.dto.Author;
-import catalog.angularjs.dto.Book;
-import catalog.angularjs.dao.AuthorRepository;
 import catalog.angularjs.dao.BookRepository;
+import catalog.angularjs.dao.AuthorRepository;
+import catalog.angularjs.generated.tables.pojos.Book;
+import catalog.angularjs.generated.tables.pojos.Author;
+import catalog.angularjs.model.BookModel;
 import catalog.angularjs.services.CatalogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service("catalogService")
 public class CatalogServiceImpl implements CatalogService{
 
-    private BookRepository bookRepository;
     private AuthorRepository authorRepository;
+    private BookRepository bookRepository;
 
     @Autowired
-    public CatalogServiceImpl(BookRepository bookRepository,
-                              AuthorRepository authorRepository) {
-        this.bookRepository = bookRepository;
+    public CatalogServiceImpl(AuthorRepository authorRepository, BookRepository bookRepository) {
         this.authorRepository = authorRepository;
+        this.bookRepository = bookRepository;
     }
 
     private int getNextAuthor(String collectionName){
@@ -30,23 +29,26 @@ public class CatalogServiceImpl implements CatalogService{
 
     @Override
     public void addAuthor(Author author) {
-        authorRepository.save(author);
+        authorRepository.insertAuthor(author);
     }
 
     @Override
-    @Transactional(readOnly = true)
-    public List<Book> getAllBooks() {
-        return bookRepository.findAll();
+    public List<BookModel> getAllBooks() {
+        return bookRepository.selectAll();
     }
 
     @Override
-    @Transactional(readOnly = true)
     public List<Author> getAllAuthors() {
-        return authorRepository.findAll();
+        return authorRepository.selectAllAuthors();
     }
 
     @Override
     public List<Book> getBooksOfAuthors(int id) {
-        throw new RuntimeException();
+        return bookRepository.selectBooksByIdAuthor(id);
+    }
+
+    @Override
+    public void deleteAuthor(String id) {
+//        authorRepository.delete(id);
     }
 }
