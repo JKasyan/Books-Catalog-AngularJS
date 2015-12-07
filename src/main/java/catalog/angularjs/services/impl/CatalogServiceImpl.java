@@ -8,6 +8,7 @@ import catalog.angularjs.model.BookModel;
 import catalog.angularjs.services.CatalogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -46,5 +47,16 @@ public class CatalogServiceImpl implements CatalogService{
     @Override
     public void deleteAuthor(String id) {
 //        authorRepository.delete(id);
+    }
+
+    @Override
+    @Transactional
+    public void addBook(BookModel bookModel) {
+        authorRepository.addBook(bookModel);
+    }
+
+    @Override
+    public void updateAuthor(Author author) {
+
     }
 }

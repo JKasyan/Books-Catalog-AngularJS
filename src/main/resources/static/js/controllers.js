@@ -5,7 +5,9 @@ angular.module('catalogApp').
         self.books = [];
         booksService.getBooks().then(function (response) {
             self.books = response.data;
-            console.log(self.books)
+            for(var i=0;i<self.books.length;i++){
+                console.log("Authors: ", self.books[i]["authors"])
+            }
         });
     }])
 
@@ -15,6 +17,7 @@ angular.module('catalogApp').
         self.authors = [];
         authorsService.getAuthors().then(function (response) {
             self.authors = response.data;
+            console.log(self.authors)
         })
 
         self.deleteAuthor = function(authorId){
@@ -116,13 +119,26 @@ angular.module('catalogApp').
         };
     }])
 
-    .controller("weatherController", ["weatherService", function(weatherService){
+    .controller("booksOfAuthorController", ["$routeParams", "booksService", function($routeParams, booksService){
         var self = this;
-        self.weatherData = {};
-        weatherService.getWeather().then(function(response){
-            console.log(response);
-            self.weatherData = response.data;
-            console.log('Fetched weather data: ', self.weatherData);
+        self.books = [];
+        var idAuthor = $routeParams.id;
+        console.log($routeParams);
+        console.log("idAuthor: ", idAuthor);
+        booksService.getBooksOfAuthor(idAuthor).then(function(response){
+            self.books = response.data;
+            console.log(self.books);
         })
     }])
 
+    .controller("modifyAuthorController", ["authorsService", "$routeParams", function(authorsService, $routeParams){
+        var self = this;
+        var idAuthor = $routeParams.id;
+        self.author = {};
+        authorsService.getAuthor(idAuthor).then(function (response) {
+            self.author = response.data;
+        });
+
+        self.modifyAuthor = function() {
+        }
+    }])

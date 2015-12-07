@@ -13,7 +13,7 @@
             <td ng-bind='author.firstName'></td>
             <td ng-bind='author.secondName'></td>
             <td>
-                <a ng-href="#/books_of_author/{{author.id}}">Books</a>
+                <a ng-href="#/books_of_author/{{author.idAuthor}}">Books</a>
                 <div ng-show="hasRole('ROLE_ADMIN')">
                     <a href="#">Modify</a>
                     <button class="btn btn-primary" ng-click = "deleteAuthor(author.id)">Delete</button>

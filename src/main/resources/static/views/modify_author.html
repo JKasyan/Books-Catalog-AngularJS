@@ -1,0 +1,16 @@
+<div>
+    <form ng-submit='modACtrl.modifyAuthor()'>
+        <table class="table">
+            <tr>
+                <td>First name</td>
+                <td><input type="text" ng-model = 'modACtrl.author.firstName'></td>
+                <td><span id="name_error"></span></td>
+            </tr>
+            <tr>
+                <td>Second name</td>
+                <td><input type="text" ng-model = 'modACtrl.author.secondName'></td>
+                <td><span id="second_name_error"></span></td>
+            </tr>
+        </table>
+    </form>
+</div>

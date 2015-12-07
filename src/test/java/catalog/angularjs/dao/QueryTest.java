@@ -104,6 +104,6 @@ public class QueryTest {
 
     @Test
     public void getAllBooksTest() {
-        bookRepository.selectAll2();
+        System.out.println(bookRepository.selectAll());;
     }
 }
