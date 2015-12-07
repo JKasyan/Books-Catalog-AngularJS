@@ -1,32 +1,12 @@
-<<<<<<< HEAD
-<div id="head_of_table">
-    <a ng-show="hasRole('ROLE_ADMIN')" href="#/create_author">New author</a>
-
-    <h1>Authors list</h1>
-</div>
-<div id="authors_table">
-    <table>
-=======
 <div class="container">
     <h2>Authors table</h2>
     <table class="table table-bordered">
         <thead>
->>>>>>> second_variant
         <tr>
             <th>Name</th>
             <th>Second name</th>
             <th>Actions</th>
         </tr>
-<<<<<<< HEAD
-        <tr ng-repeat='author in aCtrl.authors'>
-            <td ng-bind='author.name'></td>
-            <td ng-bind='author.secondName'></td>
-            <td><a ng-href="#/books_of_author/{{author.id}}">Books list</a>
-            <div ng-show="hasRole('ROLE_ADMIN')">
-                <a ng-href="#/modify_author/{{author.id}}">Modify</a>
-                <a ng-href="#/delete_author/{{author.id}}">Delete</a>
-            </div>
-=======
         </thead>
         <tbody>
         <tr ng-repeat='author in aCtrl.authors'>
@@ -38,7 +18,6 @@
                     <a href="#">Modify</a>
                     <button class="btn btn-primary" ng-click = "deleteAuthor(author.id)">Delete</button>
                 </div>
->>>>>>> second_variant
             </td>
         </tr>
         </tbody>

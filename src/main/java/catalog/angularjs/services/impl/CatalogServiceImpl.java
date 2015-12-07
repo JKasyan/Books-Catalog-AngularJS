@@ -24,10 +24,6 @@ public class CatalogServiceImpl implements CatalogService{
         this.bookRepository = bookRepository;
     }
 
-    private int getNextAuthor(String collectionName){
-        return 0;
-    }
-
     @Override
     public void addAuthor(Author author) {
         authorRepository.insertAuthor(author);

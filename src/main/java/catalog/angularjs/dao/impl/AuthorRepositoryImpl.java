@@ -56,7 +56,6 @@ public class AuthorRepositoryImpl implements AuthorRepository {
 
     @Override
     public void insertAuthor(Author author) {
-        create.insertInto(AUTHOR);
         AuthorRecord record = create.newRecord(AUTHOR);
         record.setFirstName(author.getFirstName());
         record.setSecondName(author.getSecondName());

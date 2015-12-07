@@ -34,7 +34,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Author extends TableImpl<AuthorRecord> {
 
-	private static final long serialVersionUID = -882184295;
+	private static final long serialVersionUID = -388592263;
 
 	/**
 	 * The reference instance of <code>public.author</code>
@@ -57,12 +57,12 @@ public class Author extends TableImpl<AuthorRecord> {
 	/**
 	 * The column <code>public.author.first_name</code>.
 	 */
-	public final TableField<AuthorRecord, String> FIRST_NAME = createField("first_name", org.jooq.impl.SQLDataType.CLOB, this, "");
+	public final TableField<AuthorRecord, String> FIRST_NAME = createField("first_name", org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
 
 	/**
 	 * The column <code>public.author.second_name</code>.
 	 */
-	public final TableField<AuthorRecord, String> SECOND_NAME = createField("second_name", org.jooq.impl.SQLDataType.CLOB, this, "");
+	public final TableField<AuthorRecord, String> SECOND_NAME = createField("second_name", org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
 
 	/**
 	 * Create a <code>public.author</code> table reference
@@ -99,7 +99,7 @@ public class Author extends TableImpl<AuthorRecord> {
 	 */
 	@Override
 	public UniqueKey<AuthorRecord> getPrimaryKey() {
-		return Keys.AUTHOR_PK;
+		return Keys.AUTHOR_PKEY;
 	}
 
 	/**
@@ -107,7 +107,7 @@ public class Author extends TableImpl<AuthorRecord> {
 	 */
 	@Override
 	public List<UniqueKey<AuthorRecord>> getKeys() {
-		return Arrays.<UniqueKey<AuthorRecord>>asList(Keys.AUTHOR_PK);
+		return Arrays.<UniqueKey<AuthorRecord>>asList(Keys.AUTHOR_PKEY);
 	}
 
 	/**

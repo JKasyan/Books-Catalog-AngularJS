@@ -50,9 +50,8 @@ angular.module('catalogApp').
     .controller('newAuthorCtrl', ['authorsService', '$location', function (authorsService, $location) {
         var self = this;
         self.author = {
-            name: "",
-            secondName: "",
-            books: []
+            firstName: "",
+            secondName: ""
         };
         self.createAuthor = function () {
             authorsService.addAuthor(self.author).then(function (success) {
@@ -97,8 +96,16 @@ angular.module('catalogApp').
         self.selectedAuthors = [];
 
         authorsService.getAuthors().then(function (response) {
-            self.authors = response.data;
-            console.log('Fetched authors: ', self.authors);
+            var authors = response.data;
+            for(var i = 0; i< authors.length;i++) {
+                var fullName = authors[i]["firstName"] + " " +  authors[i]["secondName"];
+                console.log(fullName);
+                self.authors[i] = {
+                    "fullName": fullName,
+                    "idAuthor": authors[i]["idAuthor"]
+                }
+            }
+            console.log(authors)
         });
 
         self.newBook = {
@@ -106,7 +113,7 @@ angular.module('catalogApp').
             shortDescription:'',
             datePublish:'',
             authors:[]
-        }
+        };
 
         self.createBook = function(){
             console.log('Selected authors: ', self.selectedAuthors);
@@ -141,4 +148,4 @@ angular.module('catalogApp').
 
         self.modifyAuthor = function() {
         }
-    }])
+    }]);
