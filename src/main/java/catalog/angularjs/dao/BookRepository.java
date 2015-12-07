@@ -11,7 +11,16 @@ import java.util.List;
  */
 public interface BookRepository {
 
+    /**
+     *
+     * @return
+     */
     List<BookModel> selectAll();
+
+    /**
+     *
+     * @param idAuthor
+     * @return
+     */
     List<Book> selectBooksByIdAuthor(int idAuthor);
-    List<BookModel> selectAll2();
 }

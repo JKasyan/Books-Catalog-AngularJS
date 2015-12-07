@@ -17,10 +17,14 @@ angular.module('catalogApp', ['ngRoute', 'ngCookies', 'securityModule', 'catalog
 
 
                 .when('/books_of_author/:id', {
-                    templateUrl: 'views/books.html',
+                    templateUrl: 'views/books_of_author.html',
                     controller: 'booksOfAuthorController as bOfACtrl',
                 })
 
+                .when('/modify_author/:id', {
+                    templateUrl: 'views/books_of_author.html',
+                    controller: 'modifyAuthorController as modACtrl',
+                })
 
                 .when('/create_author', {
                     templateUrl: 'views/create_author.html',
@@ -43,11 +47,14 @@ angular.module('catalogApp', ['ngRoute', 'ngCookies', 'securityModule', 'catalog
                 .when('/create_book', {
                     templateUrl: 'views/create_book.html',
                     controller: 'newBookController'
+<<<<<<< HEAD
                 })
 
                 .when('/weather', {
                     templateUrl: 'views/weather.html',
                     controller: 'weatherController'
+>>>>>>> second_variant
+=======
 >>>>>>> second_variant
                 });
 

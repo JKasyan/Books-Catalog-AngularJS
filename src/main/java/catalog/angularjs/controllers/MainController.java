@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Locale;
 
 @RestController
+@RequestMapping(value = "api/")
 public class MainController {
 
     @Autowired
@@ -44,6 +45,7 @@ public class MainController {
 
     @RequestMapping(value = "/getBooksOfAuthor", method = RequestMethod.GET)
     public List<Book> getBooksOfAuthor(@RequestParam int idAuthor){
+        logger.debug("api/getBooksOfAuthor?idAuthor=" + idAuthor);
         return catalogService.getBooksOfAuthors(idAuthor);
     }
 
@@ -51,7 +53,7 @@ public class MainController {
     @RequestMapping(value = "/addAuthor", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public void addAuthor(@Valid @RequestBody Author author){
-        logger.debug("New author: " + author);
+        logger.debug("api/addAuthor");
         catalogService.addAuthor(author);
     }
 
@@ -75,8 +77,7 @@ public class MainController {
 
     private String resolveLocalizedErrorMessage(FieldError fieldError){
         Locale locale = LocaleContextHolder.getLocale();
-        String message = messageSource.getMessage(fieldError,locale);
-        return message;
+        return messageSource.getMessage(fieldError,locale);
     }
 
     @Secured(value = { "ROLE_ADMIN" })
@@ -85,5 +86,21 @@ public class MainController {
     public void deleteAuthor(@RequestBody String idAuthor){
         logger.debug("Author with idAuthor " + idAuthor + " will be deleted.");
         catalogService.deleteAuthor(idAuthor);
+    }
+
+    //{ "shortDescription":"Про великую депресию", "title": "Гроздья гнева", "datePublish": "1939", "authors":  [ 100 ] }
+    @Secured(value = { "ROLE_ADMIN" })
+    @RequestMapping(value = "/addBook", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void addBook(@RequestBody BookModel bookModel) {
+        logger.debug("api/addBook. BookModel: " + bookModel);
+        catalogService.addBook(bookModel);
+    }
+
+    @Secured(value = { "ROLE_ADMIN" })
+    @RequestMapping(value = "/updateAuthor", method = RequestMethod.PUT)
+    @ResponseStatus(HttpStatus.OK)
+    public void updateAuthor(@RequestBody Author author) {
+        logger.debug("api/updateAuthor. Author: " + author);
     }
 }

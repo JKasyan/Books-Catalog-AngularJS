@@ -10,7 +10,8 @@ public class BookModel {
     private int idBook;
     private String shortDescription;
     private String title;
-    private List<String> authors;
+    private String datePublish;
+    private String[] authors;
 
     public int getIdBook() {
         return idBook;
@@ -20,11 +21,11 @@ public class BookModel {
         this.idBook = idBook;
     }
 
-    public List<String> getAuthors() {
+    public String[] getAuthors() {
         return authors;
     }
 
-    public void setAuthors(List<String> authors) {
+    public void setAuthors(String[] authors) {
         this.authors = authors;
     }
 
@@ -42,6 +43,14 @@ public class BookModel {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getDatePublish() {
+        return datePublish;
+    }
+
+    public void setDatePublish(String datePublish) {
+        this.datePublish = datePublish;
     }
 
     @Override

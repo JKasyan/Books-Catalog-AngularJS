@@ -1,20 +1,18 @@
 <div class="container">
-    <h2>Books table</h2>
+    <h2>Books of author</h2>
     <table class="table table-bordered">
         <thead>
         <tr>
             <td>Title</td>
             <td>Short description</td>
             <td>Publishing year</td>
-            <td>Authors</td>
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat = "book in bCtrl.books">
+        <tr ng-repeat = "book in bOfACtrl.books">
             <td ng-bind = 'book.title'></td>
             <td ng-bind = 'book.shortDescription'></td>
             <td ng-bind = 'book.datePublish'></td>
-            <td ng-bind = 'book.authors'></td>
         </tr>
         </tbody>
     </table>
