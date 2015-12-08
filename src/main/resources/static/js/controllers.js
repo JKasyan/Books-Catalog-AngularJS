@@ -92,21 +92,23 @@ angular.module('catalogApp').
     .controller('newBookController',['newBookService','authorsService', '$location',
         function(newBookService, authorsService, $location){
         var self = this;
-        self.authors = [];
+        self.authors = {
+            "Ernest Hemingway": 1,
+            "Антуан де Сент Екзюпери": 2
+        };
         self.selectedAuthors = [];
 
-        authorsService.getAuthors().then(function (response) {
-            var authors = response.data;
-            for(var i = 0; i< authors.length;i++) {
-                var fullName = authors[i]["firstName"] + " " +  authors[i]["secondName"];
-                console.log(fullName);
-                self.authors[i] = {
-                    "fullName": fullName,
-                    "idAuthor": authors[i]["idAuthor"]
-                }
-            }
-            console.log(authors)
-        });
+        //authorsService.getAuthors().then(function (response) {
+        //    var authors = response.data;
+        //    for(var i = 0; i< authors.length;i++) {
+        //        var fullName = authors[i]["firstName"] + " " +  authors[i]["secondName"];
+        //        self.authors[i] = {
+        //            "fullName": fullName,
+        //            "idAuthor": authors[i]["idAuthor"]
+        //        }
+        //    }
+        //    console.log("Authors: ", self.authors)
+        //});
 
         self.newBook = {
             title:'',

@@ -1,17 +1,29 @@
 <div>
-    <form ng-submit='nACtrl.createBook()'>
+    <form ng-submit='nBCtrl.createBook()'>
         <table class="table">
             <tr>
-                <td>First name</td>
-                <td><input type="text" ng-model = 'nBCtrl.author.firstName'></td>
+                <td>Title</td>
+                <td><input type="text" ng-model = 'nBCtrl.newBook.title'></td>
             </tr>
             <tr>
-                <td>Second name</td>
-                <td><input type="text" ng-model = 'nBCtrl.author.secondName'></td>
+                <td>Short description</td>
+                <td><input type="text" ng-model = 'nBCtrl.newBook.shortDescription'></td>
             </tr>
-            <select ng-model='selectedAuthors' ng-options='author.idAuthor as author.fullName for author in nBCtrl.authors'>
-            </select>
-            <input type="submit" value="Submit">
+            <tr>
+                <td>Publish date</td>
+                <td><input type="text" ng-model = 'nBCtrl.newBook.publishDate'></td>
+            </tr>
+            <tr>
+                <td>Authors</td>
+                <td>
+                    <label ng-repeat = "author in nBCtrl.authors">
+                        <input type="checkbox" checklist-model="nBCtrl.newBook.authors" checklist-value="author.idAuthor">{{author.fullName}}
+                    </label><br>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Submit"></td>
+            </tr>
         </table>
     </form>
 </div>
