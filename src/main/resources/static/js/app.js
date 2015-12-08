@@ -1,5 +1,5 @@
 
-angular.module('catalogApp', ['ngRoute', 'ngCookies', 'securityModule', 'catalogApp.services'])
+angular.module('catalogApp', ['ngRoute', 'ngCookies', 'securityModule', 'catalogApp.services', 'checklist-model'])
     .config(['$routeProvider', '$httpProvider',
         function ($routeProvider) {
 

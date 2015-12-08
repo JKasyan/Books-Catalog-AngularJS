@@ -92,23 +92,19 @@ angular.module('catalogApp').
     .controller('newBookController',['newBookService','authorsService', '$location',
         function(newBookService, authorsService, $location){
         var self = this;
-        self.authors = {
-            "Ernest Hemingway": 1,
-            "Антуан де Сент Екзюпери": 2
-        };
-        self.selectedAuthors = [];
+        self.authors = [];
 
-        //authorsService.getAuthors().then(function (response) {
-        //    var authors = response.data;
-        //    for(var i = 0; i< authors.length;i++) {
-        //        var fullName = authors[i]["firstName"] + " " +  authors[i]["secondName"];
-        //        self.authors[i] = {
-        //            "fullName": fullName,
-        //            "idAuthor": authors[i]["idAuthor"]
-        //        }
-        //    }
-        //    console.log("Authors: ", self.authors)
-        //});
+        authorsService.getAuthors().then(function (response) {
+            var authors = response.data;
+            for(var i = 0; i< authors.length;i++) {
+                var fullName = authors[i]["firstName"] + " " +  authors[i]["secondName"];
+                self.authors[i] = {
+                    "fullName": fullName,
+                    "idAuthor": authors[i]["idAuthor"]
+                }
+            }
+            console.log("Authors: ", self.authors)
+        });
 
         self.newBook = {
             title:'',
@@ -118,13 +114,12 @@ angular.module('catalogApp').
         };
 
         self.createBook = function(){
-            console.log('Selected authors: ', self.selectedAuthors);
             console.log('New book: ', self.newBook);
-            //newBookService.createBook(self.newBook).then(function (success) {
-            //    $location.path('/books');
-            //}, function (error) {
-            //
-            //});
+            newBookService.createBook(self.newBook).then(function (success) {
+                $location.path('/books');
+            }, function (error) {
+                console.log('Error!!!');
+            });
         };
     }])
 

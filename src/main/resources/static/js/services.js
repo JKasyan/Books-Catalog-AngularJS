@@ -52,7 +52,7 @@ services.factory('loginService', ['$resource', function($resource){
 services.factory('newBookService', ['$http', function($http){
     return {
         createBook:function(newBook){
-            return $http.post('api/newBook',newBook).
+            return $http.post('api/addBook',newBook).
                 then(function(response){
                     return response;
                 });
