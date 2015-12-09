@@ -22,12 +22,13 @@ import javax.annotation.Generated;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Book implements Serializable {
 
-	private static final long serialVersionUID = -800617191;
+	private static final long serialVersionUID = 549298610;
 
 	private Integer idBook;
 	private String  title;
 	private String  shortDescription;
 	private String  datePublish;
+	private Boolean status;
 
 	public Book() {}
 
@@ -36,18 +37,21 @@ public class Book implements Serializable {
 		this.title = value.title;
 		this.shortDescription = value.shortDescription;
 		this.datePublish = value.datePublish;
+		this.status = value.status;
 	}
 
 	public Book(
 		Integer idBook,
 		String  title,
 		String  shortDescription,
-		String  datePublish
+		String  datePublish,
+		Boolean status
 	) {
 		this.idBook = idBook;
 		this.title = title;
 		this.shortDescription = shortDescription;
 		this.datePublish = datePublish;
+		this.status = status;
 	}
 
 	public Integer getIdBook() {
@@ -80,5 +84,13 @@ public class Book implements Serializable {
 
 	public void setDatePublish(String datePublish) {
 		this.datePublish = datePublish;
+	}
+
+	public Boolean getStatus() {
+		return this.status;
+	}
+
+	public void setStatus(Boolean status) {
+		this.status = status;
 	}
 }

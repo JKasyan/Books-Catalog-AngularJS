@@ -34,7 +34,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Book extends TableImpl<BookRecord> {
 
-	private static final long serialVersionUID = 1884191459;
+	private static final long serialVersionUID = -82315036;
 
 	/**
 	 * The reference instance of <code>public.book</code>
@@ -68,6 +68,11 @@ public class Book extends TableImpl<BookRecord> {
 	 * The column <code>public.book.date_publish</code>.
 	 */
 	public final TableField<BookRecord, String> DATE_PUBLISH = createField("date_publish", org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
+
+	/**
+	 * The column <code>public.book.status</code>.
+	 */
+	public final TableField<BookRecord, Boolean> STATUS = createField("status", org.jooq.impl.SQLDataType.BOOLEAN, this, "");
 
 	/**
 	 * Create a <code>public.book</code> table reference

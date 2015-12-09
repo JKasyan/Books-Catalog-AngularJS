@@ -14,4 +14,5 @@ public interface AuthorRepository {
     List<Author> selectAllAuthors();
     void addBook(BookModel bookModel);
     void updateAuthor(Author author);
+    void delete(int idAuthor);
 }

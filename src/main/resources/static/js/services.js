@@ -10,7 +10,16 @@ services.factory('booksService',['$http',function($http){
             ,
             getBooksOfAuthor:function(idAuthor){
                 return $http.get('api/getBooksOfAuthor?idAuthor='+idAuthor);
+            },
+
+            deleteBook: function(idBook){
+                console.log("deleteBook", idBook);
+                return $http.post('api/deleteBook', idBook)
+                    .then(function(response){
+                        return response;
+                    })
             }
+
         }
     }]);
 

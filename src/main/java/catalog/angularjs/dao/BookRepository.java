@@ -23,4 +23,10 @@ public interface BookRepository {
      * @return
      */
     List<Book> selectBooksByIdAuthor(int idAuthor);
+
+    /**
+     *
+     * @param idBook
+     */
+    void deleteBook(int idBook);
 }

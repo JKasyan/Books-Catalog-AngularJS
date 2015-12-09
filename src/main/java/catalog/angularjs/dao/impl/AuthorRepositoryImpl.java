@@ -66,4 +66,9 @@ public class AuthorRepositoryImpl implements AuthorRepository {
     public void updateAuthor(Author author) {
 
     }
+
+    @Override
+    public void delete(int idAuthor) {
+
+    }
 }

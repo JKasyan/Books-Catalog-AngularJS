@@ -6,7 +6,7 @@ angular.module('catalogApp', ['ngRoute', 'ngCookies', 'securityModule', 'catalog
             $routeProvider
                 .when('/books', {
                     templateUrl: 'views/books.html',
-                    controller: 'booksController as bCtrl',
+                    controller: 'booksController as bCtrl'
                 })
 
 
@@ -28,7 +28,7 @@ angular.module('catalogApp', ['ngRoute', 'ngCookies', 'securityModule', 'catalog
 
                 .when('/create_author', {
                     templateUrl: 'views/create_author.html',
-                    controller: 'newAuthorCtrl as nACtrl',
+                    controller: 'newAuthorCtrl as nACtrl'
                 })
 
                 .when('/login', {

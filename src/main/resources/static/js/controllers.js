@@ -5,10 +5,33 @@ angular.module('catalogApp').
         self.books = [];
         booksService.getBooks().then(function (response) {
             self.books = response.data;
-            for(var i=0;i<self.books.length;i++){
-                console.log("Authors: ", self.books[i]["authors"])
-            }
         });
+
+        self.deleteBook = function(idBook) {
+            console.log('IdBook ', idBook);
+            booksService.deleteBook(idBook).then(
+
+                function(success) {
+                    console.log(success);
+                    var index;
+                    for(var i=0;i<self.books.length;i++){
+                        console.log('i: ', i,
+                            self.books[i]["idBook"] == idBook);
+                        if(self.books[i]["idBook"] == idBook){
+                            index = self.books.indexOf(self.books[i]);
+                            console.log("index: ", index);
+                            self.books.splice(index, 1);
+                            break;
+                        }
+                    }
+
+                },
+
+                function(error) {
+                    console.log("Error: ", error)
+                }
+            )
+        }
     }])
 
 
@@ -27,6 +50,7 @@ angular.module('catalogApp').
                     var array = eval(self.authors);
                     console.log('Eval: ', array, 'size: ', array.length);
                     console.log('authorId: ', authorId);
+
                     for(var i = 0;i<array.length;i++){
                         console.log("Id: ",array[i].id, ", typeOf: ", typeof(array[i].id));
                         if(array[i].id === authorId){

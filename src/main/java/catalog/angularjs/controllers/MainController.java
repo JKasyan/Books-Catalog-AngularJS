@@ -83,9 +83,17 @@ public class MainController {
     @Secured(value = { "ROLE_ADMIN" })
     @RequestMapping(value = "/deleteAuthor", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public void deleteAuthor(@RequestBody String idAuthor){
+    public void deleteAuthor(@RequestBody int idAuthor){
         logger.debug("Author with idAuthor " + idAuthor + " will be deleted.");
         catalogService.deleteAuthor(idAuthor);
+    }
+
+    @Secured(value = { "ROLE_ADMIN" })
+    @RequestMapping(value = "/deleteBook", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteBook(@RequestBody int idBook) {
+        logger.debug("api/delete. IdBook: " + idBook);
+        catalogService.deleteBook(idBook);
     }
 
     //{ "shortDescription":"Про великую депресию", "title": "Гроздья гнева", "datePublish": "1939", "authors":  [ 100 ] }

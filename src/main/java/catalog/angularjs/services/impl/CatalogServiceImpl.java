@@ -45,8 +45,8 @@ public class CatalogServiceImpl implements CatalogService{
     }
 
     @Override
-    public void deleteAuthor(String id) {
-//        authorRepository.delete(id);
+    public void deleteAuthor(int idAuthor) {
+        authorRepository.delete(idAuthor);
     }
 
     @Override
@@ -58,5 +58,10 @@ public class CatalogServiceImpl implements CatalogService{
     @Override
     public void updateAuthor(Author author) {
 
+    }
+
+    @Override
+    public void deleteBook(int idBook) {
+        bookRepository.deleteBook(idBook);
     }
 }

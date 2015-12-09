@@ -32,6 +32,7 @@ public class BookRepositoryImpl implements BookRepository {
                 .join(AUTHOR)
                 .on(AUTHOR.ID_AUTHOR.equal(AUTHOR_BOOK.ID_AUTHOR))
                 .where(AUTHOR.ID_AUTHOR.equal(idAuthor))
+                .and(BOOK.STATUS.equal(true))
                 .fetchInto(Book.class);
     }
 
@@ -46,9 +47,19 @@ public class BookRepositoryImpl implements BookRepository {
                 .on(AUTHOR_BOOK.ID_AUTHOR.equal(AUTHOR.ID_AUTHOR))
                 .join(BOOK)
                 .on(BOOK.ID_BOOK.equal(AUTHOR_BOOK.ID_BOOK))
+                .where(BOOK.STATUS.equal(true))
                 .groupBy(BOOK.ID_BOOK)
                 .fetchInto(BookModel.class);
         logger.debug("Books: " + books);
         return books;
+    }
+
+    @Override
+    public void deleteBook(int idBook) {
+        create
+                .update(BOOK)
+                .set(BOOK.STATUS, false)
+                .where(BOOK.ID_BOOK.equal(idBook))
+                .execute();
     }
 }
