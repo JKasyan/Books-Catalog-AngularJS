@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
 import org.jooq.DSLContext;
 import org.jooq.InsertSetStep;
 import org.jooq.InsertValuesStepN;
+import org.jooq.impl.DSL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -31,6 +32,7 @@ public class AuthorRepositoryImpl implements AuthorRepository {
         return create
                 .select()
                 .from(AUTHOR)
+                .where(AUTHOR.STATUS.equal(true))
                 .limit(100)
                 .fetchInto(Author.class);
     }
@@ -69,6 +71,35 @@ public class AuthorRepositoryImpl implements AuthorRepository {
 
     @Override
     public void delete(int idAuthor) {
-
+        /**
+         * SELECT ab.id_book, COUNT(*)
+         * FROM author_book ab
+         * WHERE ab.id_author = (?)
+         * GROUP BY ab.id_book
+         * HAVING COUNT(*) = 1;
+         */
+        List<Integer> booksOnlyOfAuthor = create
+                .select(AUTHOR_BOOK.ID_BOOK)
+                .from(AUTHOR_BOOK)
+                .where(AUTHOR_BOOK.ID_AUTHOR.equal(idAuthor))
+                .groupBy(AUTHOR_BOOK.ID_BOOK)
+                .having(DSL.count().equal(1))
+                .fetchInto(Integer.class);
+        logger.debug("Book only of author: " + booksOnlyOfAuthor);
+        create
+                .delete(AUTHOR_BOOK)
+                .where(AUTHOR_BOOK.ID_BOOK.in(booksOnlyOfAuthor))
+                .and(AUTHOR_BOOK.ID_AUTHOR.equal(idAuthor))
+                .execute();
+        create
+                .update(BOOK)
+                .set(BOOK.STATUS, false)
+                .where(BOOK.ID_BOOK.in(booksOnlyOfAuthor))
+                .execute();
+        create
+                .update(AUTHOR)
+                .set(AUTHOR.STATUS, false)
+                .where(AUTHOR.ID_AUTHOR.equal(idAuthor))
+                .execute();
     }
 }

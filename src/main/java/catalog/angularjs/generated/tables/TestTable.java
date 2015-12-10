@@ -34,7 +34,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TestTable extends TableImpl<TestTableRecord> {
 
-	private static final long serialVersionUID = 1849067422;
+	private static final long serialVersionUID = -977986462;
 
 	/**
 	 * The reference instance of <code>public.test_table</code>
@@ -50,14 +50,14 @@ public class TestTable extends TableImpl<TestTableRecord> {
 	}
 
 	/**
-	 * The column <code>public.test_table.some_text</code>.
-	 */
-	public final TableField<TestTableRecord, String> SOME_TEXT = createField("some_text", org.jooq.impl.SQLDataType.CLOB, this, "");
-
-	/**
 	 * The column <code>public.test_table.id</code>.
 	 */
 	public final TableField<TestTableRecord, Integer> ID = createField("id", org.jooq.impl.SQLDataType.INTEGER.nullable(false).defaulted(true), this, "");
+
+	/**
+	 * The column <code>public.test_table.some_text</code>.
+	 */
+	public final TableField<TestTableRecord, String> SOME_TEXT = createField("some_text", org.jooq.impl.SQLDataType.CLOB, this, "");
 
 	/**
 	 * Create a <code>public.test_table</code> table reference
@@ -94,7 +94,7 @@ public class TestTable extends TableImpl<TestTableRecord> {
 	 */
 	@Override
 	public UniqueKey<TestTableRecord> getPrimaryKey() {
-		return Keys.PK_TT;
+		return Keys.PK;
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class TestTable extends TableImpl<TestTableRecord> {
 	 */
 	@Override
 	public List<UniqueKey<TestTableRecord>> getKeys() {
-		return Arrays.<UniqueKey<TestTableRecord>>asList(Keys.PK_TT);
+		return Arrays.<UniqueKey<TestTableRecord>>asList(Keys.PK);
 	}
 
 	/**

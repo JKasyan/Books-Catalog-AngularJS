@@ -22,11 +22,12 @@ import javax.annotation.Generated;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Author implements Serializable {
 
-	private static final long serialVersionUID = -2003397522;
+	private static final long serialVersionUID = -1612709369;
 
 	private Integer idAuthor;
 	private String  firstName;
 	private String  secondName;
+	private Boolean status;
 
 	public Author() {}
 
@@ -34,16 +35,19 @@ public class Author implements Serializable {
 		this.idAuthor = value.idAuthor;
 		this.firstName = value.firstName;
 		this.secondName = value.secondName;
+		this.status = value.status;
 	}
 
 	public Author(
 		Integer idAuthor,
 		String  firstName,
-		String  secondName
+		String  secondName,
+		Boolean status
 	) {
 		this.idAuthor = idAuthor;
 		this.firstName = firstName;
 		this.secondName = secondName;
+		this.status = status;
 	}
 
 	public Integer getIdAuthor() {
@@ -68,5 +72,13 @@ public class Author implements Serializable {
 
 	public void setSecondName(String secondName) {
 		this.secondName = secondName;
+	}
+
+	public Boolean getStatus() {
+		return this.status;
+	}
+
+	public void setStatus(Boolean status) {
+		this.status = status;
 	}
 }

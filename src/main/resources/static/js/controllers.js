@@ -41,31 +41,33 @@ angular.module('catalogApp').
         authorsService.getAuthors().then(function (response) {
             self.authors = response.data;
             console.log(self.authors)
-        })
+        });
 
-        self.deleteAuthor = function(authorId){
-            authorsService.deleteAuthor(authorId).then(
-                function(success){
-                    var index = -1;
-                    var array = eval(self.authors);
-                    console.log('Eval: ', array, 'size: ', array.length);
-                    console.log('authorId: ', authorId);
+        self.deleteAuthor = function(idAuthor){
+            authorsService.deleteAuthor(idAuthor).then(
 
-                    for(var i = 0;i<array.length;i++){
-                        console.log("Id: ",array[i].id, ", typeOf: ", typeof(array[i].id));
-                        if(array[i].id === authorId){
-                            index = i;
+                function(success) {
+                    console.log(success);
+                    console.log("idAuthor: ", idAuthor);
+                    var index;
+                    for(var i=0;i<self.authors.length;i++){
+                        console.log('i: ', i,
+                            self.authors[i]["idAuthor"] == idAuthor);
+                        if(self.authors[i]["idAuthor"] == idAuthor){
+                            index = self.authors.indexOf(self.authors[i]);
+                            console.log("index: ", index);
+                            self.authors.splice(index, 1);
                             break;
                         }
                     }
-                    console.log('index: ', index);
-                    if(index === -1){
-                        console.log("Error!")
-                    }
-                    self.authors.splice(index, 1);
+
                 },
-                function(error){})
-        }
+
+                function(error) {
+                    console.log("Error: ", error)
+                }
+
+            )}
 
         self.modifyAuthor = function(authorId){}
     }])
