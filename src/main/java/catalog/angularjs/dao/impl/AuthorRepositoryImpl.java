@@ -102,4 +102,15 @@ public class AuthorRepositoryImpl implements AuthorRepository {
                 .where(AUTHOR.ID_AUTHOR.equal(idAuthor))
                 .execute();
     }
+
+    @Override
+    public List<Author> selectByPattern(String pattern) {
+        return create
+                .select()
+                .from(AUTHOR)
+                .where(AUTHOR.FIRST_NAME.like("%" + pattern + "%"))
+                .or(AUTHOR.SECOND_NAME.like("%" + pattern + "%"))
+                .and(AUTHOR.STATUS.equal(true))
+                .fetchInto(Author.class);
+    }
 }

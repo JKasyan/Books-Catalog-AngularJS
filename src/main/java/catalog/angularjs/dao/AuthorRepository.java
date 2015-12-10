@@ -15,4 +15,5 @@ public interface AuthorRepository {
     void addBook(BookModel bookModel);
     void updateAuthor(Author author);
     void delete(int idAuthor);
+    List<Author> selectByPattern(String pattern);
 }

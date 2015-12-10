@@ -34,6 +34,9 @@ public class QueryTest {
     @Autowired
     private BookRepository bookRepository;
 
+    @Autowired
+    AuthorRepository authorRepository;
+
     @Test
     public void leftOuterJoinTest() {
         Result<Record> fetch = create
@@ -105,5 +108,11 @@ public class QueryTest {
     @Test
     public void getAllBooksTest() {
         System.out.println(bookRepository.selectAll());;
+    }
+
+    @Test
+    public void searchTest() {
+        List<Author> authors = authorRepository.selectByPattern("ор");
+        System.out.println(authors.get(0).getFirstName());
     }
 }
