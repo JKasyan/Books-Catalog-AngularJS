@@ -34,7 +34,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Book extends TableImpl<BookRecord> {
 
-	private static final long serialVersionUID = 1589345616;
+	private static final long serialVersionUID = 938832671;
 
 	/**
 	 * The reference instance of <code>public.book</code>
@@ -57,17 +57,17 @@ public class Book extends TableImpl<BookRecord> {
 	/**
 	 * The column <code>public.book.title</code>.
 	 */
-	public final TableField<BookRecord, String> TITLE = createField("title", org.jooq.impl.SQLDataType.CLOB, this, "");
+	public final TableField<BookRecord, String> TITLE = createField("title", org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
 
 	/**
 	 * The column <code>public.book.short_description</code>.
 	 */
-	public final TableField<BookRecord, String> SHORT_DESCRIPTION = createField("short_description", org.jooq.impl.SQLDataType.CLOB, this, "");
+	public final TableField<BookRecord, String> SHORT_DESCRIPTION = createField("short_description", org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
 
 	/**
 	 * The column <code>public.book.date_publish</code>.
 	 */
-	public final TableField<BookRecord, String> DATE_PUBLISH = createField("date_publish", org.jooq.impl.SQLDataType.CLOB, this, "");
+	public final TableField<BookRecord, String> DATE_PUBLISH = createField("date_publish", org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
 
 	/**
 	 * The column <code>public.book.status</code>.
@@ -109,7 +109,7 @@ public class Book extends TableImpl<BookRecord> {
 	 */
 	@Override
 	public UniqueKey<BookRecord> getPrimaryKey() {
-		return Keys.ID_BOOK_PK;
+		return Keys.PK_BOOK;
 	}
 
 	/**
@@ -117,7 +117,7 @@ public class Book extends TableImpl<BookRecord> {
 	 */
 	@Override
 	public List<UniqueKey<BookRecord>> getKeys() {
-		return Arrays.<UniqueKey<BookRecord>>asList(Keys.ID_BOOK_PK);
+		return Arrays.<UniqueKey<BookRecord>>asList(Keys.PK_BOOK, Keys.UNIQUE_IDBOOK);
 	}
 
 	/**

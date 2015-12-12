@@ -141,7 +141,8 @@ angular.module('catalogApp').
 
         self.createBook = function(){
             console.log('New book: ', self.newBook);
-            newBookService.createBook(self.newBook).then(function (success) {
+            newBookService.createBook(self.newBook).then(
+                function (success) {
                 $location.path('/books');
             }, function (error) {
                 console.log('Error!!!');
@@ -161,14 +162,24 @@ angular.module('catalogApp').
         })
     }])
 
-    .controller("modifyAuthorController", ["authorsService", "$routeParams", function(authorsService, $routeParams){
+    .controller("modifyAuthorController", ["authorsService", "$routeParams", "$location", function(authorsService, $routeParams, $location){
         var self = this;
         var idAuthor = $routeParams.id;
         self.author = {};
         authorsService.getAuthor(idAuthor).then(function (response) {
             self.author = response.data;
+            console.log(self.author)
         });
 
         self.modifyAuthor = function() {
+            console.log(self.author)
+            authorsService.updateAuthor(self.author).then(
+                function(success){
+                    $location.path('/authors');
+                },
+                function(error) {
+
+                }
+            )
         }
     }]);

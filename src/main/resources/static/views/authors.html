@@ -15,7 +15,7 @@
             <td>
                 <a ng-href="#/books_of_author/{{author.idAuthor}}">Books</a>
                 <div ng-show="hasRole('ROLE_ADMIN')">
-                    <a href="#">Modify</a>
+                    <a href="#/modify_author/{{author.idAuthor}}">Modify</a>
                     <button class="btn btn-primary" ng-click = "aCtrl.deleteAuthor(author.idAuthor)">Delete</button>
                 </div>
             </td>

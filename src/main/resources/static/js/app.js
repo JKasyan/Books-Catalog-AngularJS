@@ -22,7 +22,7 @@ angular.module('catalogApp', ['ngRoute', 'ngCookies', 'securityModule', 'catalog
                 })
 
                 .when('/modify_author/:id', {
-                    templateUrl: 'views/books_of_author.html',
+                    templateUrl: 'views/modify_author.html',
                     controller: 'modifyAuthorController as modACtrl'
                 })
 

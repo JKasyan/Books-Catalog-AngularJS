@@ -66,7 +66,12 @@ public class AuthorRepositoryImpl implements AuthorRepository {
 
     @Override
     public void updateAuthor(Author author) {
-
+        create
+                .update(AUTHOR)
+                .set(AUTHOR.FIRST_NAME, author.getFirstName())
+                .set(AUTHOR.SECOND_NAME, author.getSecondName())
+                .where(AUTHOR.ID_AUTHOR.equal(author.getIdAuthor()))
+                .execute();
     }
 
     @Override
@@ -112,5 +117,14 @@ public class AuthorRepositoryImpl implements AuthorRepository {
                 .or(AUTHOR.SECOND_NAME.like("%" + pattern + "%"))
                 .and(AUTHOR.STATUS.equal(true))
                 .fetchInto(Author.class);
+    }
+
+    @Override
+    public Author selectAuthor(int idAuthor) {
+        return create
+                .select()
+                .from(AUTHOR)
+                .where(AUTHOR.ID_AUTHOR.equal(idAuthor))
+                .fetchOneInto(Author.class);
     }
 }

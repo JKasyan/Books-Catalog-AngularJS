@@ -57,11 +57,16 @@ public class CatalogServiceImpl implements CatalogService{
 
     @Override
     public void updateAuthor(Author author) {
-
+        authorRepository.updateAuthor(author);
     }
 
     @Override
     public void deleteBook(int idBook) {
         bookRepository.deleteBook(idBook);
+    }
+
+    @Override
+    public Author getAuthor(int idAuthor) {
+        return authorRepository.selectAuthor(idAuthor);
     }
 }
