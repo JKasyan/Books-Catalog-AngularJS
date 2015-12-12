@@ -1,5 +1,6 @@
 package catalog.angularjs.model;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -59,7 +60,7 @@ public class BookModel {
                 "idBook=" + idBook +
                 ", shortDescription='" + shortDescription + '\'' +
                 ", title='" + title + '\'' +
-                ", authors=" + authors +
+                ", authors=" + Arrays.toString(authors) +
                 '}';
     }
 }

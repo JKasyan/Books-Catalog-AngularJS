@@ -29,4 +29,6 @@ public interface BookRepository {
      * @param idBook
      */
     void deleteBook(int idBook);
+
+    BookModel selectBook(int id);
 }

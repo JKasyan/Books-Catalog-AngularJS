@@ -17,4 +17,5 @@ public interface CatalogService {
     void addBook(BookModel bookModel);
     void updateAuthor(Author author);
     void deleteBook(int idBook);
+    BookModel getBookById(int id);
 }

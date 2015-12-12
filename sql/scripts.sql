@@ -1,9 +1,3 @@
-SELECT b.title, a.first_name
-FROM book b
-INNER JOIN author_book ab
-ON b.id_book = ab.id_book
-RIGHT OUTER JOIN author a
-ON a.id_author = ab.id_author;
 
 CREATE TABLE author_book
 (
@@ -23,6 +17,7 @@ CREATE TABLE author
   id_author integer NOT NULL DEFAULT nextval('author_seq'::regclass),
   first_name text NOT NULL,
   second_name text NOT NULL,
+  status boolean DEFAULT true,
   CONSTRAINT author_pkey PRIMARY KEY (id_author)
 );
 
@@ -32,6 +27,7 @@ CREATE TABLE book
   title text NOT NULL,
   short_description text NOT NULL,
   date_publish text NOT NULL,
+  status boolean DEFAULT true,
   CONSTRAINT pk_book PRIMARY KEY (id_book),
   CONSTRAINT unique_idbook UNIQUE (id_book)
 );

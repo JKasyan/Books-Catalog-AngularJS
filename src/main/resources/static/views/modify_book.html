@@ -1,0 +1,29 @@
+<div>
+    <form ng-submit='modifyBook()'>
+        <table class="table">
+            <tr>
+                <td>Title</td>
+                <td><input type="text" ng-model = "book.title"></td>
+            </tr>
+            <tr>
+                <td>Short description</td>
+                <td><input type="text" ng-model = "book.shortDescription"></td>
+            </tr>
+            <tr>
+                <td>Publish date</td>
+                <td><input type="text" ng-model = "book.datePublish"></td>
+            </tr>
+            <tr>
+                <td>Authors</td>
+                <td>
+                    <label ng-repeat = "author in authors">
+                        <input type="checkbox" checklist-value="author.idAuthor"> {{author.fullName}}
+                    </label><br>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Submit"></td>
+            </tr>
+        </table>
+    </form>
+</div>

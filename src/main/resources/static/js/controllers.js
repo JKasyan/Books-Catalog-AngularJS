@@ -172,7 +172,7 @@ angular.module('catalogApp').
         });
 
         self.modifyAuthor = function() {
-            console.log(self.author)
+            console.log(self.author);
             authorsService.updateAuthor(self.author).then(
                 function(success){
                     $location.path('/authors');
@@ -182,4 +182,36 @@ angular.module('catalogApp').
                 }
             )
         }
-    }]);
+    }])
+
+    .controller('modifyBookController', ['booksService', "$routeParams", "$location", "$scope",
+        function(booksService, $routeParams, $location, $scope){
+            var id = $routeParams.id;
+            $scope.book = {};
+            booksService.getBookById(id).then(
+                function(response){
+                    var authors = response.data.authors;
+                    console.log("Not split authors", authors);
+                    var splitAuthors = [{"id":"", "fullName":""}];
+                    for(var i = 0; i<authors.length;i++){
+                        var split = authors[i].split(',');
+                        var fullName = split[1] + split[2];
+                        var id = split[0];
+                        splitAuthors.push({"fullName": fullName, "id": id});
+                    }
+                    $scope.book = response.data;
+                    $scope.book.authors = splitAuthors;
+                    console.log($scope.book);
+                }
+            );
+            $scope.modifyBook = function(){
+                booksService.updateBook().then(
+                    function(success){
+                        $location.path('/books');
+                    },
+                    function(error){
+
+                    }
+                )
+            }
+        }]);

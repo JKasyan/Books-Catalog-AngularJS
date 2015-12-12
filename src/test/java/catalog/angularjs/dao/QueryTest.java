@@ -111,8 +111,8 @@ public class QueryTest {
     }
 
     @Test
-    public void searchTest() {
-        List<Author> authors = authorRepository.selectByPattern("ор");
-        System.out.println(authors.get(0).getFirstName());
+    public void getBookTest() {
+        BookModel bookModel = bookRepository.selectBook(11);
+        System.out.println(bookModel);
     }
 }

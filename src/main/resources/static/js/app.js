@@ -26,6 +26,11 @@ angular.module('catalogApp', ['ngRoute', 'ngCookies', 'securityModule', 'catalog
                     controller: 'modifyAuthorController as modACtrl'
                 })
 
+                .when('/modify_book/:id', {
+                    templateUrl: 'views/modify_book.html',
+                    controller: 'modifyBookController as modBCtrl'
+                })
+
                 .when('/create_author', {
                     templateUrl: 'views/create_author.html',
                     controller: 'newAuthorCtrl as nACtrl'

@@ -25,6 +25,11 @@ public class BooksController {
         return catalogService.getAllBooks();
     }
 
+    @RequestMapping(value = "/books/{id}", method = RequestMethod.GET)
+    public BookModel getBookById(@PathVariable int id) {
+        return catalogService.getBookById(id);
+    }
+
     @RequestMapping(value = "/books/authors/{idAuthor}", method = RequestMethod.GET)
     public List<Book> getBooksOfAuthor(@PathVariable int idAuthor){
         logger.debug("/books/authors/" + idAuthor);

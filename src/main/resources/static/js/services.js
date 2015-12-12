@@ -6,6 +6,9 @@ services.factory('booksService',['$http',function($http){
         return {
             getBooks: function(){
                 return $http.get('api/books');
+            },
+            getBookById:function(id){
+                return $http.get('api/books/' + id);
             }
             ,
             getBooksOfAuthor:function(idAuthor){
@@ -18,8 +21,10 @@ services.factory('booksService',['$http',function($http){
                     .then(function(response){
                         return response;
                     })
-            }
+            },
+            updateBook: function(book) {
 
+            }
         }
     }]);
 

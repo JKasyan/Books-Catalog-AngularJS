@@ -62,4 +62,22 @@ public class BookRepositoryImpl implements BookRepository {
                 .where(BOOK.ID_BOOK.equal(idBook))
                 .execute();
     }
+
+    @Override
+    public BookModel selectBook(int id) {
+        return create
+                .select(BOOK.ID_BOOK, BOOK.TITLE, BOOK.SHORT_DESCRIPTION,
+                        BOOK.DATE_PUBLISH,
+                        PostgresDSL.arrayAgg(concat(AUTHOR.ID_AUTHOR, val(","),
+                                AUTHOR.FIRST_NAME, val(","), AUTHOR.SECOND_NAME)).as("authors"))
+                .from(AUTHOR)
+                .join(AUTHOR_BOOK)
+                .on(AUTHOR_BOOK.ID_AUTHOR.equal(AUTHOR.ID_AUTHOR))
+                .join(BOOK)
+                .on(BOOK.ID_BOOK.equal(AUTHOR_BOOK.ID_BOOK))
+                .where(BOOK.STATUS.equal(true))
+                .and(BOOK.ID_BOOK.equal(id))
+                .groupBy(BOOK.ID_BOOK)
+                .fetchOneInto(BookModel.class);
+    }
 }
