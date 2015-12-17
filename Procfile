@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT -jar  target/books-catalog-angularjs-1.0-SNAPSHOT.jar
+web java -Dserver.port=$PORT $JAVA_OPTS -jar target/books-catalog-angularjs-1.0-SNAPSHOT.jar

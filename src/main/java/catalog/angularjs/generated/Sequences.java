@@ -26,14 +26,14 @@ import org.jooq.impl.SequenceImpl;
 public class Sequences {
 
 	/**
-	 * The sequence <code>public.author_idauthor_seq</code>
+	 * The sequence <code>public.author_id_author_seq</code>
 	 */
-	public static final Sequence<Long> AUTHOR_IDAUTHOR_SEQ = new SequenceImpl<Long>("author_idauthor_seq", Public.PUBLIC, org.jooq.impl.SQLDataType.BIGINT.nullable(false));
+	public static final Sequence<Long> AUTHOR_ID_AUTHOR_SEQ = new SequenceImpl<Long>("author_id_author_seq", Public.PUBLIC, org.jooq.impl.SQLDataType.BIGINT.nullable(false));
 
 	/**
-	 * The sequence <code>public.book_idbook_seq</code>
+	 * The sequence <code>public.book_id_book_seq</code>
 	 */
-	public static final Sequence<Long> BOOK_IDBOOK_SEQ = new SequenceImpl<Long>("book_idbook_seq", Public.PUBLIC, org.jooq.impl.SQLDataType.BIGINT.nullable(false));
+	public static final Sequence<Long> BOOK_ID_BOOK_SEQ = new SequenceImpl<Long>("book_id_book_seq", Public.PUBLIC, org.jooq.impl.SQLDataType.BIGINT.nullable(false));
 
 	/**
 	 * The sequence <code>public.test_table_id_seq</code>

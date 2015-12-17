@@ -22,31 +22,23 @@ import javax.annotation.Generated;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TestTable implements Serializable {
 
-	private static final long serialVersionUID = -1034830314;
+	private static final long serialVersionUID = 1361505924;
 
-	private String  someText;
 	private Integer id;
+	private String  someText;
 
 	public TestTable() {}
 
 	public TestTable(TestTable value) {
-		this.someText = value.someText;
 		this.id = value.id;
+		this.someText = value.someText;
 	}
 
 	public TestTable(
-		String  someText,
-		Integer id
+		Integer id,
+		String  someText
 	) {
-		this.someText = someText;
 		this.id = id;
-	}
-
-	public String getSomeText() {
-		return this.someText;
-	}
-
-	public void setSomeText(String someText) {
 		this.someText = someText;
 	}
 
@@ -56,5 +48,13 @@ public class TestTable implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getSomeText() {
+		return this.someText;
+	}
+
+	public void setSomeText(String someText) {
+		this.someText = someText;
 	}
 }
