@@ -31,4 +31,6 @@ public interface BookRepository {
     void deleteBook(int idBook);
 
     BookModel selectBook(int id);
+
+    void updateBook(BookModel bookModel);
 }

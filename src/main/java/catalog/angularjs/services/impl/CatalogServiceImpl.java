@@ -74,4 +74,9 @@ public class CatalogServiceImpl implements CatalogService{
     public BookModel getBookById(int id) {
         return bookRepository.selectBook(id);
     }
+
+    @Override
+    public void updateBook(BookModel bookModel) {
+        bookRepository.updateBook(bookModel);
+    }
 }

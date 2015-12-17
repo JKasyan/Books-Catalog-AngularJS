@@ -2,13 +2,19 @@ package catalog.angularjs.dao.impl;
 
 import catalog.angularjs.dao.BookRepository;
 import catalog.angularjs.generated.tables.pojos.Book;
+import catalog.angularjs.generated.tables.records.AuthorBookRecord;
 import catalog.angularjs.model.BookModel;
 import org.jooq.DSLContext;
+import org.jooq.UpdateSetFirstStep;
+import org.jooq.UpdateSetMoreStep;
 import org.jooq.util.postgres.PostgresDSL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 
 import static catalog.angularjs.generated.Tables.*;
 import static org.jooq.impl.DSL.concat;
@@ -79,5 +85,28 @@ public class BookRepositoryImpl implements BookRepository {
                 .and(BOOK.ID_BOOK.equal(id))
                 .groupBy(BOOK.ID_BOOK)
                 .fetchOneInto(BookModel.class);
+    }
+
+    @Override
+    public void updateBook(BookModel bookModel) {
+        create.update(BOOK)
+                .set(BOOK.TITLE, bookModel.getTitle())
+                .set(BOOK.DATE_PUBLISH, bookModel.getDatePublish())
+                .set(BOOK.SHORT_DESCRIPTION, bookModel.getShortDescription())
+                .execute();
+        List<Integer> existsAuthors = create.select(AUTHOR_BOOK.ID_AUTHOR)
+                .from(AUTHOR_BOOK)
+                .where(AUTHOR_BOOK.ID_BOOK.equal(bookModel.getIdBook()))
+                .fetchInto(Integer.class);
+        List<String> authors = new ArrayList<>();
+        UpdateSetFirstStep<AuthorBookRecord> updateStep = create.update(AUTHOR_BOOK);
+        UpdateSetMoreStep<AuthorBookRecord> setStep = null;
+        for(String idAuthor:bookModel.getAuthors()) {
+            setStep = updateStep
+                    .set(AUTHOR_BOOK.ID_AUTHOR, Integer.valueOf(idAuthor))
+                    .set(AUTHOR_BOOK.ID_BOOK, bookModel.getIdBook());
+        }
+        assert setStep != null;
+        setStep.execute();
     }
 }

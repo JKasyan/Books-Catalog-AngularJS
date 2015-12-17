@@ -16,8 +16,8 @@
             <tr>
                 <td>Authors</td>
                 <td>
-                    <label ng-repeat = "author in authors">
-                        <input type="checkbox" checklist-value="author.idAuthor"> {{author.fullName}}
+                    <label ng-repeat = "author in allAuthors">
+                        <input type="checkbox" value="{{author.id}}" ng-model = "author.selected"> {{author.fullName}}
                     </label><br>
                 </td>
             </tr>

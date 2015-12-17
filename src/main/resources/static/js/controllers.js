@@ -184,33 +184,61 @@ angular.module('catalogApp').
         }
     }])
 
-    .controller('modifyBookController', ['booksService', "$routeParams", "$location", "$scope",
-        function(booksService, $routeParams, $location, $scope){
+    .controller('modifyBookController', ['booksService', "authorsService", "$routeParams", "$location", "$scope",
+        function(booksService, authorsService, $routeParams, $location, $scope){
             var id = $routeParams.id;
             $scope.book = {};
+            var splitAuthors = [];
             booksService.getBookById(id).then(
                 function(response){
                     var authors = response.data.authors;
-                    console.log("Not split authors", authors);
-                    var splitAuthors = [{"id":"", "fullName":""}];
-                    for(var i = 0; i<authors.length;i++){
-                        var split = authors[i].split(',');
-                        var fullName = split[1] + split[2];
-                        var id = split[0];
-                        splitAuthors.push({"fullName": fullName, "id": id});
-                    }
+                    splitAuthors = authors.map(function(author){
+                        var split = author.split(",");
+                        return {
+                            "id":split[0]
+                        }
+                    });
                     $scope.book = response.data;
-                    $scope.book.authors = splitAuthors;
                     console.log($scope.book);
                 }
             );
+
+            $scope.allAuthors = [];
+            authorsService.getAuthors().then(
+                function(reponse) {
+                    var authors = reponse.data;
+                    $scope.allAuthors = authors.map(function(author){
+                        return {
+                            "id":author.idAuthor,
+                            "fullName": author.firstName + " " + author.secondName,
+                            "selected": false
+                        };
+                    });
+                    for(var i = 0;i<splitAuthors.length;i++) {
+                        for(var j = 0; j< $scope.allAuthors.length;j++){
+                            if(splitAuthors[i].id == $scope.allAuthors[j].id) {
+                                $scope.allAuthors[j].selected = true;
+                                break;
+                            }
+                        }
+                    }
+                    console.log("All: ",$scope.allAuthors);
+                }
+            );
+
             $scope.modifyBook = function(){
-                booksService.updateBook().then(
+                var authors = [];
+                $scope.allAuthors.forEach(function(author){
+                    if(author.selected == true) {
+                        authors.push(author.id)
+                    }
+                });
+                $scope.book.authors = authors;
+                booksService.updateBook($scope.book).then(
                     function(success){
                         $location.path('/books');
                     },
                     function(error){
-
                     }
                 )
             }

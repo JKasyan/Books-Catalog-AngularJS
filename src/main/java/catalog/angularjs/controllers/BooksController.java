@@ -56,8 +56,10 @@ public class BooksController {
     @Secured(value = { "ROLE_ADMIN" })
     @RequestMapping(value = "/books", method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.OK)
-    public void updateBook() {
+    public void updateBook(@RequestBody BookModel bookModel) {
         logger.debug("api/books. Method: Update");
+        logger.info("Book for update: " + bookModel);
+        catalogService.updateBook(bookModel);
     }
 
 }

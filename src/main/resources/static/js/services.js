@@ -23,7 +23,8 @@ services.factory('booksService',['$http',function($http){
                     })
             },
             updateBook: function(book) {
-
+                console.log("updateBook", book);
+                return $http.put("api/books", book);
             }
         }
     }]);
