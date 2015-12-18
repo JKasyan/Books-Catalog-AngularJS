@@ -5,15 +5,14 @@ import catalog.angularjs.generated.tables.pojos.Book;
 import catalog.angularjs.generated.tables.records.AuthorBookRecord;
 import catalog.angularjs.model.BookModel;
 import org.jooq.DSLContext;
+import org.jooq.InsertValuesStep2;
 import org.jooq.UpdateSetFirstStep;
 import org.jooq.UpdateSetMoreStep;
 import org.jooq.util.postgres.PostgresDSL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.function.Predicate;
 
 import static catalog.angularjs.generated.Tables.*;
@@ -93,20 +92,43 @@ public class BookRepositoryImpl implements BookRepository {
                 .set(BOOK.TITLE, bookModel.getTitle())
                 .set(BOOK.DATE_PUBLISH, bookModel.getDatePublish())
                 .set(BOOK.SHORT_DESCRIPTION, bookModel.getShortDescription())
+                .where(BOOK.ID_BOOK.equal(bookModel.getIdBook()))
                 .execute();
-        List<Integer> existsAuthors = create.select(AUTHOR_BOOK.ID_AUTHOR)
+        List<Integer> existsAuthors = create
+                .select(AUTHOR_BOOK.ID_AUTHOR)
                 .from(AUTHOR_BOOK)
                 .where(AUTHOR_BOOK.ID_BOOK.equal(bookModel.getIdBook()))
                 .fetchInto(Integer.class);
-        List<String> authors = new ArrayList<>();
-        UpdateSetFirstStep<AuthorBookRecord> updateStep = create.update(AUTHOR_BOOK);
-        UpdateSetMoreStep<AuthorBookRecord> setStep = null;
-        for(String idAuthor:bookModel.getAuthors()) {
-            setStep = updateStep
-                    .set(AUTHOR_BOOK.ID_AUTHOR, Integer.valueOf(idAuthor))
-                    .set(AUTHOR_BOOK.ID_BOOK, bookModel.getIdBook());
+        logger.debug("Existing authors: " + existsAuthors);
+        List<Integer> newAuthors = new ArrayList<>();
+        List<Integer> authors = new ArrayList<>();
+        /**
+         *
+         */
+        for(String idAuthor:bookModel.getAuthors()){
+            int id = Integer.valueOf(idAuthor);
+            authors.add(id);
+            if(!existsAuthors.contains(id)) {
+                newAuthors.add(id);
+            }
         }
-        assert setStep != null;
-        setStep.execute();
+        existsAuthors.removeAll(authors);
+        logger.debug("New authors: " + newAuthors);
+        if(!newAuthors.isEmpty()){
+            InsertValuesStep2<AuthorBookRecord, Integer, Integer> insertStep =
+                    create.insertInto(AUTHOR_BOOK, AUTHOR_BOOK.ID_AUTHOR, AUTHOR_BOOK.ID_BOOK);
+            InsertValuesStep2<AuthorBookRecord, Integer, Integer> valuesStep = null;
+            for(Integer idAuthor:newAuthors) {
+                valuesStep = insertStep.values(idAuthor, bookModel.getIdBook());
+            }
+            valuesStep.execute();
+        }
+        logger.debug("Old authors: " + existsAuthors);
+        if(!existsAuthors.isEmpty()) {
+            create
+                    .delete(AUTHOR_BOOK)
+                    .where(AUTHOR_BOOK.ID_AUTHOR.in(existsAuthors))
+                    .execute();
+        }
     }
 }

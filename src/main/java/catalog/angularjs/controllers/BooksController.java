@@ -57,8 +57,8 @@ public class BooksController {
     @RequestMapping(value = "/books", method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.OK)
     public void updateBook(@RequestBody BookModel bookModel) {
-        logger.debug("api/books. Method: Update");
-        logger.info("Book for update: " + bookModel);
+        logger.debug("api/books. Method: PUT");
+        logger.info("Updating book: " + bookModel);
         catalogService.updateBook(bookModel);
     }
 

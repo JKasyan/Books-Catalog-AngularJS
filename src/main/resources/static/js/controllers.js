@@ -189,6 +189,9 @@ angular.module('catalogApp').
             var id = $routeParams.id;
             $scope.book = {};
             var splitAuthors = [];
+            /**
+             *
+             */
             booksService.getBookById(id).then(
                 function(response){
                     var authors = response.data.authors;
@@ -202,11 +205,13 @@ angular.module('catalogApp').
                     console.log($scope.book);
                 }
             );
-
+            /**
+             *
+             */
             $scope.allAuthors = [];
             authorsService.getAuthors().then(
-                function(reponse) {
-                    var authors = reponse.data;
+                function(response) {
+                    var authors = response.data;
                     $scope.allAuthors = authors.map(function(author){
                         return {
                             "id":author.idAuthor,
@@ -217,6 +222,7 @@ angular.module('catalogApp').
                     for(var i = 0;i<splitAuthors.length;i++) {
                         for(var j = 0; j< $scope.allAuthors.length;j++){
                             if(splitAuthors[i].id == $scope.allAuthors[j].id) {
+                                console.log($scope.allAuthors[j].fullName, " is selected")
                                 $scope.allAuthors[j].selected = true;
                                 break;
                             }
@@ -234,6 +240,7 @@ angular.module('catalogApp').
                     }
                 });
                 $scope.book.authors = authors;
+                console.log("Updating book: ", $scope.book);
                 booksService.updateBook($scope.book).then(
                     function(success){
                         $location.path('/books');
