@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class UserDetailService implements UserDetailsService{
 
@@ -39,13 +40,16 @@ public class UserDetailService implements UserDetailsService{
             this.password = pw;
 
             // setup roles
-            Set<String> roles = new HashSet<String>();
-            roles.addAll(Arrays.<String>asList(null == extraRoles ? new String[0] : extraRoles));
+            Set<String> roles = new HashSet<>();
+            roles.addAll(Arrays.asList(null == extraRoles ? new String[0] : extraRoles));
 
             // export them as part of authorities
-            for (String r : roles) {
-                authorities.add(new SimpleGrantedAuthority(role(r)));
-            }
+
+            authorities.addAll(
+                    roles
+                            .stream()
+                            .map(r -> new SimpleGrantedAuthority(role(r)))
+                            .collect(Collectors.toList()));
 
         }
 

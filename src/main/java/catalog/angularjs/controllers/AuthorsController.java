@@ -1,6 +1,7 @@
 package catalog.angularjs.controllers;
 
 import catalog.angularjs.generated.tables.pojos.Author;
+import catalog.angularjs.security.UserDetailService;
 import catalog.angularjs.services.CatalogService;
 import catalog.angularjs.validation.ValidationErrorDTO;
 import org.apache.log4j.Logger;
@@ -43,7 +44,7 @@ public class AuthorsController {
         return catalogService.getAuthor(idAuthor);
     }
 
-    @Secured(value = { "ROLE_ADMIN" })
+    @Secured(value = UserDetailService.ROLE_ADMIN)
     @RequestMapping(value = "/authors", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public void addAuthor(@Valid @RequestBody Author author){
@@ -51,7 +52,7 @@ public class AuthorsController {
         catalogService.addAuthor(author);
     }
 
-    @Secured(value = { "ROLE_ADMIN" })
+    @Secured(value = UserDetailService.ROLE_ADMIN)
     @RequestMapping(value = "/authors/{idAuthor}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
     public void deleteAuthor(@PathVariable int idAuthor){
@@ -59,7 +60,7 @@ public class AuthorsController {
         catalogService.deleteAuthor(idAuthor);
     }
 
-    @Secured(value = { "ROLE_ADMIN" })
+    @Secured(value = UserDetailService.ROLE_ADMIN)
     @RequestMapping(value = "/authors", method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.OK)
     public void updateAuthor(@RequestBody Author author) {

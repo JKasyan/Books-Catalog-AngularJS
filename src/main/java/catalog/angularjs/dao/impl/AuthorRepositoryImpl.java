@@ -125,6 +125,7 @@ public class AuthorRepositoryImpl implements AuthorRepository {
                 .select()
                 .from(AUTHOR)
                 .where(AUTHOR.ID_AUTHOR.equal(idAuthor))
+                .and(AUTHOR.STATUS.equal(true))
                 .fetchOneInto(Author.class);
     }
 }

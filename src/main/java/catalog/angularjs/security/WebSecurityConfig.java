@@ -20,15 +20,16 @@ import org.springframework.security.web.DefaultSecurityFilterChain;
 @Order
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private static final String[] SECURED_PAGES =
+            new String[]{"/views/modify_book.html", "/views/modify_author.html"};
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.authorizeRequests().antMatchers(SECURED_PAGES).hasRole(UserDetailService.ROLE_ADMIN);
         http.authorizeRequests().antMatchers("/getBooks/**").hasAnyRole(UserDetailService.ROLE_USER);
         http.authorizeRequests().antMatchers("/getAuthors/**").hasAnyRole(UserDetailService.ROLE_USER);
-        http.authorizeRequests().antMatchers("/addAuthor/**").hasAnyRole(UserDetailService.ROLE_USER,
-                UserDetailService.ROLE_ADMIN);
-        http.authorizeRequests().antMatchers("authors.html","books.html").hasRole(UserDetailService.ROLE_USER);
         SecurityConfigurer<DefaultSecurityFilterChain, HttpSecurity> securityConfigurerAdapter
                 = new XAuthTokenConfigurer(userDetailsServiceBean());
         http.apply(securityConfigurerAdapter);

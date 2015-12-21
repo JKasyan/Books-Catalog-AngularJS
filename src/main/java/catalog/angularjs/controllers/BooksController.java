@@ -2,6 +2,7 @@ package catalog.angularjs.controllers;
 
 import catalog.angularjs.generated.tables.pojos.Book;
 import catalog.angularjs.model.BookModel;
+import catalog.angularjs.security.UserDetailService;
 import catalog.angularjs.services.CatalogService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,7 @@ public class BooksController {
         return catalogService.getBooksOfAuthors(idAuthor);
     }
 
-    @Secured(value = { "ROLE_ADMIN" })
+    @Secured(value = UserDetailService.ROLE_ADMIN)
     @RequestMapping(value = "/books/{idBook}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
     public void deleteBook(@PathVariable int idBook) {
@@ -45,7 +46,7 @@ public class BooksController {
     }
 
     //{ "shortDescription":"Про великую депресию", "title": "Гроздья гнева", "datePublish": "1939", "authors":  [ 100 ] }
-    @Secured(value = { "ROLE_ADMIN" })
+    @Secured(value = UserDetailService.ROLE_ADMIN)
     @RequestMapping(value = "/books", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public void addBook(@RequestBody BookModel bookModel) {
@@ -53,7 +54,8 @@ public class BooksController {
         catalogService.addBook(bookModel);
     }
 
-    @Secured(value = { "ROLE_ADMIN" })
+    //{"idBook":"11", "shortDescription": "dfdfdf", "title": "ddddd", "datePublish":1999, "authors":[11] }
+    @Secured(value = UserDetailService.ROLE_ADMIN)
     @RequestMapping(value = "/books", method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.OK)
     public void updateBook(@RequestBody BookModel bookModel) {
