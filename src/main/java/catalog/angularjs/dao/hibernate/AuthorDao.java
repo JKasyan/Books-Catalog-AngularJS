@@ -1,20 +1,25 @@
-package catalog.angularjs.dao;
+package catalog.angularjs.dao.hibernate;
 
-
-import catalog.angularjs.generated.tables.pojos.Author;
-import catalog.angularjs.generated.tables.pojos.Book;
+import catalog.angularjs.dto.Author;
 import catalog.angularjs.model.BookModel;
-
 
 import java.util.List;
 
-public interface AuthorRepository {
+/**
+ * Created by evgen on 16.01.16.
+ */
+public interface AuthorDao {
+
 
     void insertAuthor(Author author);
+
     List<Author> selectAllAuthors();
-    void addBook(BookModel bookModel);
-    void updateAuthor(Author author);
+
     void delete(int idAuthor);
-    List<Author> selectByPattern(String pattern);
+
+    void addBook(BookModel bookModel);
+
+    void updateAuthor(Author author);
+
     Author selectAuthor(int idAuthor);
 }

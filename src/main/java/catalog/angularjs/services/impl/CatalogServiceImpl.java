@@ -1,9 +1,10 @@
 package catalog.angularjs.services.impl;
 
-import catalog.angularjs.dao.BookRepository;
-import catalog.angularjs.dao.AuthorRepository;
-import catalog.angularjs.generated.tables.pojos.Book;
-import catalog.angularjs.generated.tables.pojos.Author;
+
+import catalog.angularjs.dao.hibernate.AuthorDao;
+import catalog.angularjs.dao.hibernate.BookDao;
+import catalog.angularjs.dto.Author;
+import catalog.angularjs.dto.Book;
 import catalog.angularjs.model.BookModel;
 import catalog.angularjs.services.CatalogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,68 +16,64 @@ import java.util.List;
 @Service("catalogService")
 public class CatalogServiceImpl implements CatalogService{
 
-    private AuthorRepository authorRepository;
-    private BookRepository bookRepository;
-
     @Autowired
-    public CatalogServiceImpl(AuthorRepository authorRepository, BookRepository bookRepository) {
-        this.authorRepository = authorRepository;
-        this.bookRepository = bookRepository;
-    }
+    private AuthorDao authorDao;
+    @Autowired
+    private BookDao bookDao;
 
     @Override
     public void addAuthor(Author author) {
-        authorRepository.insertAuthor(author);
+        authorDao.insertAuthor(author);
     }
 
     @Override
-    public List<BookModel> getAllBooks() {
-        return bookRepository.selectAll();
+    public List<catalog.angularjs.dto.Book> getAllBooks() {
+        return bookDao.selectAll();
     }
 
     @Override
     public List<Author> getAllAuthors() {
-        return authorRepository.selectAllAuthors();
+        return authorDao.selectAllAuthors();
     }
 
     @Override
     public List<Book> getBooksOfAuthors(int id) {
-        return bookRepository.selectBooksByIdAuthor(id);
+        return bookDao.selectBooksByIdAuthor(id);
     }
 
     @Override
     public void deleteAuthor(int idAuthor) {
-        authorRepository.delete(idAuthor);
+        authorDao.delete(idAuthor);
     }
 
     @Override
     @Transactional
     public void addBook(BookModel bookModel) {
-        authorRepository.addBook(bookModel);
+        authorDao.addBook(bookModel);
     }
 
     @Override
     public void updateAuthor(Author author) {
-        authorRepository.updateAuthor(author);
+        authorDao.updateAuthor(author);
     }
 
     @Override
     public void deleteBook(int idBook) {
-        bookRepository.deleteBook(idBook);
+        bookDao.deleteBook(idBook);
     }
 
     @Override
     public Author getAuthor(int idAuthor) {
-        return authorRepository.selectAuthor(idAuthor);
+        return authorDao.selectAuthor(idAuthor);
     }
 
     @Override
     public BookModel getBookById(int id) {
-        return bookRepository.selectBook(id);
+        return bookDao.selectBook(id);
     }
 
     @Override
     public void updateBook(BookModel bookModel) {
-        bookRepository.updateBook(bookModel);
+        bookDao.updateBook(bookModel);
     }
 }

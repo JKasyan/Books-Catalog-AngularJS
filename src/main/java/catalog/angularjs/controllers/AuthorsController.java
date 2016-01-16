@@ -1,6 +1,6 @@
 package catalog.angularjs.controllers;
 
-import catalog.angularjs.generated.tables.pojos.Author;
+import catalog.angularjs.dto.Author;
 import catalog.angularjs.security.UserDetailService;
 import catalog.angularjs.services.CatalogService;
 import catalog.angularjs.validation.ValidationErrorDTO;

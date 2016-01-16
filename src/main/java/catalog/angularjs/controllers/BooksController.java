@@ -1,6 +1,6 @@
 package catalog.angularjs.controllers;
 
-import catalog.angularjs.generated.tables.pojos.Book;
+import catalog.angularjs.dto.Book;
 import catalog.angularjs.model.BookModel;
 import catalog.angularjs.security.UserDetailService;
 import catalog.angularjs.services.CatalogService;
@@ -21,7 +21,7 @@ public class BooksController {
     private static final Logger logger = Logger.getLogger(BooksController.class);
 
     @RequestMapping(value = "/books", method = RequestMethod.GET)
-    public List<BookModel> getAllBooks(){
+    public List<catalog.angularjs.dto.Book> getAllBooks(){
         logger.debug("api/books");
         return catalogService.getAllBooks();
     }
