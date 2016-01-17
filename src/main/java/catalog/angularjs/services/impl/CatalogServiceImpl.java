@@ -48,8 +48,8 @@ public class CatalogServiceImpl implements CatalogService {
 
     @Override
     @Transactional
-    public void addBook(BookModel bookModel) {
-        authorDao.addBook(bookModel);
+    public void addBook(Book book) {
+        authorDao.addBook(book);
     }
 
     @Override

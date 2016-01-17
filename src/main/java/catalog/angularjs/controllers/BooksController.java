@@ -52,9 +52,9 @@ public class BooksController {
     @Secured(value = UserDetailService.ROLE_ADMIN)
     @RequestMapping(value = "/books", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public void addBook(@RequestBody BookModel bookModel) {
+    public void addBook(@RequestBody Book book) {
         logger.debug("api/books. Method: Post");
-        catalogService.addBook(bookModel);
+        catalogService.addBook(book);
     }
 
     //{"idBook":"11", "shortDescription": "dfdfdf", "title": "ddddd", "datePublish":1999, "authors":[11] }

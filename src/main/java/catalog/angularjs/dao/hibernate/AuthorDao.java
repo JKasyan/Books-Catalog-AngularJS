@@ -1,6 +1,7 @@
 package catalog.angularjs.dao.hibernate;
 
 import catalog.angularjs.dto.Author;
+import catalog.angularjs.dto.Book;
 import catalog.angularjs.model.BookModel;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public interface AuthorDao {
 
     void delete(int idAuthor);
 
-    void addBook(BookModel bookModel);
+    void addBook(Book bookModel);
 
     void updateAuthor(Author author);
 

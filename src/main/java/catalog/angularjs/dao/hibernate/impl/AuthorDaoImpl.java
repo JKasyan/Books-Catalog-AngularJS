@@ -2,7 +2,9 @@ package catalog.angularjs.dao.hibernate.impl;
 
 import catalog.angularjs.dao.hibernate.AuthorDao;
 import catalog.angularjs.dto.Author;
+import catalog.angularjs.dto.Book;
 import catalog.angularjs.model.BookModel;
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -19,6 +21,7 @@ public class AuthorDaoImpl implements AuthorDao {
 
     @Autowired
     private SessionFactory sessionFactory;
+    private static final Logger logger = Logger.getLogger(AuthorDaoImpl.class);
 
     @Override
     public void insertAuthor(Author author) {
@@ -40,8 +43,10 @@ public class AuthorDaoImpl implements AuthorDao {
     }
 
     @Override
-    public void addBook(BookModel bookModel) {
-
+    public void addBook(Book book) {
+        Session session = this.sessionFactory.getCurrentSession();
+        session.persist(book);
+        logger.info("New book: " + book);
     }
 
     @Override

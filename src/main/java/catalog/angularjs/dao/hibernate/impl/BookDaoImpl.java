@@ -2,6 +2,7 @@ package catalog.angularjs.dao.hibernate.impl;
 
 import catalog.angularjs.dao.hibernate.BookDao;
 import catalog.angularjs.dto.Book;
+import catalog.angularjs.exception.BookNotFoundException;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -58,7 +59,7 @@ public class BookDaoImpl implements BookDao {
             book.setStatus(false);
             session.flush();
         } else {
-            throw new RuntimeException("Book with id: " + idBook + " not exists");
+            throw new BookNotFoundException("Book with id: " + idBook + " not exists");
         }
     }
 
