@@ -16,7 +16,7 @@ public interface BookDao {
 
     void deleteBook(int idBook);
 
-    BookModel selectBook(int id);
+    Book selectBook(int id);
 
-    void updateBook(BookModel book);
+    void updateBook(Book book);
 }

@@ -1,6 +1,9 @@
 package catalog.angularjs.dto;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,7 +12,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "book")
-public class Book {
+public class Book implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +31,7 @@ public class Book {
     @Column(name = "status")
     private boolean status;
 
+    //@JsonManagedReference
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "books")
     private Set<Author> authors = new HashSet<>();
 
@@ -77,5 +81,17 @@ public class Book {
 
     public void setAuthors(Set<Author> authors) {
         this.authors = authors;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", shortDescription='" + shortDescription + '\'' +
+                ", datePublish='" + datePublish + '\'' +
+                ", status=" + status +
+                ", authors=" + authors +
+                '}';
     }
 }

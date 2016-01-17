@@ -21,14 +21,17 @@ public class BooksController {
     private static final Logger logger = Logger.getLogger(BooksController.class);
 
     @RequestMapping(value = "/books", method = RequestMethod.GET)
-    public List<catalog.angularjs.dto.Book> getAllBooks(){
+    public List<Book> getAllBooks(){
         logger.debug("api/books");
         return catalogService.getAllBooks();
     }
 
     @RequestMapping(value = "/books/{id}", method = RequestMethod.GET)
-    public BookModel getBookById(@PathVariable int id) {
-        return catalogService.getBookById(id);
+    public Book getBookById(@PathVariable int id) {
+        logger.debug("api/books/" + id);
+        Book book = catalogService.getBookById(id);
+        logger.debug("Book: " + book);
+        return book;
     }
 
     @RequestMapping(value = "/books/authors/{idAuthor}", method = RequestMethod.GET)
@@ -58,10 +61,10 @@ public class BooksController {
     @Secured(value = UserDetailService.ROLE_ADMIN)
     @RequestMapping(value = "/books", method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.OK)
-    public void updateBook(@RequestBody BookModel bookModel) {
+    public void updateBook(@RequestBody Book book) {
         logger.debug("api/books. Method: PUT");
-        logger.info("Updating book: " + bookModel);
-        catalogService.updateBook(bookModel);
+        logger.info("Updating book: " + book);
+        catalogService.updateBook(book);
     }
 
 }

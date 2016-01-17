@@ -1,6 +1,10 @@
 package catalog.angularjs.dto;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,7 +13,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "author")
-public class Author {
+public class Author implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +29,7 @@ public class Author {
     @Column(name = "status")
     private boolean status;
 
+    //@JsonBackReference
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "author_book", joinColumns = {@JoinColumn(name = "id_author")}
             , inverseJoinColumns = {@JoinColumn(name = "id_book")})
@@ -68,5 +73,15 @@ public class Author {
 
     public void setBooks(Set<Book> books) {
         this.books = books;
+    }
+
+    @Override
+    public String toString() {
+        return "Author{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", secondName='" + secondName + '\'' +
+                ", status=" + status +
+                '}';
     }
 }

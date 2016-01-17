@@ -1,4 +1,4 @@
-package catalog.angularjs.config.persistence.hibernate;
+package catalog.angularjs.config.persistence;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -58,7 +58,6 @@ public class DatabaseConfiguration {
         sessionFactoryBean.setDataSource(dataSource());
         sessionFactoryBean.setPackagesToScan(entityManagerPackagesToScan);
         Properties properties = new Properties();
-        System.out.println("Dialect: " + hibernateDialect);
         properties.put("hibernate.dialect", hibernateDialect);
         properties.put("hibernate.show_sql", hibernateShowSQL);
         properties.put("hibernate.hbm2ddl.auto", HIBERNATE_HBM2DDL_AUTO);

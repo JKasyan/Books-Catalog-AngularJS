@@ -5,6 +5,7 @@ import catalog.angularjs.dto.Author;
 import catalog.angularjs.model.BookModel;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -25,8 +26,12 @@ public class AuthorDaoImpl implements AuthorDao {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<Author> selectAllAuthors() {
-        return null;
+        Session session = this.sessionFactory.openSession();
+        return session.createCriteria(Author.class)
+                .add(Restrictions.eq("status", true))
+                .list();
     }
 
     @Override

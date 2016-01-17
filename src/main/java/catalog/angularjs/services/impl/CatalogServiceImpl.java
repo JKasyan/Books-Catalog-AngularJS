@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service("catalogService")
-public class CatalogServiceImpl implements CatalogService{
+public class CatalogServiceImpl implements CatalogService {
 
     @Autowired
     private AuthorDao authorDao;
@@ -68,12 +68,12 @@ public class CatalogServiceImpl implements CatalogService{
     }
 
     @Override
-    public BookModel getBookById(int id) {
+    public Book getBookById(int id) {
         return bookDao.selectBook(id);
     }
 
     @Override
-    public void updateBook(BookModel bookModel) {
-        bookDao.updateBook(bookModel);
+    public void updateBook(Book book) {
+        bookDao.updateBook(book);
     }
 }
