@@ -25,7 +25,9 @@ public class AuthorDaoImpl implements AuthorDao {
 
     @Override
     public void insertAuthor(Author author) {
-
+        Session session = sessionFactory.openSession();
+        session.persist(author);
+        logger.info("New author: " + author);
     }
 
     @Override
@@ -44,7 +46,7 @@ public class AuthorDaoImpl implements AuthorDao {
 
     @Override
     public void addBook(Book book) {
-        Session session = this.sessionFactory.getCurrentSession();
+        Session session = this.sessionFactory.openSession();
         session.persist(book);
         logger.info("New book: " + book);
     }
