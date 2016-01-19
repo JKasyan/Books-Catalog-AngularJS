@@ -4,6 +4,7 @@ import catalog.angularjs.dao.hibernate.AuthorDao;
 import catalog.angularjs.dao.hibernate.BookDao;
 import catalog.angularjs.dto.Author;
 import catalog.angularjs.dto.Book;
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -34,6 +35,8 @@ public class DaoTest {
     @Autowired
     private SessionFactory sessionFactory;
 
+    private static final Logger logger = Logger.getLogger(DaoTest.class);
+
     @Before
     public void setUp() {
         Author author = new Author();
@@ -59,5 +62,13 @@ public class DaoTest {
     public void getAuthor() {
         List<Author> authors = authorDao.selectAllAuthors();
         System.out.println(authors);
+    }
+
+    @Test
+    //@Sql(scripts = {"classpath:h2_new_books_and_authors.sql"})
+    public void cashTest() {
+        List<Author> authors = authorDao.selectAllAuthors();
+        logger.info("Authors: " + authors);
+        authorDao.selectAllAuthors();
     }
 }

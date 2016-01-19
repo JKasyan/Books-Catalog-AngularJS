@@ -39,6 +39,12 @@ public class BookDaoImpl implements BookDao {
                 .add(Restrictions.eq("status", true))
                 .list();
         logger.debug("Books: " + list);
+        session = this.sessionFactory.openSession();
+        list = session
+                .createCriteria(Book.class)
+                .add(Restrictions.eq("status", true))
+                .list();
+        logger.debug("Cache books: " + list);
         return list;
     }
 
@@ -55,12 +61,9 @@ public class BookDaoImpl implements BookDao {
     public void deleteBook(int idBook) {
         Session session = this.sessionFactory.openSession();
         Book book = (Book)session.load(Book.class, idBook);
-        if(book != null) {
-            book.setStatus(false);
-            session.flush();
-        } else {
-            throw new BookNotFoundException("Book with id: " + idBook + " not exists");
-        }
+        if (book == null) throw new BookNotFoundException("Book with id: " + idBook + " not exists");
+        book.setStatus(false);
+        session.flush();
     }
 
     @Override

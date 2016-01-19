@@ -4,6 +4,9 @@ import catalog.angularjs.dto.Author;
 import catalog.angularjs.security.UserDetailService;
 import catalog.angularjs.services.CatalogService;
 import catalog.angularjs.validation.ValidationErrorDTO;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.datatype.hibernate4.Hibernate4Module;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -35,13 +38,15 @@ public class AuthorsController {
 
     @RequestMapping(value = "/authors", method = RequestMethod.GET)
     public List<Author> getAllAuthors(){
-        return catalogService.getAllAuthors();
+        List<Author> authors = catalogService.getAllAuthors();
+        return authors;
     }
 
     @RequestMapping(value = "/authors/{idAuthor}", method = RequestMethod.GET)
-    public Author getAuthor(@PathVariable int idAuthor) {
+    public ObjectMapper getAuthor(@PathVariable int idAuthor) {
         logger.debug("api/authors/" + idAuthor);
-        return catalogService.getAuthor(idAuthor);
+        Author author = catalogService.getAuthor(idAuthor);
+        return null;
     }
 
     @Secured(value = UserDetailService.ROLE_ADMIN)

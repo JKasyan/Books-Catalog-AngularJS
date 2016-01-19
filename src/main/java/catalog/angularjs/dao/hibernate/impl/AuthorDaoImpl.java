@@ -5,11 +5,12 @@ import catalog.angularjs.dto.Author;
 import catalog.angularjs.dto.Book;
 import catalog.angularjs.model.BookModel;
 import org.apache.log4j.Logger;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.hibernate.*;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.stat.Statistics;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -25,18 +26,38 @@ public class AuthorDaoImpl implements AuthorDao {
 
     @Override
     public void insertAuthor(Author author) {
-        Session session = sessionFactory.openSession();
-        session.persist(author);
-        logger.info("New author: " + author);
+        Session session = null;
+        Transaction transaction = null;
+        try {
+            session = this.sessionFactory.getCurrentSession();
+            transaction = session.beginTransaction();
+            session.save(author);
+            logger.info("New author: " + author);
+
+        }finally {
+            transaction.commit();
+            logger.info("Hash session: " + session.hashCode());
+        }
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public List<Author> selectAllAuthors() {
-        Session session = this.sessionFactory.openSession();
-        return session.createCriteria(Author.class)
-                .add(Restrictions.eq("status", true))
-                .list();
+        Session session;
+        Transaction transaction = null;
+        try{
+            session = this.sessionFactory.getCurrentSession();
+            logger.info("Hash session: " + session.hashCode());
+            transaction = session.beginTransaction();
+            Criteria criteria = session.createCriteria(Author.class);
+            criteria.add(Restrictions.eq("status", true));
+            criteria.setCacheable(true);
+            criteria.setCacheRegion("authors");
+            return criteria.list();
+        }finally {
+            assert transaction != null;
+            transaction.commit();
+        }
     }
 
     @Override
@@ -45,11 +66,7 @@ public class AuthorDaoImpl implements AuthorDao {
     }
 
     @Override
-    public void addBook(Book book) {
-        Session session = this.sessionFactory.openSession();
-        session.persist(book);
-        logger.info("New book: " + book);
-    }
+    public void addBook(Book book) {}
 
     @Override
     public void updateAuthor(Author author) {
@@ -57,8 +74,16 @@ public class AuthorDaoImpl implements AuthorDao {
     }
 
     @Override
+    /**
+     * first level cache
+     */
     public Author selectAuthor(int idAuthor) {
         Session session = this.sessionFactory.openSession();
-        return (Author)session.load(Author.class, idAuthor);
+        Author author = (Author) session.load(Author.class, idAuthor);
+        logger.debug("Author: " + author);
+        Author authorCache = (Author) session.load(Author.class, idAuthor);
+        logger.debug("Author: " + authorCache + ", equals links: " + (author == authorCache));
+        logger.debug("Exists in cache: " + sessionFactory.getCache().containsEntity(Author.class, idAuthor));
+        return author;
     }
 }
