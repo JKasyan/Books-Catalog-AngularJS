@@ -1,6 +1,11 @@
 package catalog.angularjs.dto;
 
+import org.hibernate.annotations.*;
+import org.hibernate.annotations.Cache;
+
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,7 +15,8 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "author")
-public class Author implements Serializable{
+@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
+public class Author implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

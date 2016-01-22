@@ -3,7 +3,6 @@ package catalog.angularjs.dao;
 import catalog.angularjs.dao.hibernate.AuthorDao;
 import catalog.angularjs.dao.hibernate.BookDao;
 import catalog.angularjs.dto.Author;
-import catalog.angularjs.dto.Book;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -16,9 +15,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by evgen on 18.01.16.
@@ -70,5 +67,25 @@ public class DaoTest {
         List<Author> authors = authorDao.selectAllAuthors();
         logger.info("Authors: " + authors);
         authorDao.selectAllAuthors();
+//        SingletonEhCacheRegionFactory
+    }
+
+    @Test
+    public void secondLevelCacheTest() {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        Author author = (Author)session.load(Author.class, 1);
+        System.out.println(author);
+        session.getTransaction().commit();
+        session.close();
+        /**
+         *
+         */
+        Session session1 = sessionFactory.openSession();
+        session1.beginTransaction();
+        Author author1 = (Author)session1.load(Author.class, 1);
+        System.out.println(author1);
+        session1.getTransaction().commit();
+        session1.close();
     }
 }

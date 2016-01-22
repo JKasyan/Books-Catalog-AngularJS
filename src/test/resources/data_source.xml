@@ -11,7 +11,10 @@
                             <prop key="hibernate.current_session_context_class" >thread</prop>
                             <prop key="hibernate.show_sql">true</prop>
                             <prop key="hbm2ddl.auto">create</prop>
-                            <!--<prop key="hibernate.cache.use_query_cache">true</prop>-->
+                            <prop key="hibernate.cache.use_second_level_cache">true</prop>
+                            <prop key="hibernate.cache.region.factory_class">net.sf.ehcache.hibernate.SingletonEhCacheRegionFactory</prop>
+                            <prop key="hibernate.cache.use_query_cache">true</prop>
+                            <prop key="net.sf.ehcache.configurationResourceName">/eh1cache.xml</prop>
                      </props>
               </property>
               <property name="annotatedClasses">
