@@ -15,7 +15,6 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "author")
-@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class Author implements Serializable {
 
     @Id
