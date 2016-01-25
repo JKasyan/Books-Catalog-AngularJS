@@ -1,6 +1,5 @@
 package catalog.angularjs.config.persistence;
 
-import net.sf.ehcache.hibernate.EhCacheRegionFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,11 +9,7 @@ import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
-import java.util.Deque;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
 import java.util.Properties;
-import java.util.concurrent.ArrayBlockingQueue;
 
 /**
  * Created by evgen on 16.01.16.
@@ -66,8 +61,8 @@ public class DatabaseConfiguration {
         properties.put("hibernate.dialect", hibernateDialect);
         properties.put("hibernate.current_session_context_class", "thread");
         //
-        properties.put("hibernate.cache.use_second_level_cache", true);
-        properties.put("hibernate.cache.region.factory_class", "org.hibernate.cache.ehcache.EhCacheRegionFactory");
+        //properties.put("hibernate.cache.use_second_level_cache", true);
+        //properties.put("hibernate.cache.region.factory_class", "org.hibernate.cache.ehcache.EhCacheRegionFactory");
         properties.put("hibernate.show_sql", hibernateShowSQL);
         properties.put("hibernate.hbm2ddl.auto", HIBERNATE_HBM2DDL_AUTO);
         sessionFactoryBean.setHibernateProperties(properties);

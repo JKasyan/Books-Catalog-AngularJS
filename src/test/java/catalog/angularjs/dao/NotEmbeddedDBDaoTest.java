@@ -4,7 +4,6 @@ import catalog.angularjs.Application;
 import catalog.angularjs.dao.hibernate.AuthorDao;
 import catalog.angularjs.dao.hibernate.BookDao;
 import catalog.angularjs.dto.Author;
-import net.sf.ehcache.hibernate.SingletonEhCacheRegionFactory;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.junit.Test;
