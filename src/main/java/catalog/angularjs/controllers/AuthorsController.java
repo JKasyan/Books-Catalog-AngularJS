@@ -38,15 +38,13 @@ public class AuthorsController {
 
     @RequestMapping(value = "/authors", method = RequestMethod.GET)
     public List<Author> getAllAuthors(){
-        List<Author> authors = catalogService.getAllAuthors();
-        return authors;
+        return catalogService.getAllAuthors();
     }
 
     @RequestMapping(value = "/authors/{idAuthor}", method = RequestMethod.GET)
-    public ObjectMapper getAuthor(@PathVariable int idAuthor) {
+    public Author getAuthor(@PathVariable int idAuthor) {
         logger.debug("api/authors/" + idAuthor);
-        Author author = catalogService.getAuthor(idAuthor);
-        return null;
+        return catalogService.getAuthor(idAuthor);
     }
 
     @Secured(value = UserDetailService.ROLE_ADMIN)

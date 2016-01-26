@@ -31,7 +31,6 @@ public class Book implements Serializable {
     @Column(name = "status")
     private boolean status;
 
-    //@JsonManagedReference
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "books")
     private Set<Author> authors = new HashSet<>();
 
@@ -75,6 +74,7 @@ public class Book implements Serializable {
         this.status = status;
     }
 
+    @JsonManagedReference
     public Set<Author> getAuthors() {
         return authors;
     }

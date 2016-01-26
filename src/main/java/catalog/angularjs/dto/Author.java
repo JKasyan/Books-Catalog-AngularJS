@@ -1,11 +1,8 @@
 package catalog.angularjs.dto;
 
-import org.hibernate.annotations.*;
-import org.hibernate.annotations.Cache;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -31,7 +28,6 @@ public class Author implements Serializable {
     @Column(name = "status")
     private boolean status;
 
-    //@JsonBackReference
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "author_book", joinColumns = {@JoinColumn(name = "id_author")}
             , inverseJoinColumns = {@JoinColumn(name = "id_book")})
@@ -69,6 +65,7 @@ public class Author implements Serializable {
         this.status = status;
     }
 
+    @JsonBackReference
     public Set<Book> getBooks() {
         return books;
     }
