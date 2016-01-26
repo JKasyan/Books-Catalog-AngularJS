@@ -28,7 +28,7 @@ public class UserDetailService implements UserDetailsService{
         return null;
     }
 
-    static class SimpleUserDetails implements UserDetails{
+    static class SimpleUserDetails implements UserDetails {
 
         private String username;
         private String password;
@@ -45,11 +45,9 @@ public class UserDetailService implements UserDetailsService{
 
             // export them as part of authorities
 
-            authorities.addAll(
-                    roles
-                            .stream()
-                            .map(r -> new SimpleGrantedAuthority(role(r)))
-                            .collect(Collectors.toList()));
+            for (String r : roles) {
+                authorities.add(new SimpleGrantedAuthority(role(r)));
+            }
 
         }
 

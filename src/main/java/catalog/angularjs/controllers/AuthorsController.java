@@ -44,11 +44,10 @@ public class AuthorsController {
         return catalogService.getAuthor(idAuthor);
     }
 
-    @Secured(value = UserDetailService.ROLE_ADMIN)
     @RequestMapping(value = "/authors", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public void addAuthor(@Valid @RequestBody Author author){
-        logger.debug("api/addAuthor");
+        logger.debug("api/authors");
         catalogService.addAuthor(author);
     }
 

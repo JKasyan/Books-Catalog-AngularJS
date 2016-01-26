@@ -37,7 +37,7 @@ public class BooksController {
         return catalogService.getBooksOfAuthors(idAuthor);
     }
 
-    @Secured(value = UserDetailService.ROLE_ADMIN)
+
     @RequestMapping(value = "/books/{idBook}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
     public void deleteBook(@PathVariable int idBook) {
