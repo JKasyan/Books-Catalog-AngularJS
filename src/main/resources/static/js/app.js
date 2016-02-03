@@ -44,7 +44,12 @@ angular.module('catalogApp', ['ngRoute', 'ngCookies', 'securityModule', 'catalog
                 .when('/create_book', {
                     templateUrl: 'views/create_book.html',
                     controller: 'newBookController as nBCtrl'
-                });
+                })
+
+                .when('/chat', {
+                    templateUrl: 'views/chat.html',
+                    controller: 'messageCtrl'
+                })
 
             $routeProvider.otherwise({
                 redirectTo: '/'

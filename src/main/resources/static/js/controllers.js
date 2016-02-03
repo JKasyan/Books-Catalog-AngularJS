@@ -249,4 +249,43 @@ angular.module('catalogApp').
                     }
                 )
             }
-        }]);
+        }])
+
+
+    .controller('messageCtrl', ['$scope', '$http', function($scope, $http){
+
+        $scope.message = "";
+        $scope.messages = {};
+
+        $scope.getMessages = function() {
+            $http.get('/messages').success(function(messages){
+                $scope.messages = messages;
+            })
+        };
+
+        var socket = new SockJS('/messages');
+        var client = Stomp.over(socket);
+        client.connect({},
+            function(frame){
+                console.log('Connected: ', frame);
+                var refreshMessages = function(msg){
+                    console.log('Message: ', msg);
+                    $scope.getMessages();
+                };
+                client.subscribe('user/messages', refreshMessages);
+                client.subscribe('user/queue/test', refreshMessages);
+            },
+            function(error) {
+                console.log('Error: ', error)
+            }
+        );
+
+        $scope.msg = "";
+
+        $scope.send = function(){
+            client.send('/app/message', {'user':'Evgen'}, $scope.msg);
+        };
+
+        $scope.getMessages();
+
+    }]);
