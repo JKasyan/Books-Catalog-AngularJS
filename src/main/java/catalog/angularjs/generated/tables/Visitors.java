@@ -35,7 +35,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Visitors extends TableImpl<VisitorsRecord> {
 
-	private static final long serialVersionUID = -19912038;
+	private static final long serialVersionUID = 1114466986;
 
 	/**
 	 * The reference instance of <code>public.visitors</code>
@@ -56,14 +56,19 @@ public class Visitors extends TableImpl<VisitorsRecord> {
 	public final TableField<VisitorsRecord, Integer> ID = createField("id", org.jooq.impl.SQLDataType.INTEGER.nullable(false).defaulted(true), this, "");
 
 	/**
-	 * The column <code>public.visitors.ip</code>.
+	 * The column <code>public.visitors.username</code>.
 	 */
-	public final TableField<VisitorsRecord, String> IP = createField("ip", org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
+	public final TableField<VisitorsRecord, String> USERNAME = createField("username", org.jooq.impl.SQLDataType.VARCHAR.length(15).nullable(false), this, "");
 
 	/**
 	 * The column <code>public.visitors.date</code>.
 	 */
 	public final TableField<VisitorsRecord, Timestamp> DATE = createField("date", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false).defaulted(true), this, "");
+
+	/**
+	 * The column <code>public.visitors.ip_address</code>.
+	 */
+	public final TableField<VisitorsRecord, String> IP_ADDRESS = createField("ip_address", org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
 
 	/**
 	 * Create a <code>public.visitors</code> table reference

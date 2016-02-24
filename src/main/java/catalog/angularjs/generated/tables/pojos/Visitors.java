@@ -23,28 +23,32 @@ import javax.annotation.Generated;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Visitors implements Serializable {
 
-	private static final long serialVersionUID = -674115564;
+	private static final long serialVersionUID = -846021463;
 
 	private Integer   id;
-	private String    ip;
+	private String    username;
 	private Timestamp date;
+	private String    ipAddress;
 
 	public Visitors() {}
 
 	public Visitors(Visitors value) {
 		this.id = value.id;
-		this.ip = value.ip;
+		this.username = value.username;
 		this.date = value.date;
+		this.ipAddress = value.ipAddress;
 	}
 
 	public Visitors(
 		Integer   id,
-		String    ip,
-		Timestamp date
+		String    username,
+		Timestamp date,
+		String    ipAddress
 	) {
 		this.id = id;
-		this.ip = ip;
+		this.username = username;
 		this.date = date;
+		this.ipAddress = ipAddress;
 	}
 
 	public Integer getId() {
@@ -55,12 +59,12 @@ public class Visitors implements Serializable {
 		this.id = id;
 	}
 
-	public String getIp() {
-		return this.ip;
+	public String getUsername() {
+		return this.username;
 	}
 
-	public void setIp(String ip) {
-		this.ip = ip;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public Timestamp getDate() {
@@ -69,5 +73,13 @@ public class Visitors implements Serializable {
 
 	public void setDate(Timestamp date) {
 		this.date = date;
+	}
+
+	public String getIpAddress() {
+		return this.ipAddress;
+	}
+
+	public void setIpAddress(String ipAddress) {
+		this.ipAddress = ipAddress;
 	}
 }

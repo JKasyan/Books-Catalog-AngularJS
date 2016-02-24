@@ -4,15 +4,7 @@
 package catalog.angularjs.generated;
 
 
-import catalog.angularjs.generated.routines.AddBook;
-import catalog.angularjs.generated.routines.Cond;
-import catalog.angularjs.generated.routines.GetBooks;
-import catalog.angularjs.generated.routines.SumOfArray;
-import catalog.angularjs.generated.routines.UpdateAuthor;
-import catalog.angularjs.generated.tables.SelBook;
-import catalog.angularjs.generated.tables.SelectAuthors;
-import catalog.angularjs.generated.tables.SelectBookOut;
-import catalog.angularjs.generated.tables.SelectBooks;
+import catalog.angularjs.generated.routines.Function;
 
 import javax.annotation.Generated;
 
@@ -34,170 +26,33 @@ import org.jooq.Field;
 public class Routines {
 
 	/**
-	 * Call <code>public.add_book</code>
+	 * Call <code>public.function</code>
 	 */
-	public static void addBook(Configuration configuration, Integer _IdAuthor, String _DatePublish, String _ShortDescription, Boolean _Status, String _Title) {
-		AddBook p = new AddBook();
-		p.set_IdAuthor(_IdAuthor);
-		p.set_DatePublish(_DatePublish);
-		p.set_ShortDescription(_ShortDescription);
-		p.set_Status(_Status);
-		p.set_Title(_Title);
-
-		p.execute(configuration);
-	}
-
-	/**
-	 * Call <code>public.cond</code>
-	 */
-	public static String cond(Configuration configuration, Integer _A) {
-		Cond f = new Cond();
-		f.set_A(_A);
+	public static String function(Configuration configuration, Integer idauthor) {
+		Function f = new Function();
+		f.setIdauthor(idauthor);
 
 		f.execute(configuration);
 		return f.getReturnValue();
 	}
 
 	/**
-	 * Get <code>public.cond</code> as a field
+	 * Get <code>public.function</code> as a field
 	 */
-	public static Field<String> cond(Integer _A) {
-		Cond f = new Cond();
-		f.set_A(_A);
+	public static Field<String> function(Integer idauthor) {
+		Function f = new Function();
+		f.setIdauthor(idauthor);
 
 		return f.asField();
 	}
 
 	/**
-	 * Get <code>public.cond</code> as a field
+	 * Get <code>public.function</code> as a field
 	 */
-	public static Field<String> cond(Field<Integer> _A) {
-		Cond f = new Cond();
-		f.set_A(_A);
+	public static Field<String> function(Field<Integer> idauthor) {
+		Function f = new Function();
+		f.setIdauthor(idauthor);
 
 		return f.asField();
-	}
-
-	/**
-	 * Call <code>public.get_books</code>
-	 */
-	public static String getBooks(Configuration configuration, Integer[] __1) {
-		GetBooks f = new GetBooks();
-		f.set__1(__1);
-
-		f.execute(configuration);
-		return f.getReturnValue();
-	}
-
-	/**
-	 * Get <code>public.get_books</code> as a field
-	 */
-	public static Field<String> getBooks(Integer[] __1) {
-		GetBooks f = new GetBooks();
-		f.set__1(__1);
-
-		return f.asField();
-	}
-
-	/**
-	 * Get <code>public.get_books</code> as a field
-	 */
-	public static Field<String> getBooks(Field<Integer[]> __1) {
-		GetBooks f = new GetBooks();
-		f.set__1(__1);
-
-		return f.asField();
-	}
-
-	/**
-	 * Call <code>public.sum_of_array</code>
-	 */
-	public static Integer sumOfArray(Configuration configuration, Integer[] _Array) {
-		SumOfArray f = new SumOfArray();
-		f.set_Array(_Array);
-
-		f.execute(configuration);
-		return f.getReturnValue();
-	}
-
-	/**
-	 * Get <code>public.sum_of_array</code> as a field
-	 */
-	public static Field<Integer> sumOfArray(Integer[] _Array) {
-		SumOfArray f = new SumOfArray();
-		f.set_Array(_Array);
-
-		return f.asField();
-	}
-
-	/**
-	 * Get <code>public.sum_of_array</code> as a field
-	 */
-	public static Field<Integer> sumOfArray(Field<Integer[]> _Array) {
-		SumOfArray f = new SumOfArray();
-		f.set_Array(_Array);
-
-		return f.asField();
-	}
-
-	/**
-	 * Call <code>public.update_author</code>
-	 */
-	public static void updateAuthor(Configuration configuration, Integer idAuthor, String firstName, String secondName) {
-		UpdateAuthor p = new UpdateAuthor();
-		p.setIdAuthor(idAuthor);
-		p.setFirstName(firstName);
-		p.setSecondName(secondName);
-
-		p.execute(configuration);
-	}
-
-	/**
-	 * Get <code>public.sel_book</code> as a field
-	 */
-	public static SelBook selBook(Integer id) {
-		return SelBook.SEL_BOOK.call(id);
-	}
-
-	/**
-	 * Get <code>public.sel_book</code> as a field
-	 */
-	public static SelBook selBook(Field<Integer> id) {
-		return SelBook.SEL_BOOK.call(id);
-	}
-
-	/**
-	 * Get <code>public.select_authors</code> as a field
-	 */
-	public static SelectAuthors selectAuthors() {
-		return SelectAuthors.SELECT_AUTHORS.call();
-	}
-
-	/**
-	 * Get <code>public.select_book_out</code> as a field
-	 */
-	public static SelectBookOut selectBookOut(Integer idBook) {
-		return SelectBookOut.SELECT_BOOK_OUT.call(idBook);
-	}
-
-	/**
-	 * Get <code>public.select_book_out</code> as a field
-	 */
-	public static SelectBookOut selectBookOut(Field<Integer> idBook) {
-		return SelectBookOut.SELECT_BOOK_OUT.call(idBook);
-	}
-
-	/**
-	 * Get <code>public.select_books</code> as a field
-	 */
-	public static SelectBooks selectBooks(Integer idBook) {
-		return SelectBooks.SELECT_BOOKS.call(idBook);
-	}
-
-	/**
-	 * Get <code>public.select_books</code> as a field
-	 */
-	public static SelectBooks selectBooks(Field<Integer> idBook) {
-		return SelectBooks.SELECT_BOOKS.call(idBook);
 	}
 }

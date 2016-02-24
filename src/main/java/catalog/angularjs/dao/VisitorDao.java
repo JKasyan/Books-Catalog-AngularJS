@@ -7,6 +7,6 @@ import java.sql.Timestamp;
  */
 public interface VisitorDao {
 
-    void save(String ip);
-    void save(String ip, Timestamp date);
+    void save(String ipAddress, String username);
+    void save(String ipAddress, String username, Timestamp date);
 }

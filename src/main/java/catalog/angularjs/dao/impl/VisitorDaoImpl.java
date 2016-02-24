@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Timestamp;
+import java.util.UUID;
 
 import static catalog.angularjs.generated.Tables.VISITORS;
 
@@ -21,15 +22,15 @@ public class VisitorDaoImpl implements VisitorDao {
     private final static Logger logger = Logger.getLogger(VisitorDaoImpl.class);
 
     @Override
-    public void save(String ip) {
+    public void save(String ip, String username) {
         create
-                .insertInto(VISITORS, VISITORS.IP)
-                .values(ip)
+                .insertInto(VISITORS, VISITORS.IP_ADDRESS, VISITORS.USERNAME)
+                .values(ip, username)
                 .execute();
     }
 
     @Override
-    public void save(String ip, Timestamp date) {
+    public void save(String ip, String username, Timestamp date) {
         throw new UnsupportedOperationException("Not supported");
     }
 }

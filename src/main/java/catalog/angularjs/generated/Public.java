@@ -8,13 +8,8 @@ import catalog.angularjs.generated.Sequences;
 import catalog.angularjs.generated.tables.Author;
 import catalog.angularjs.generated.tables.AuthorBook;
 import catalog.angularjs.generated.tables.Book;
-import catalog.angularjs.generated.tables.SelBook;
-import catalog.angularjs.generated.tables.SelectAuthors;
-import catalog.angularjs.generated.tables.SelectBookOut;
-import catalog.angularjs.generated.tables.SelectBooks;
 import catalog.angularjs.generated.tables.TestTable;
 import catalog.angularjs.generated.tables.Visitors;
-import catalog.angularjs.generated.tables.WebSessions;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,7 +35,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Public extends SchemaImpl {
 
-	private static final long serialVersionUID = -183346803;
+	private static final long serialVersionUID = -916166885;
 
 	/**
 	 * The reference instance of <code>public</code>
@@ -81,12 +76,7 @@ public class Public extends SchemaImpl {
 			Author.AUTHOR,
 			AuthorBook.AUTHOR_BOOK,
 			Book.BOOK,
-			SelBook.SEL_BOOK,
-			SelectAuthors.SELECT_AUTHORS,
-			SelectBookOut.SELECT_BOOK_OUT,
-			SelectBooks.SELECT_BOOKS,
 			TestTable.TEST_TABLE,
-			Visitors.VISITORS,
-			WebSessions.WEB_SESSIONS);
+			Visitors.VISITORS);
 	}
 }

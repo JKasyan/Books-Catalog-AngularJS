@@ -7,17 +7,10 @@ package catalog.angularjs.generated;
 import catalog.angularjs.generated.tables.Author;
 import catalog.angularjs.generated.tables.AuthorBook;
 import catalog.angularjs.generated.tables.Book;
-import catalog.angularjs.generated.tables.SelBook;
-import catalog.angularjs.generated.tables.SelectAuthors;
-import catalog.angularjs.generated.tables.SelectBookOut;
-import catalog.angularjs.generated.tables.SelectBooks;
 import catalog.angularjs.generated.tables.TestTable;
 import catalog.angularjs.generated.tables.Visitors;
-import catalog.angularjs.generated.tables.WebSessions;
 
 import javax.annotation.Generated;
-
-import org.jooq.Field;
 
 
 /**
@@ -49,75 +42,6 @@ public class Tables {
 	public static final Book BOOK = catalog.angularjs.generated.tables.Book.BOOK;
 
 	/**
-	 * The table public.sel_book
-	 */
-	public static final SelBook SEL_BOOK = catalog.angularjs.generated.tables.SelBook.SEL_BOOK;
-
-	/**
-	 * Get <code>public.sel_book</code> as a field
-	 */
-	public static SelBook SEL_BOOK(Integer id) {
-		return SelBook.SEL_BOOK.call(id);
-	}
-
-	/**
-	 * Get <code>public.sel_book</code> as a field
-	 */
-	public static SelBook SEL_BOOK(Field<Integer> id) {
-		return SelBook.SEL_BOOK.call(id);
-	}
-
-	/**
-	 * The table public.select_authors
-	 */
-	public static final SelectAuthors SELECT_AUTHORS = catalog.angularjs.generated.tables.SelectAuthors.SELECT_AUTHORS;
-
-	/**
-	 * Get <code>public.select_authors</code> as a field
-	 */
-	public static SelectAuthors SELECT_AUTHORS() {
-		return SelectAuthors.SELECT_AUTHORS.call();
-	}
-
-	/**
-	 * The table public.select_book_out
-	 */
-	public static final SelectBookOut SELECT_BOOK_OUT = catalog.angularjs.generated.tables.SelectBookOut.SELECT_BOOK_OUT;
-
-	/**
-	 * Get <code>public.select_book_out</code> as a field
-	 */
-	public static SelectBookOut SELECT_BOOK_OUT(Integer idBook) {
-		return SelectBookOut.SELECT_BOOK_OUT.call(idBook);
-	}
-
-	/**
-	 * Get <code>public.select_book_out</code> as a field
-	 */
-	public static SelectBookOut SELECT_BOOK_OUT(Field<Integer> idBook) {
-		return SelectBookOut.SELECT_BOOK_OUT.call(idBook);
-	}
-
-	/**
-	 * The table public.select_books
-	 */
-	public static final SelectBooks SELECT_BOOKS = catalog.angularjs.generated.tables.SelectBooks.SELECT_BOOKS;
-
-	/**
-	 * Get <code>public.select_books</code> as a field
-	 */
-	public static SelectBooks SELECT_BOOKS(Integer idBook) {
-		return SelectBooks.SELECT_BOOKS.call(idBook);
-	}
-
-	/**
-	 * Get <code>public.select_books</code> as a field
-	 */
-	public static SelectBooks SELECT_BOOKS(Field<Integer> idBook) {
-		return SelectBooks.SELECT_BOOKS.call(idBook);
-	}
-
-	/**
 	 * The table public.test_table
 	 */
 	public static final TestTable TEST_TABLE = catalog.angularjs.generated.tables.TestTable.TEST_TABLE;
@@ -126,9 +50,4 @@ public class Tables {
 	 * The table public.visitors
 	 */
 	public static final Visitors VISITORS = catalog.angularjs.generated.tables.Visitors.VISITORS;
-
-	/**
-	 * The table public.web_sessions
-	 */
-	public static final WebSessions WEB_SESSIONS = catalog.angularjs.generated.tables.WebSessions.WEB_SESSIONS;
 }

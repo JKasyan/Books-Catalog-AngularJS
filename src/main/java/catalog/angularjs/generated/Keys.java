@@ -9,13 +9,11 @@ import catalog.angularjs.generated.tables.AuthorBook;
 import catalog.angularjs.generated.tables.Book;
 import catalog.angularjs.generated.tables.TestTable;
 import catalog.angularjs.generated.tables.Visitors;
-import catalog.angularjs.generated.tables.WebSessions;
 import catalog.angularjs.generated.tables.records.AuthorBookRecord;
 import catalog.angularjs.generated.tables.records.AuthorRecord;
 import catalog.angularjs.generated.tables.records.BookRecord;
 import catalog.angularjs.generated.tables.records.TestTableRecord;
 import catalog.angularjs.generated.tables.records.VisitorsRecord;
-import catalog.angularjs.generated.tables.records.WebSessionsRecord;
 
 import javax.annotation.Generated;
 
@@ -55,9 +53,8 @@ public class Keys {
 	public static final UniqueKey<AuthorRecord> AUTHOR_PKEY = UniqueKeys0.AUTHOR_PKEY;
 	public static final UniqueKey<AuthorBookRecord> AUTHOR_BOOK_PKEY = UniqueKeys0.AUTHOR_BOOK_PKEY;
 	public static final UniqueKey<BookRecord> BOOK_PKEY = UniqueKeys0.BOOK_PKEY;
-	public static final UniqueKey<TestTableRecord> PK = UniqueKeys0.PK;
+	public static final UniqueKey<TestTableRecord> PK_TT = UniqueKeys0.PK_TT;
 	public static final UniqueKey<VisitorsRecord> VISITORS_PKEY = UniqueKeys0.VISITORS_PKEY;
-	public static final UniqueKey<WebSessionsRecord> WEB_SESSIONS_PKEY = UniqueKeys0.WEB_SESSIONS_PKEY;
 
 	// -------------------------------------------------------------------------
 	// FOREIGN KEY definitions
@@ -81,9 +78,8 @@ public class Keys {
 		public static final UniqueKey<AuthorRecord> AUTHOR_PKEY = createUniqueKey(Author.AUTHOR, Author.AUTHOR.ID_AUTHOR);
 		public static final UniqueKey<AuthorBookRecord> AUTHOR_BOOK_PKEY = createUniqueKey(AuthorBook.AUTHOR_BOOK, AuthorBook.AUTHOR_BOOK.ID_AUTHOR, AuthorBook.AUTHOR_BOOK.ID_BOOK);
 		public static final UniqueKey<BookRecord> BOOK_PKEY = createUniqueKey(Book.BOOK, Book.BOOK.ID_BOOK);
-		public static final UniqueKey<TestTableRecord> PK = createUniqueKey(TestTable.TEST_TABLE, TestTable.TEST_TABLE.ID);
+		public static final UniqueKey<TestTableRecord> PK_TT = createUniqueKey(TestTable.TEST_TABLE, TestTable.TEST_TABLE.ID);
 		public static final UniqueKey<VisitorsRecord> VISITORS_PKEY = createUniqueKey(Visitors.VISITORS, Visitors.VISITORS.ID);
-		public static final UniqueKey<WebSessionsRecord> WEB_SESSIONS_PKEY = createUniqueKey(WebSessions.WEB_SESSIONS, WebSessions.WEB_SESSIONS.ID_SESSION);
 	}
 
 	private static class ForeignKeys0 extends AbstractKeys {

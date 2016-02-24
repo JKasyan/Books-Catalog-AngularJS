@@ -1,5 +1,6 @@
 package catalog.angularjs.controllers;
 
+import catalog.angularjs.dao.VisitorDao;
 import catalog.angularjs.security.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -28,6 +30,8 @@ public class UserXAuthTokenController {
     private final TokenUtils tokenUtils = new TokenUtils();
     private final AuthenticationManager authenticationManager;
     private final UserDetailsService userDetailsService;
+    @Autowired
+    private VisitorDao visitorDao;
 
     @Autowired
     public UserXAuthTokenController(AuthenticationManager am, UserDetailsService userDetailsService) {
@@ -36,11 +40,13 @@ public class UserXAuthTokenController {
     }
 
     @RequestMapping(value = "/authenticate", method = { RequestMethod.POST })
-    public UserTransfer authorize(@RequestParam String username, @RequestParam String password){
+    public UserTransfer authorize(@RequestParam String username, @RequestParam String password, HttpServletRequest request){
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
         Authentication authentication = this.authenticationManager.authenticate(token);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         UserDetails details = this.userDetailsService.loadUserByUsername(username);
+        String ipAddress = request.getRemoteAddr();
+        visitorDao.save(ipAddress, username);
         Map<String, Boolean> roles = new HashMap<String, Boolean>();
         for (GrantedAuthority authority : details.getAuthorities()){
             roles.put(authority.toString(), Boolean.TRUE);

@@ -25,9 +25,9 @@ public class IpFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-        String ip = request.getRemoteAddr();
-        logger.debug("IP: " + ip);
-        visitorDao.save(ip);
+//        String ip = request.getRemoteAddr();
+//        logger.debug("IP: " + ip);
+//        visitorDao.save(ip);
         chain.doFilter(request, response);
     }
 
