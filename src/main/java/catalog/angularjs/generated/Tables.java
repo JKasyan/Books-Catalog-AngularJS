@@ -8,7 +8,7 @@ import catalog.angularjs.generated.tables.Author;
 import catalog.angularjs.generated.tables.AuthorBook;
 import catalog.angularjs.generated.tables.Book;
 import catalog.angularjs.generated.tables.TestTable;
-import catalog.angularjs.generated.tables.Visitors;
+import catalog.angularjs.generated.tables.Visitor;
 
 import javax.annotation.Generated;
 
@@ -47,7 +47,7 @@ public class Tables {
 	public static final TestTable TEST_TABLE = catalog.angularjs.generated.tables.TestTable.TEST_TABLE;
 
 	/**
-	 * The table public.visitors
+	 * The table public.visitor
 	 */
-	public static final Visitors VISITORS = catalog.angularjs.generated.tables.Visitors.VISITORS;
+	public static final Visitor VISITOR = catalog.angularjs.generated.tables.Visitor.VISITOR;
 }

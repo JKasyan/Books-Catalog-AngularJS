@@ -9,7 +9,7 @@ import catalog.angularjs.generated.tables.Author;
 import catalog.angularjs.generated.tables.AuthorBook;
 import catalog.angularjs.generated.tables.Book;
 import catalog.angularjs.generated.tables.TestTable;
-import catalog.angularjs.generated.tables.Visitors;
+import catalog.angularjs.generated.tables.Visitor;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,7 +35,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Public extends SchemaImpl {
 
-	private static final long serialVersionUID = -916166885;
+	private static final long serialVersionUID = -290674932;
 
 	/**
 	 * The reference instance of <code>public</code>
@@ -77,6 +77,6 @@ public class Public extends SchemaImpl {
 			AuthorBook.AUTHOR_BOOK,
 			Book.BOOK,
 			TestTable.TEST_TABLE,
-			Visitors.VISITORS);
+			Visitor.VISITOR);
 	}
 }

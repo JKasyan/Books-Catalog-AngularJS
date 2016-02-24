@@ -288,4 +288,11 @@ angular.module('catalogApp').
 
         $scope.getMessages();
 
-    }]);
+    }])
+
+    .controller('visitorController', ['visitorService', '$scope', function(visitorService, $scope){
+        $scope.visitors = [];
+        visitorService.getVisitors().then(function (response) {
+            $scope.visitors = response.data;
+        })
+    }])

@@ -1,15 +1,16 @@
 package catalog.angularjs.dao.impl;
 
 import catalog.angularjs.dao.VisitorDao;
+import catalog.angularjs.generated.tables.pojos.Visitor;
 import org.apache.log4j.Logger;
 import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Timestamp;
-import java.util.UUID;
+import java.util.List;
 
-import static catalog.angularjs.generated.Tables.VISITORS;
+import static catalog.angularjs.generated.Tables.VISITOR;
 
 /**
  * Created by evgen on 24.02.16.
@@ -24,7 +25,7 @@ public class VisitorDaoImpl implements VisitorDao {
     @Override
     public void save(String ip, String username) {
         create
-                .insertInto(VISITORS, VISITORS.IP_ADDRESS, VISITORS.USERNAME)
+                .insertInto(VISITOR, VISITOR.IP_ADDRESS, VISITOR.USERNAME)
                 .values(ip, username)
                 .execute();
     }
@@ -32,5 +33,13 @@ public class VisitorDaoImpl implements VisitorDao {
     @Override
     public void save(String ip, String username, Timestamp date) {
         throw new UnsupportedOperationException("Not supported");
+    }
+
+    @Override
+    public List<Visitor> selectVisitors() {
+        return create
+                .select()
+                .from(VISITOR)
+                .fetchInto(Visitor.class);
     }
 }

@@ -8,12 +8,12 @@ import catalog.angularjs.generated.tables.Author;
 import catalog.angularjs.generated.tables.AuthorBook;
 import catalog.angularjs.generated.tables.Book;
 import catalog.angularjs.generated.tables.TestTable;
-import catalog.angularjs.generated.tables.Visitors;
+import catalog.angularjs.generated.tables.Visitor;
 import catalog.angularjs.generated.tables.records.AuthorBookRecord;
 import catalog.angularjs.generated.tables.records.AuthorRecord;
 import catalog.angularjs.generated.tables.records.BookRecord;
 import catalog.angularjs.generated.tables.records.TestTableRecord;
-import catalog.angularjs.generated.tables.records.VisitorsRecord;
+import catalog.angularjs.generated.tables.records.VisitorRecord;
 
 import javax.annotation.Generated;
 
@@ -44,7 +44,7 @@ public class Keys {
 	public static final Identity<AuthorRecord, Integer> IDENTITY_AUTHOR = Identities0.IDENTITY_AUTHOR;
 	public static final Identity<BookRecord, Integer> IDENTITY_BOOK = Identities0.IDENTITY_BOOK;
 	public static final Identity<TestTableRecord, Integer> IDENTITY_TEST_TABLE = Identities0.IDENTITY_TEST_TABLE;
-	public static final Identity<VisitorsRecord, Integer> IDENTITY_VISITORS = Identities0.IDENTITY_VISITORS;
+	public static final Identity<VisitorRecord, Integer> IDENTITY_VISITOR = Identities0.IDENTITY_VISITOR;
 
 	// -------------------------------------------------------------------------
 	// UNIQUE and PRIMARY KEY definitions
@@ -54,7 +54,7 @@ public class Keys {
 	public static final UniqueKey<AuthorBookRecord> AUTHOR_BOOK_PKEY = UniqueKeys0.AUTHOR_BOOK_PKEY;
 	public static final UniqueKey<BookRecord> BOOK_PKEY = UniqueKeys0.BOOK_PKEY;
 	public static final UniqueKey<TestTableRecord> PK_TT = UniqueKeys0.PK_TT;
-	public static final UniqueKey<VisitorsRecord> VISITORS_PKEY = UniqueKeys0.VISITORS_PKEY;
+	public static final UniqueKey<VisitorRecord> VISITORS_PKEY = UniqueKeys0.VISITORS_PKEY;
 
 	// -------------------------------------------------------------------------
 	// FOREIGN KEY definitions
@@ -71,7 +71,7 @@ public class Keys {
 		public static Identity<AuthorRecord, Integer> IDENTITY_AUTHOR = createIdentity(Author.AUTHOR, Author.AUTHOR.ID_AUTHOR);
 		public static Identity<BookRecord, Integer> IDENTITY_BOOK = createIdentity(Book.BOOK, Book.BOOK.ID_BOOK);
 		public static Identity<TestTableRecord, Integer> IDENTITY_TEST_TABLE = createIdentity(TestTable.TEST_TABLE, TestTable.TEST_TABLE.ID);
-		public static Identity<VisitorsRecord, Integer> IDENTITY_VISITORS = createIdentity(Visitors.VISITORS, Visitors.VISITORS.ID);
+		public static Identity<VisitorRecord, Integer> IDENTITY_VISITOR = createIdentity(Visitor.VISITOR, Visitor.VISITOR.ID);
 	}
 
 	private static class UniqueKeys0 extends AbstractKeys {
@@ -79,7 +79,7 @@ public class Keys {
 		public static final UniqueKey<AuthorBookRecord> AUTHOR_BOOK_PKEY = createUniqueKey(AuthorBook.AUTHOR_BOOK, AuthorBook.AUTHOR_BOOK.ID_AUTHOR, AuthorBook.AUTHOR_BOOK.ID_BOOK);
 		public static final UniqueKey<BookRecord> BOOK_PKEY = createUniqueKey(Book.BOOK, Book.BOOK.ID_BOOK);
 		public static final UniqueKey<TestTableRecord> PK_TT = createUniqueKey(TestTable.TEST_TABLE, TestTable.TEST_TABLE.ID);
-		public static final UniqueKey<VisitorsRecord> VISITORS_PKEY = createUniqueKey(Visitors.VISITORS, Visitors.VISITORS.ID);
+		public static final UniqueKey<VisitorRecord> VISITORS_PKEY = createUniqueKey(Visitor.VISITOR, Visitor.VISITOR.ID);
 	}
 
 	private static class ForeignKeys0 extends AbstractKeys {

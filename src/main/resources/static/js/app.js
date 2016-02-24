@@ -46,9 +46,9 @@ angular.module('catalogApp', ['ngRoute', 'ngCookies', 'securityModule', 'catalog
                     controller: 'newBookController as nBCtrl'
                 })
 
-                .when('/chat', {
-                    templateUrl: 'views/chat.html',
-                    controller: 'messageCtrl'
+                .when('/visitors', {
+                    templateUrl: 'views/visitors.html',
+                    controller: 'visitorController as visCtrl'
                 })
 
             $routeProvider.otherwise({

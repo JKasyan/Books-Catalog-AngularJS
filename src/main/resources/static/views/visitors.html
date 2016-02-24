@@ -1,0 +1,19 @@
+<div class="container">
+    <h2>Visitors</h2>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <td>Username</td>
+            <td>Date</td>
+            <td>IP address</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat = "visitor in visitors">
+            <td ng-bind = 'visitor.username'></td>
+            <td ng-bind = "visitor.date | date:'yyyy-MM-dd HH:mm:ss Z'"></td>
+            <td ng-bind = 'visitor.ipAddress'></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

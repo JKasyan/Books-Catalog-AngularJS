@@ -77,3 +77,10 @@ services.factory('newBookService', ['$http', function($http){
     }
 }]);
 
+services.factory('visitorService', ['$http', function($http){
+    return {
+        getVisitors:function() {
+            return $http.get('api/visitors');
+        }
+    }
+}]);
