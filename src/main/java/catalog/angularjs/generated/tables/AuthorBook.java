@@ -17,6 +17,7 @@ import org.jooq.Field;
 import org.jooq.ForeignKey;
 import org.jooq.Table;
 import org.jooq.TableField;
+import org.jooq.UniqueKey;
 import org.jooq.impl.TableImpl;
 
 
@@ -33,7 +34,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class AuthorBook extends TableImpl<AuthorBookRecord> {
 
-	private static final long serialVersionUID = -240994047;
+	private static final long serialVersionUID = 1174772753;
 
 	/**
 	 * The reference instance of <code>public.author_book</code>
@@ -51,12 +52,12 @@ public class AuthorBook extends TableImpl<AuthorBookRecord> {
 	/**
 	 * The column <code>public.author_book.id_author</code>.
 	 */
-	public final TableField<AuthorBookRecord, Integer> ID_AUTHOR = createField("id_author", org.jooq.impl.SQLDataType.INTEGER, this, "");
+	public final TableField<AuthorBookRecord, Integer> ID_AUTHOR = createField("id_author", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
 	 * The column <code>public.author_book.id_book</code>.
 	 */
-	public final TableField<AuthorBookRecord, Integer> ID_BOOK = createField("id_book", org.jooq.impl.SQLDataType.INTEGER, this, "");
+	public final TableField<AuthorBookRecord, Integer> ID_BOOK = createField("id_book", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
 	 * Create a <code>public.author_book</code> table reference
@@ -84,8 +85,24 @@ public class AuthorBook extends TableImpl<AuthorBookRecord> {
 	 * {@inheritDoc}
 	 */
 	@Override
+	public UniqueKey<AuthorBookRecord> getPrimaryKey() {
+		return Keys.AUTHOR_BOOK_PKEY;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<UniqueKey<AuthorBookRecord>> getKeys() {
+		return Arrays.<UniqueKey<AuthorBookRecord>>asList(Keys.AUTHOR_BOOK_PKEY);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public List<ForeignKey<AuthorBookRecord, ?>> getReferences() {
-		return Arrays.<ForeignKey<AuthorBookRecord, ?>>asList(Keys.AUTHOR_BOOK__AUTHOR_FK, Keys.AUTHOR_BOOK__BOOK_FK);
+		return Arrays.<ForeignKey<AuthorBookRecord, ?>>asList(Keys.AUTHOR_BOOK__FK_HD1420EVGMR13OJDCNJGWNVPO, Keys.AUTHOR_BOOK__FK_T75G0MH6JFEPBL5DE8Y0Q82EK);
 	}
 
 	/**

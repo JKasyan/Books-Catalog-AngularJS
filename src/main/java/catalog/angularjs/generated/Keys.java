@@ -8,10 +8,14 @@ import catalog.angularjs.generated.tables.Author;
 import catalog.angularjs.generated.tables.AuthorBook;
 import catalog.angularjs.generated.tables.Book;
 import catalog.angularjs.generated.tables.TestTable;
+import catalog.angularjs.generated.tables.Visitors;
+import catalog.angularjs.generated.tables.WebSessions;
 import catalog.angularjs.generated.tables.records.AuthorBookRecord;
 import catalog.angularjs.generated.tables.records.AuthorRecord;
 import catalog.angularjs.generated.tables.records.BookRecord;
 import catalog.angularjs.generated.tables.records.TestTableRecord;
+import catalog.angularjs.generated.tables.records.VisitorsRecord;
+import catalog.angularjs.generated.tables.records.WebSessionsRecord;
 
 import javax.annotation.Generated;
 
@@ -42,21 +46,25 @@ public class Keys {
 	public static final Identity<AuthorRecord, Integer> IDENTITY_AUTHOR = Identities0.IDENTITY_AUTHOR;
 	public static final Identity<BookRecord, Integer> IDENTITY_BOOK = Identities0.IDENTITY_BOOK;
 	public static final Identity<TestTableRecord, Integer> IDENTITY_TEST_TABLE = Identities0.IDENTITY_TEST_TABLE;
+	public static final Identity<VisitorsRecord, Integer> IDENTITY_VISITORS = Identities0.IDENTITY_VISITORS;
 
 	// -------------------------------------------------------------------------
 	// UNIQUE and PRIMARY KEY definitions
 	// -------------------------------------------------------------------------
 
-	public static final UniqueKey<AuthorRecord> AUTHOR_PK = UniqueKeys0.AUTHOR_PK;
-	public static final UniqueKey<BookRecord> ID_BOOK_PK = UniqueKeys0.ID_BOOK_PK;
+	public static final UniqueKey<AuthorRecord> AUTHOR_PKEY = UniqueKeys0.AUTHOR_PKEY;
+	public static final UniqueKey<AuthorBookRecord> AUTHOR_BOOK_PKEY = UniqueKeys0.AUTHOR_BOOK_PKEY;
+	public static final UniqueKey<BookRecord> BOOK_PKEY = UniqueKeys0.BOOK_PKEY;
 	public static final UniqueKey<TestTableRecord> PK = UniqueKeys0.PK;
+	public static final UniqueKey<VisitorsRecord> VISITORS_PKEY = UniqueKeys0.VISITORS_PKEY;
+	public static final UniqueKey<WebSessionsRecord> WEB_SESSIONS_PKEY = UniqueKeys0.WEB_SESSIONS_PKEY;
 
 	// -------------------------------------------------------------------------
 	// FOREIGN KEY definitions
 	// -------------------------------------------------------------------------
 
-	public static final ForeignKey<AuthorBookRecord, AuthorRecord> AUTHOR_BOOK__AUTHOR_FK = ForeignKeys0.AUTHOR_BOOK__AUTHOR_FK;
-	public static final ForeignKey<AuthorBookRecord, BookRecord> AUTHOR_BOOK__BOOK_FK = ForeignKeys0.AUTHOR_BOOK__BOOK_FK;
+	public static final ForeignKey<AuthorBookRecord, AuthorRecord> AUTHOR_BOOK__FK_HD1420EVGMR13OJDCNJGWNVPO = ForeignKeys0.AUTHOR_BOOK__FK_HD1420EVGMR13OJDCNJGWNVPO;
+	public static final ForeignKey<AuthorBookRecord, BookRecord> AUTHOR_BOOK__FK_T75G0MH6JFEPBL5DE8Y0Q82EK = ForeignKeys0.AUTHOR_BOOK__FK_T75G0MH6JFEPBL5DE8Y0Q82EK;
 
 	// -------------------------------------------------------------------------
 	// [#1459] distribute members to avoid static initialisers > 64kb
@@ -66,16 +74,20 @@ public class Keys {
 		public static Identity<AuthorRecord, Integer> IDENTITY_AUTHOR = createIdentity(Author.AUTHOR, Author.AUTHOR.ID_AUTHOR);
 		public static Identity<BookRecord, Integer> IDENTITY_BOOK = createIdentity(Book.BOOK, Book.BOOK.ID_BOOK);
 		public static Identity<TestTableRecord, Integer> IDENTITY_TEST_TABLE = createIdentity(TestTable.TEST_TABLE, TestTable.TEST_TABLE.ID);
+		public static Identity<VisitorsRecord, Integer> IDENTITY_VISITORS = createIdentity(Visitors.VISITORS, Visitors.VISITORS.ID);
 	}
 
 	private static class UniqueKeys0 extends AbstractKeys {
-		public static final UniqueKey<AuthorRecord> AUTHOR_PK = createUniqueKey(Author.AUTHOR, Author.AUTHOR.ID_AUTHOR);
-		public static final UniqueKey<BookRecord> ID_BOOK_PK = createUniqueKey(Book.BOOK, Book.BOOK.ID_BOOK);
+		public static final UniqueKey<AuthorRecord> AUTHOR_PKEY = createUniqueKey(Author.AUTHOR, Author.AUTHOR.ID_AUTHOR);
+		public static final UniqueKey<AuthorBookRecord> AUTHOR_BOOK_PKEY = createUniqueKey(AuthorBook.AUTHOR_BOOK, AuthorBook.AUTHOR_BOOK.ID_AUTHOR, AuthorBook.AUTHOR_BOOK.ID_BOOK);
+		public static final UniqueKey<BookRecord> BOOK_PKEY = createUniqueKey(Book.BOOK, Book.BOOK.ID_BOOK);
 		public static final UniqueKey<TestTableRecord> PK = createUniqueKey(TestTable.TEST_TABLE, TestTable.TEST_TABLE.ID);
+		public static final UniqueKey<VisitorsRecord> VISITORS_PKEY = createUniqueKey(Visitors.VISITORS, Visitors.VISITORS.ID);
+		public static final UniqueKey<WebSessionsRecord> WEB_SESSIONS_PKEY = createUniqueKey(WebSessions.WEB_SESSIONS, WebSessions.WEB_SESSIONS.ID_SESSION);
 	}
 
 	private static class ForeignKeys0 extends AbstractKeys {
-		public static final ForeignKey<AuthorBookRecord, AuthorRecord> AUTHOR_BOOK__AUTHOR_FK = createForeignKey(catalog.angularjs.generated.Keys.AUTHOR_PK, AuthorBook.AUTHOR_BOOK, AuthorBook.AUTHOR_BOOK.ID_AUTHOR);
-		public static final ForeignKey<AuthorBookRecord, BookRecord> AUTHOR_BOOK__BOOK_FK = createForeignKey(catalog.angularjs.generated.Keys.ID_BOOK_PK, AuthorBook.AUTHOR_BOOK, AuthorBook.AUTHOR_BOOK.ID_BOOK);
+		public static final ForeignKey<AuthorBookRecord, AuthorRecord> AUTHOR_BOOK__FK_HD1420EVGMR13OJDCNJGWNVPO = createForeignKey(catalog.angularjs.generated.Keys.AUTHOR_PKEY, AuthorBook.AUTHOR_BOOK, AuthorBook.AUTHOR_BOOK.ID_AUTHOR);
+		public static final ForeignKey<AuthorBookRecord, BookRecord> AUTHOR_BOOK__FK_T75G0MH6JFEPBL5DE8Y0Q82EK = createForeignKey(catalog.angularjs.generated.Keys.BOOK_PKEY, AuthorBook.AUTHOR_BOOK, AuthorBook.AUTHOR_BOOK.ID_BOOK);
 	}
 }

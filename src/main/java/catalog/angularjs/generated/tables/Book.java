@@ -34,7 +34,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Book extends TableImpl<BookRecord> {
 
-	private static final long serialVersionUID = 1589345616;
+	private static final long serialVersionUID = 1140151631;
 
 	/**
 	 * The reference instance of <code>public.book</code>
@@ -55,24 +55,24 @@ public class Book extends TableImpl<BookRecord> {
 	public final TableField<BookRecord, Integer> ID_BOOK = createField("id_book", org.jooq.impl.SQLDataType.INTEGER.nullable(false).defaulted(true), this, "");
 
 	/**
-	 * The column <code>public.book.title</code>.
+	 * The column <code>public.book.date_publish</code>.
 	 */
-	public final TableField<BookRecord, String> TITLE = createField("title", org.jooq.impl.SQLDataType.CLOB, this, "");
+	public final TableField<BookRecord, String> DATE_PUBLISH = createField("date_publish", org.jooq.impl.SQLDataType.VARCHAR.length(255), this, "");
 
 	/**
 	 * The column <code>public.book.short_description</code>.
 	 */
-	public final TableField<BookRecord, String> SHORT_DESCRIPTION = createField("short_description", org.jooq.impl.SQLDataType.CLOB, this, "");
-
-	/**
-	 * The column <code>public.book.date_publish</code>.
-	 */
-	public final TableField<BookRecord, String> DATE_PUBLISH = createField("date_publish", org.jooq.impl.SQLDataType.CLOB, this, "");
+	public final TableField<BookRecord, String> SHORT_DESCRIPTION = createField("short_description", org.jooq.impl.SQLDataType.VARCHAR.length(255), this, "");
 
 	/**
 	 * The column <code>public.book.status</code>.
 	 */
-	public final TableField<BookRecord, Boolean> STATUS = createField("status", org.jooq.impl.SQLDataType.BOOLEAN.defaulted(true), this, "");
+	public final TableField<BookRecord, Boolean> STATUS = createField("status", org.jooq.impl.SQLDataType.BOOLEAN, this, "");
+
+	/**
+	 * The column <code>public.book.title</code>.
+	 */
+	public final TableField<BookRecord, String> TITLE = createField("title", org.jooq.impl.SQLDataType.VARCHAR.length(255), this, "");
 
 	/**
 	 * Create a <code>public.book</code> table reference
@@ -109,7 +109,7 @@ public class Book extends TableImpl<BookRecord> {
 	 */
 	@Override
 	public UniqueKey<BookRecord> getPrimaryKey() {
-		return Keys.ID_BOOK_PK;
+		return Keys.BOOK_PKEY;
 	}
 
 	/**
@@ -117,7 +117,7 @@ public class Book extends TableImpl<BookRecord> {
 	 */
 	@Override
 	public List<UniqueKey<BookRecord>> getKeys() {
-		return Arrays.<UniqueKey<BookRecord>>asList(Keys.ID_BOOK_PK);
+		return Arrays.<UniqueKey<BookRecord>>asList(Keys.BOOK_PKEY);
 	}
 
 	/**

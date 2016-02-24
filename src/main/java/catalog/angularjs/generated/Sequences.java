@@ -39,4 +39,9 @@ public class Sequences {
 	 * The sequence <code>public.test_table_id_seq</code>
 	 */
 	public static final Sequence<Long> TEST_TABLE_ID_SEQ = new SequenceImpl<Long>("test_table_id_seq", Public.PUBLIC, org.jooq.impl.SQLDataType.BIGINT.nullable(false));
+
+	/**
+	 * The sequence <code>public.visitors_id_seq</code>
+	 */
+	public static final Sequence<Long> VISITORS_ID_SEQ = new SequenceImpl<Long>("visitors_id_seq", Public.PUBLIC, org.jooq.impl.SQLDataType.BIGINT.nullable(false));
 }

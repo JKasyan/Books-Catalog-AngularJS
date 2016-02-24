@@ -10,7 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 @RestController
 @RequestMapping(value = "api/")
@@ -21,8 +23,9 @@ public class BooksController {
     private static final Logger logger = Logger.getLogger(BooksController.class);
 
     @RequestMapping(value = "/books", method = RequestMethod.GET)
-    public List<BookModel> getAllBooks(){
+    public List<BookModel> getAllBooks(Principal principal){
         logger.debug("api/books");
+        logger.info("Principal: " + principal.getName());
         return catalogService.getAllBooks();
     }
 
