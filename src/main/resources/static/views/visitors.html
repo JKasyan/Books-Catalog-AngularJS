@@ -3,6 +3,7 @@
     <table class="table table-bordered">
         <thead>
         <tr>
+            <td>ID</td>
             <td>Username</td>
             <td>Date</td>
             <td>IP address</td>
@@ -10,6 +11,7 @@
         </thead>
         <tbody>
         <tr ng-repeat = "visitor in visitors">
+            <td ng-bind = 'visitor.id'></td>
             <td ng-bind = 'visitor.username'></td>
             <td ng-bind = "visitor.date | date:'yyyy-MM-dd HH:mm:ss Z'"></td>
             <td ng-bind = 'visitor.ipAddress'></td>
