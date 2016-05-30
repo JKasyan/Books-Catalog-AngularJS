@@ -1,6 +1,7 @@
 package catalog.angularjs.services;
 
-import catalog.angularjs.generated.tables.pojos.Visitor;
+
+import catalog.angularjs.dto.Visitor;
 
 import java.util.List;
 

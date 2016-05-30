@@ -1,20 +1,18 @@
 package catalog.angularjs.dao;
 
-
-import catalog.angularjs.generated.tables.pojos.Author;
-import catalog.angularjs.generated.tables.pojos.Book;
+import catalog.angularjs.dto.Author;
+import catalog.angularjs.dto.Book;
 import catalog.angularjs.model.BookModel;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 
 import java.util.List;
 
-public interface AuthorRepository {
+public interface AuthorRepository extends MongoRepository<Author, String> {
 
-    void insertAuthor(Author author);
-    List<Author> selectAllAuthors();
-    void addBook(BookModel bookModel);
-    void updateAuthor(Author author);
-    void delete(int idAuthor);
-    List<Author> selectByPattern(String pattern);
-    Author selectAuthor(int idAuthor);
+    Author insert(Author author);
+    List<Author> findAll();
+    void delete(String id);
+    //List<Author> selectByPattern(String pattern);
+    Author findOne(String id);
 }

@@ -1,16 +1,16 @@
 package catalog.angularjs.dao;
 
-import catalog.angularjs.generated.tables.pojos.Visitor;
 
-import java.sql.Timestamp;
+import catalog.angularjs.dto.Visitor;
+import org.springframework.data.mongodb.repository.MongoRepository;
+
 import java.util.List;
 
 /**
  * Created by evgen on 24.02.16.
  */
-public interface VisitorDao {
+public interface VisitorDao /*extends MongoRepository<Visitor, String>*/ {
 
-    void save(String ipAddress, String username);
-    void save(String ipAddress, String username, Timestamp date);
-    List<Visitor> selectVisitors();
+    Visitor save(Visitor visitor);
+    List<Visitor> selectAll();
 }

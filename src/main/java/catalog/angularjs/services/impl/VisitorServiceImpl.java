@@ -1,7 +1,7 @@
 package catalog.angularjs.services.impl;
 
 import catalog.angularjs.dao.VisitorDao;
-import catalog.angularjs.generated.tables.pojos.Visitor;
+import catalog.angularjs.dto.Visitor;
 import catalog.angularjs.services.VisitorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,11 +14,11 @@ import java.util.List;
 @Service
 public class VisitorServiceImpl implements VisitorService {
 
-    @Autowired
-    private VisitorDao visitorDao;
+    //@Autowired
+    //private VisitorDao visitorDao;
 
     @Override
     public List<Visitor> getVisitors() {
-        return visitorDao.selectVisitors();
+        return null;
     }
 }

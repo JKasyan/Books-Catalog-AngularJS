@@ -1,22 +1,21 @@
 package catalog.angularjs.services;
 
-import catalog.angularjs.generated.tables.pojos.Author;
-import catalog.angularjs.generated.tables.pojos.Book;
-import catalog.angularjs.model.BookModel;
+import catalog.angularjs.dto.Author;
+import catalog.angularjs.dto.Book;
 
 import java.util.List;
 
 public interface CatalogService {
 
-    List<BookModel> getAllBooks();
+    List<Book> getAllBooks();
     List<Author> getAllAuthors();
-    Author getAuthor(int idAuthor);
+    Author getAuthor(String idAuthor);
     List<Book> getBooksOfAuthors(int id);
     void addAuthor(Author author);
-    void deleteAuthor(int idAuthor);
-    void addBook(BookModel bookModel);
+    void deleteAuthor(String idAuthor);
+    void addBook(Book book);
     void updateAuthor(Author author);
-    void updateBook(BookModel bookModel);
-    void deleteBook(int idBook);
-    BookModel getBookById(int id);
+    void updateBook(Book book);
+    void deleteBook(String idBook);
+    Book getBookById(String id);
 }

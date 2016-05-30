@@ -1,6 +1,6 @@
 package catalog.angularjs.controllers;
 
-import catalog.angularjs.generated.tables.pojos.Visitor;
+import catalog.angularjs.dto.Visitor;
 import catalog.angularjs.services.VisitorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

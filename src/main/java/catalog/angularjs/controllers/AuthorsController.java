@@ -1,6 +1,7 @@
 package catalog.angularjs.controllers;
 
-import catalog.angularjs.generated.tables.pojos.Author;
+
+import catalog.angularjs.dto.Author;
 import catalog.angularjs.security.UserDetailService;
 import catalog.angularjs.services.CatalogService;
 import catalog.angularjs.validation.ValidationErrorDTO;
@@ -41,7 +42,7 @@ public class AuthorsController {
     @RequestMapping(value = "/authors/{idAuthor}", method = RequestMethod.GET)
     public Author getAuthor(@PathVariable int idAuthor) {
         logger.debug("api/authors/" + idAuthor);
-        return catalogService.getAuthor(idAuthor);
+        return /*catalogService.getAuthor(idAuthor)*/null;
     }
 
     @RequestMapping(value = "/authors", method = RequestMethod.POST)
@@ -54,7 +55,7 @@ public class AuthorsController {
     @Secured(value = UserDetailService.ROLE_ADMIN)
     @RequestMapping(value = "/authors/{idAuthor}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
-    public void deleteAuthor(@PathVariable int idAuthor){
+    public void deleteAuthor(@PathVariable String idAuthor) {
         logger.debug("Author with idAuthor " + idAuthor + " will be deleted.");
         catalogService.deleteAuthor(idAuthor);
     }
@@ -64,7 +65,7 @@ public class AuthorsController {
     @ResponseStatus(HttpStatus.OK)
     public void updateAuthor(@RequestBody Author author) {
         logger.debug("api/authors. Update author: " + author);
-        catalogService.updateAuthor(author);
+        //catalogService.updateAuthor(author);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

@@ -1,6 +1,6 @@
 package catalog.angularjs.controllers;
 
-import catalog.angularjs.generated.tables.pojos.Book;
+import catalog.angularjs.dto.Book;
 import catalog.angularjs.model.BookModel;
 import catalog.angularjs.security.UserDetailService;
 import catalog.angularjs.services.CatalogService;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
 
 @RestController
 @RequestMapping(value = "api/")
@@ -23,27 +22,27 @@ public class BooksController {
     private static final Logger logger = Logger.getLogger(BooksController.class);
 
     @RequestMapping(value = "/books", method = RequestMethod.GET)
-    public List<BookModel> getAllBooks(Principal principal){
+    public List<Book> getAllBooks(Principal principal){
         logger.debug("api/books");
         logger.info("Principal: " + principal.getName());
         return catalogService.getAllBooks();
     }
 
     @RequestMapping(value = "/books/{id}", method = RequestMethod.GET)
-    public BookModel getBookById(@PathVariable int id) {
+    public Book getBookById(@PathVariable String id) {
         return catalogService.getBookById(id);
     }
 
     @RequestMapping(value = "/books/authors/{idAuthor}", method = RequestMethod.GET)
     public List<Book> getBooksOfAuthor(@PathVariable int idAuthor){
         logger.debug("/books/authors/" + idAuthor);
-        return catalogService.getBooksOfAuthors(idAuthor);
+        return /*catalogService.getBooksOfAuthors(idAuthor)*/null;
     }
 
 
     @RequestMapping(value = "/books/{idBook}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
-    public void deleteBook(@PathVariable int idBook) {
+    public void deleteBook(@PathVariable String idBook) {
         logger.debug("api/books/" + idBook + ". Method delete.");
         catalogService.deleteBook(idBook);
     }
@@ -52,19 +51,19 @@ public class BooksController {
     @Secured(value = UserDetailService.ROLE_ADMIN)
     @RequestMapping(value = "/books", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public void addBook(@RequestBody BookModel bookModel) {
+    public void addBook(@RequestBody Book book) {
         logger.debug("api/books. Method: Post");
-        catalogService.addBook(bookModel);
+        catalogService.addBook(book);
     }
 
     //{"idBook":"11", "shortDescription": "dfdfdf", "title": "ddddd", "datePublish":1999, "authors":[11] }
     @Secured(value = UserDetailService.ROLE_ADMIN)
     @RequestMapping(value = "/books", method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.OK)
-    public void updateBook(@RequestBody BookModel bookModel) {
+    public void updateBook(@RequestBody Book book) {
         logger.debug("api/books. Method: PUT");
-        logger.info("Updating book: " + bookModel);
-        catalogService.updateBook(bookModel);
+        logger.info("Updating book: " + book);
+        catalogService.updateBook(book);
     }
 
 }

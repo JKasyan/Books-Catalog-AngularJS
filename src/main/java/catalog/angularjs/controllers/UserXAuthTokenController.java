@@ -30,8 +30,8 @@ public class UserXAuthTokenController {
     private final TokenUtils tokenUtils = new TokenUtils();
     private final AuthenticationManager authenticationManager;
     private final UserDetailsService userDetailsService;
-    @Autowired
-    private VisitorDao visitorDao;
+    //@Autowired
+    //private VisitorDao visitorDao;
 
     @Autowired
     public UserXAuthTokenController(AuthenticationManager am, UserDetailsService userDetailsService) {
@@ -47,8 +47,8 @@ public class UserXAuthTokenController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         UserDetails details = this.userDetailsService.loadUserByUsername(username);
         String ipAddress = request.getRemoteAddr();
-        visitorDao.save(ipAddress, username);
-        Map<String, Boolean> roles = new HashMap<String, Boolean>();
+        //visitorDao.save(ipAddress, username);
+        Map<String, Boolean> roles = new HashMap<>();
         for (GrantedAuthority authority : details.getAuthorities()){
             roles.put(authority.toString(), Boolean.TRUE);
         }
