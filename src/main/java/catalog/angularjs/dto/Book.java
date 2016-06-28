@@ -1,19 +1,15 @@
 package catalog.angularjs.dto;
 
-import java.util.List;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * Created by Evgen on 11.11.2015.
  */
+@Document(collection = "book")
 public class Book {
 
-    private List<Author> authors;
+    private String id;
+    private String title;
 
-    public List<Author> getAuthors() {
-        return authors;
-    }
 
-    public void setAuthors(List<Author> authors) {
-        this.authors = authors;
-    }
 }

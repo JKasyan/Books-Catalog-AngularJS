@@ -1,10 +1,12 @@
 package catalog.angularjs.dto;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * Created by Evgen on 11.11.2015.
  */
+@Document(collection = "author")
 public class Author {
 
     @Id
@@ -34,5 +36,10 @@ public class Author {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Author{id=%s, firstName=%s, lastName=%s", id, firstName, lastName);
     }
 }

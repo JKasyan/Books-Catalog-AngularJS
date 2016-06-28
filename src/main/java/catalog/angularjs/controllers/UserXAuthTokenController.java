@@ -30,8 +30,8 @@ public class UserXAuthTokenController {
     private final TokenUtils tokenUtils = new TokenUtils();
     private final AuthenticationManager authenticationManager;
     private final UserDetailsService userDetailsService;
-    //@Autowired
-    //private VisitorDao visitorDao;
+    @Autowired
+    private VisitorDao visitorDao;
 
     @Autowired
     public UserXAuthTokenController(AuthenticationManager am, UserDetailsService userDetailsService) {

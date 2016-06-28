@@ -77,7 +77,7 @@ angular.module('catalogApp').
         var self = this;
         self.author = {
             firstName: "",
-            secondName: ""
+            lastName: ""
         };
         self.createAuthor = function () {
             authorsService.addAuthor(self.author).then(function (success) {
