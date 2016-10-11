@@ -4,5 +4,6 @@ New-made "Books catalog" (first version https://github.com/JKasyan/Books-catalog
  - Spring Boot
  - Spring Security
  - JOOQ
+ - AngularJS
 
 
