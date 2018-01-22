@@ -102,7 +102,7 @@ angular.module('catalogApp').
 
     .controller('loginCtrl', ['$scope', '$rootScope',
         '$location', '$http', '$cookieStore', 'loginService',
-        function ($scope, $rootScope, $location, $http, $cookieStore, loginService) {
+        function ($scope, $rootScope, $location, $http, $cookieStore, loginService, $window) {
 
             $scope.login = function () {
                 loginService.authenticate($.param({username: $scope.username, password: $scope.password}),
@@ -113,6 +113,11 @@ angular.module('catalogApp').
                         $location.path("/authors");
                     });
             };
+
+            $scope.goToPortal = function() {
+                //$location.path('https://preprod-smartbox.cs89.force.com/s/login/?language=en')
+                window.location = 'https://preprod-smartbox.cs89.force.com/s/login/?language=en';
+            }
         }])
 
     .controller('newBookController',['newBookService','authorsService', '$location',
