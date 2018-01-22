@@ -77,7 +77,7 @@ angular.module('catalogApp').
         var self = this;
         self.author = {
             firstName: "",
-            lastName: ""
+            secondName: ""
         };
         self.createAuthor = function () {
             authorsService.addAuthor(self.author).then(function (success) {
@@ -102,7 +102,7 @@ angular.module('catalogApp').
 
     .controller('loginCtrl', ['$scope', '$rootScope',
         '$location', '$http', '$cookieStore', 'loginService',
-        function ($scope, $rootScope, $location, $http, $cookieStore, loginService) {
+        function ($scope, $rootScope, $location, $http, $cookieStore, loginService, $window) {
 
             $scope.login = function () {
                 loginService.authenticate($.param({username: $scope.username, password: $scope.password}),
@@ -113,6 +113,10 @@ angular.module('catalogApp').
                         $location.path("/authors");
                     });
             };
+
+            $scope.goToPortal = function() {
+                window.location = 'https://preprod-smartbox.cs89.force.com/s/login/?language=en';
+            }
         }])
 
     .controller('newBookController',['newBookService','authorsService', '$location',
@@ -249,50 +253,4 @@ angular.module('catalogApp').
                     }
                 )
             }
-        }])
-
-
-    .controller('messageCtrl', ['$scope', '$http', function($scope, $http){
-
-        $scope.message = "";
-        $scope.messages = {};
-
-        $scope.getMessages = function() {
-            $http.get('/messages').success(function(messages){
-                $scope.messages = messages;
-            })
-        };
-
-        var socket = new SockJS('/messages');
-        var client = Stomp.over(socket);
-        client.connect({},
-            function(frame){
-                console.log('Connected: ', frame);
-                var refreshMessages = function(msg){
-                    console.log('Message: ', msg);
-                    $scope.getMessages();
-                };
-                client.subscribe('user/messages', refreshMessages);
-                client.subscribe('user/queue/test', refreshMessages);
-            },
-            function(error) {
-                console.log('Error: ', error)
-            }
-        );
-
-        $scope.msg = "";
-
-        $scope.send = function(){
-            client.send('/app/message', {'user':'Evgen'}, $scope.msg);
-        };
-
-        $scope.getMessages();
-
-    }])
-
-    .controller('visitorController', ['visitorService', '$scope', function(visitorService, $scope){
-        $scope.visitors = [];
-        visitorService.getVisitors().then(function (response) {
-            $scope.visitors = response.data;
-        })
-    }])
+        }]);
