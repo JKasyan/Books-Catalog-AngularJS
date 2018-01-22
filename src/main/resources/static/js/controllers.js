@@ -115,7 +115,7 @@ angular.module('catalogApp').
             };
 
             $scope.goToPortal = function() {
-                window.location = 'https://preprod-smartbox.cs89.force.com/s/login/?language=en';
+                window.location = 'https://preprod-smartbox.cs89.force.com/s/login';
             }
         }])
 
